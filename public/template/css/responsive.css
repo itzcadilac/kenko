@@ -7,7 +7,6 @@ NOTE: This file contains the styling for responsive Template.
 @media(max-width:1699px) {
 	.email-form .select2-container { width: 100% !important; }
 	.sign-in-page {height: 100%;}
-	.sign-in-detail{height: 100%;}
 	.iq-search-bar .searchbox {width: 350px;}
 }
 @media(min-width:1300px) {
