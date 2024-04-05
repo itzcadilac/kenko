@@ -55,7 +55,7 @@
 						<div class="iq-card">
 							<div class="iq-card-header d-flex justify-content-between">
 								<div class="iq-header-title">
-									<h4 class="card-title">Lista General de Eventos</h4>
+									<h4 class="card-title">Lista de Servicios </h4>
 								</div>
 							</div>
                         	<div class="iq-card-body">
@@ -78,46 +78,6 @@
 													<?php }?>
 													<?php $idrol = $this->session->userdata("idrol");?>
 													<input type="hidden" id="Tipo_Accion" />
-													<ul class="botones-evento">
-																	<?php if (validarPermisosOpciones(12, $opciones)) {?>
-																	<li id="btn-nuevo" class="agregar"><label rel=""><span>Agregar Nuevo Evento</span><i class="fa fa-file-text-o" aria-hidden="true"></i></label></li>
-																	<?php }?>
-																	<?php if (validarPermisosOpciones(1, $opciones)) {?>
-																	<li id="btn-editar" class=""><label rel=""><span>Corregir Evento Seleccionado</span><i class="fa fa-check" aria-hidden="true"></i></label></li>
-																	<?php }?>
-																	<?php if (validarPermisosOpciones(7, $opciones)) {?>
-																	<li id="btn-extornar" class=""><label rel=""><span>Reabrir Evento Seleccionado</span><i class="fa fa-backward" aria-hidden="true"></i></label></li>
-																	<?php }?>
-																	<?php if (validarPermisosOpciones(8, $opciones)) {?>
-																	<li id="btn-cerrar" class=""><label rel=""><span>Cerrar Evento Seleccionado</span><i class="fa fa-times" aria-hidden="true"></i></label></li>
-																	<?php }?>
-																	<?php if (validarPermisosOpciones(9, $opciones)) {?>
-																	<li id="btn-exportar" class=""><a href="javascript:;"><label rel=""><span>Descargar Informe Evento</span><i class="fa fa-file-pdf-o" aria-hidden="true"></i></label></a></li>
-																	<?php }?>
-																<?php if ($idrol == "01") {?>
-																	<?php if (validarPermisosOpciones(10, $opciones)) {?>
-																	<li id="btn-anular" class=""><label rel=""><span>Anular Evento Seleccionado</span><i class="fa fa-trash" aria-hidden="true"></i></label></li>
-																	<?php }?>
-																<?php }?>
-																<?php if ($idrol == "01") {?>
-																	<?php if (validarPermisosOpciones(4, $opciones)) {?>
-																		<li id="btn-eliminar" class=""><label rel=""><span>Eliminar Evento Seleccionado</span><i class="fa fa-lock" aria-hidden="true"></i></label></li>
-																	<?php }?>
-																<?php }?>
-																<?php if (validarPermisosOpciones(26, $opciones)) {?>
-																<li id="btn-oferta-movil" class=""><label rel=""><span>Registro de Ofertas M&oacute;viles</span><i class="fa fa-ambulance" aria-hidden="true"></i></label></li>																<?php }?>
-																<?php if (validarPermisosOpciones(28, $opciones)) {?>
-																<li id="btn-alertas-pronos" class="alertas-pronos"><label rel=""><span>Alertas y Pronósticos</span><i class="fa fa-phone" aria-hidden="true"></i></label></li>
-																<?php }?>
-																<?php if (validarPermisosOpciones(29, $opciones)) {?>
-																<li id="btn-eventos-asociados" class="eventos-asociados"><span>Eventos Asociados</span><i class="fa fa-calendar" aria-hidden="true"></i></label></li>
-																<?php }?>
-																<?php if ($idrol == "01") {?>
-																<?php if (validarPermisosOpciones(3, $opciones)) {?>
-																	<li id="btn-restaurar" class=""><label rel=""><span>Restaurar Evento</span><i class="fa fa-refresh" aria-hidden="true"></i></label></li>
-																<?php }?>
-																<?php }?>
-													</ul>
 													<div class="clearfix"></div>
 													<div class="row">
 															<div class="col-xs-12">
@@ -149,26 +109,14 @@
 																<!-- dataTables-example -->
 																<thead class="thead-template">
 																	<tr>
-																		<th class="text-center" >N&uacute;mero</th>
-																		<th>Evento Producido</th>
+																		<th class="text-center" >ID</th>
+																		<th>Tipo de servicio</th>
+																		<th>Dirección</th>
 																		<th style="width: 100px;">Fecha y Hora</th>
-																		<th>Ubicaci&oacute;n del Evento (UBIGEO)</th>
-																		<th class="text-center" style="width: 80px;">Nivel</th>
-																		<th class="text-center" style="width: 40px;">Men&uacute;</th>
-																		<th class="text-center" ><span data-toggle="tooltip" data-placement="top" title="Mapa" >Mapa</span></th>
-																		<th><span data-toggle="tooltip" data-placement="top" title="Galeria">Fotos</span></th>
-																		<th><span data-toggle="tooltip" data-placement="top" title="Requerimientos">Req.</span></th>
-																		<th class="text-center">Estado</th>
-																		<th>&nbsp;</th>
-																		<th>&nbsp;</th>
-																		<th>Coordenadas</th>
-																		<th>&nbsp;</th>
-																		<th>&nbsp;</th>
-																		<th>Danios</th>
-																		<th>Lesionados</th>
-																		<th>Acciones</th>
-																		<th>EE.SS.</th>
-																		<th>&nbsp;</th>
+																		<th>Tipo documento</th>
+																		<th class="text-center" style="width: 80px;">N. documento</th>
+																		<th class="text-center" style="width: 40px;">Nombres</th>
+																		<th class="text-center" style="width: 40px;">Apellidos</th>
 																		<th>Estado</th>
 																	</tr>
 																</thead>
@@ -178,76 +126,22 @@
 																	foreach ($lista as $row):
 																	?>
 																	<tr>
-																		<td align="center"><?=$row["codigo"]?></td>
-																		<td><?=$row["evento"]?></td>
-																		<td><?=$row["fecha"]?></td>
-																		<td><?=$row["ubigeo"]?></td>
-																		<td align="center"><?=$row["nivel"]?></td>
+																		<td align="center"><?=$row["idservicio"]?></td>
+																		<td><?=$row["descservicio"]?></td>
+																		<td><?=$row["direccion"]?></td>
+																		<td><?=$row["fecregistro"]?></td>
 																		<td class="text-center">
-																		<?php if ($row["Evento_Estado_Codigo"] != "1") {?>
-																			<i class="fa fa-home disabled" aria-hidden="true"></i>
-																		<?php } else {?>
-																			<?php if (validarPermisosOpciones(2, $opciones)) {?><span class="inline-block"><i class="fa fa-home addDanios" aria-hidden="true"></i></span><?php }?>
-
-																		<?php }?>
+																			<?php if ($row["tipodocumento"] == "1") {?>
+																			<span>DNI</span>
+																			<?php } else {?>
+																			<?php if (validarPermisosOpciones(2, $opciones)) {?>
+																				<span>Otros</span><?php }?>
+																			<?php }?>
 																		</td>
-																		<td class="text-center">
-																		<?php if ($row["Evento_Estado_Codigo"] != "1") {?>
-																			<a href="javascript:;"><i class="fa fa-globe disabled" rel="<?=$row["Evento_Coordenadas"]?>"></i></a>
-																		<?php } else {?>
-																			<?php if (validarPermisosOpciones(5, $opciones)) {?>
-																			<a href="javascript:;"><i	class="fa fa-globe actionMap" rel="<?=$row["Evento_Coordenadas"]?>"></i></a><?php }?>
-																		</td>
-																		<?php }?>
-																		<td class="text-center">
-																		<?php if ($row["Evento_Estado_Codigo"] != "1") {?>
-																		<a href="javascript:;"><i class="fa fa-file-photo-o disabled"></i></a>
-																		<?php } else {?>
-																		<?php if (validarPermisosOpciones(6, $opciones)) {?>
-																			<a href="javascript:;"><i class="fa fa-file-photo-o addPhotos"></i></a>
-																		<?php }?>
-																		<?php }?>
-																		</td>
-																		<td class="text-center">
-																		<?php if ($row["Evento_Estado_Codigo"] != "1") {?>
-																				<a href="javascript:;"><i class="fa fa-list-alt disabled"></i></a>
-																		<?php } else {?>
-																				<?php if (validarPermisosOpciones(27, $opciones)) {?>
-																					<a href="javascript:;"><i class="fa fa-list-alt addAsignacion"></i></a>
-																				<?php }?>
-																		<?php }?>
-																		</td>
-																		<td class="text-center"><?php
-																		$html = '';
-																		$status = '';
-																		switch ($row["Evento_Estado_Codigo"]) {
-																			case 1:
-																				$html = '<span class="label label-success">Monitoreo</span>';
-																				$status = 'Monitoreo';
-																				break;
-																			case 2:
-																				$html = '<span class="label label-default">Cerrado</span>';
-																				$status = 'Cerrado';
-																				break;
-																			case 3:
-																				$html = '<span class="label label-danger">Anulado</span>';
-																				$status = 'Anulado';
-																				break;
-																		}
-																		echo $html;
-																		?>
-																		</td>
-																		<td><?=$row["Evento_Registro_Numero"]?></td>
-																		<td><?=$row["Evento_Estado_Codigo"]?></td>
-																		<td><?=$row["orden"]?></td>
-																		<td><?=$row["Evento_Coordenadas"]?></td>
-																		<td><?=encriptarInforme($row["Evento_Registro_Numero"], "ASC")?></td>
-																		<td><?=encriptarInforme($row["Evento_Registro_Numero"], "DESC")?></td>
-																		<td><?=$row["danios"]?></td>
-																		<td><?=$row["lesionados"]?></td>
-																		<td><?=$row["acciones"]?></td>
-																		<td><?=$row["salud"]?></td>
-																		<td><?=$status?></td>
+																		<td><?=$row["documento"]?></td>
+																		<td><?=$row["nombres"]?></td>
+																		<td><?=$row["ape_paterno"]?> <?=$row["ape_materno"]?></td>
+																		<td><?=$row["estado"]?></td>
 																	</tr>
 																		<?php
 																		$n++;
@@ -262,42 +156,7 @@
 						</div>					
 					</div>
 				</div>	<!-- Aqui cierra row-->		
-				<div class="modal fade" id="informeModal" tabindex="-1" role="dialog" aria-labelledby="condicionModalLabel" style="margin-top: -15px;">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h4 class="modal-title" id="daniosModalLabel">Seleccione su Informe</h4>
-								<button class="close" type="button" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>
-								</button>
-							</div>
-							<div class="modal-body text-center">
-								<div class="btn-group">
-									<a id="aInformeInicial" href="" target="_blank" class="btn btn-primary">Informe Inicial</a>
-									<a id="aInformeFinal" href="" target="_blank" class="btn btn-primary">Informe Final</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="condicionModalLabel" style="margin-top: -15px;">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-							</button>
-							<h5 class="modal-title">Mapa del Evento</h5>
-						</div>
-						<div class="modal-body">
-							<div id="map"></div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						</div>
-						</div>
-					</div>
-				</div>
+
 				
 				<?php $this->load->view("inc/footer-template");?>
 		   	</div>

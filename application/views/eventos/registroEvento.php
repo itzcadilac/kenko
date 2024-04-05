@@ -16,7 +16,7 @@
 	  <?php echo link_tag("public/css/mapa.css"); ?>
 	  <link rel="stylesheet" href="<?=base_url()?>public/css/bootstrap-datetimepicker.min.css" />
 	  <link rel="stylesheet" href="<?=base_url()?>public/css/eventos/registroEvento.css?v=<?=date("his")?>" />
-	<?php $titulo = "Registro de Nuevos Eventos";?>
+	<?php $titulo = "Registro de servicios";?>
 	<?php $opciones = $this->session->userdata("Permisos_Opcion");?>
 </head>
 
@@ -40,7 +40,7 @@
 						<div class="iq-card">
 							<div class="iq-card-header d-flex justify-content-between">
 								<div class="iq-header-title">
-									<h4 class="card-title">Registro de Nuevos Eventos</h4>
+									<h4 class="card-title">Registro de servicios</h4>
 								</div>
 							</div>
                         	<div class="iq-card-body">
@@ -67,7 +67,7 @@
 													<div class="iq-card">
 														<div class="iq-card-header d-flex justify-content-between">
 														<div class="iq-header-title">
-															<h5 class="card-title">Ingrese los datos solicitados para poder registrar el evento:</h5>
+															<h5 class="card-title">Ingrese los datos solicitados para poder registrar el servicio</h5>
 														</div>
 														</div>
 														<div class="iq-card-body">
@@ -75,8 +75,9 @@
 														<div class="row">
 															<div class="col-sm-3">
 																<div class="nav flex-column nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-																	<a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Datos del Evento</a>
-																	<a class="nav-link disable" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Ubicación del Evento</a>
+																	<a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Datos del Servicio</a>
+																	<br>
+																	<a class="nav-link disable" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Detalle de servicio</a>
 																</div>
 															</div>
 															
@@ -86,149 +87,35 @@
 																			<input type="hidden" name="Evento_Registro_Numero" value="0" />
 																			<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 																				<div class="form-group row">
-																					<label for="tipoEvento" class="col-sm-4 col-form-label">Tipo
-																						de Evento</label>
+																					<label for="idCliente" class="col-sm-4 col-form-label">Cliente</label>
 																					<div class="col-sm-8">
-																						<select class="form-control" name="tipoEvento"
-																							required="required" id="tipoEvento">
+																						<select class="form-control" name="idCliente"
+																							required="required" id="idCliente">
 																							<option value="">-- Seleccione --</option>
-																							<?php foreach($tipo as $row): ?>
-																							<option value="<?=$row->Evento_Tipo_Codigo?>"><?=$row->Evento_Tipo_Nombre?></option>
+																							<?php foreach($cliente as $row): ?>
+																							<option value="<?=$row->idecliente?>"><?=$row->nombres?> <?=$row->ape_paterno?></option>
 																							<?php endforeach; ?>
 																						</select>
 																					</div>
 																				</div>
 																				<div class="form-group row">
-																					<label for="evento" class="col-sm-4 col-form-label">Evento</label>
+																					<label for="idTipoServicio" class="col-sm-4 col-form-label">Tipo de Servicio</label>
 																					<div class="col-sm-8">
-																						<select class="form-control" name="evento" id="evento">
-																							<option value="">-- Seleccione Tipo de Evento --</option>
-																						</select>
-																					</div>
-																				</div>
-																				<div class="form-group row">
-																					<label for="evento" class="col-sm-4 col-form-label">Detalle
-																						Evento</label>
-																					<div class="col-sm-8">
-																						<select class="form-control" name="eventoDetalle"
-																							id="eventoDetalle">
-																							<option value="">-- Seleccione Detalle de Evento --</option>
-																						</select>
-																					</div>
-																				</div>
-																				<div class="seismo form-group row">
-																					<label class="col-sm-12 col-form-label">Evento Sismo/Terremoto</label>
-																					<div>
-																						<div class="col-xs-12 col-sm-4" style="margin-bottom: 2px;">
-																							<input type="text" class="form-control"
-																								name="latitudsismo" id="latitudsismo"
-																								placeholder="Latitud" />
-																						</div>
-																						<div class="col-xs-12 col-sm-4" style="margin-bottom: 2px;">
-																							<input type="text" class="form-control"
-																								name="longitudsismo" id="longitudsismo"
-																								placeholder="Longitud" />
-																						</div>
-																						<div class="col-xs-12 col-sm-4" style="margin-bottom: 2px;">
-																							<input type="text" class="form-control"
-																								name="profundidad" id="profundidad"
-																								placeholder="Profundidad" />
-																						</div>
-																					</div>
-																					<div>
-																						<div class="col-xs-12 col-sm-4" style="margin-bottom: 2px;">
-																							<input type="text" class="form-control"
-																								name="magnitud" id="magnitud" placeholder="Magnitud" />
-																						</div>
-																						<div class="col-xs-12 col-sm-8" style="margin-bottom: 2px;">
-																							<input type="text" class="form-control"
-																								name="intensidad" id="intensidad"
-																								placeholder="Intensidad" />
-																						</div>
-																					</div>
-																					<div>
-																						<div class="col-xs-12">
-																							<input type="text" class="form-control"
-																								name="referencia" id="referencia"
-																								placeholder="Referencia" />
-																						</div>
-																					</div>
-																				</div>
-																				<div class="form-group row">
-																					<label for="fechaEvento"
-																						class="col-sm-4 col-form-label">Fecha del Evento</label>
-																					<div class="col-sm-8">
-
-																						<div class="form-group">
-																							<div class='input-group date' id='datetimepicker'>
-																								<input type="text" class="form-control"
-																									required="required" name="fechaEvento"
-																									id="fechaEvento" onclick="salir()"
-																									onkeydown="salir()" /> <span
-																									class="input-group-addon"> <span
-																									class="glyphicon glyphicon-calendar"></span>
-																								</span>
-																							</div>
-																						</div>
-																					</div>
-																				</div>
-																				<div class="form-group row">
-																					<label for="nivelEmergencia"
-																						class="col-sm-4 col-form-label">Nivel de Emergencia</label>
-																					<div class="col-sm-8">
-																						<select class="form-control" name="nivelEmergencia"
-																							id="nivelEmergencia">
+																						<select class="form-control" name="idTipoServicio"
+																							required="required" id="idTipoServicio">
 																							<option value="">-- Seleccione --</option>
-																						<?php foreach($nivel as $row): ?>
-																						<option value="<?=$row->Evento_Nivel_Codigo?>"><?=$row->Evento_Nivel_Nombre?></option>
-																						<?php endforeach; ?>
-																						</select>
-																					</div>
-																				</div>
-																				<div class="form-group row">
-																					<label for="fuenteInicial"
-																						class="col-sm-4 col-form-label">Fuente Inicial</label>
-																					<div class="col-sm-8">
-																						<select class="form-control" name="fuenteInicial"
-																							id="fuenteInicial">
-																							<option value="">-- Seleccione --</option>
-																							<?php foreach($fuente as $row): ?>
-																							<option value="<?=$row->Evento_Fuente_Codigo?>"><?=$row->Evento_Fuente_Descripcion?></option>
+																							<?php foreach($tiposervicio as $row): ?>
+																							<option value="<?=$row->idtipservicio?>"><?=$row->descservicio?></option>
 																							<?php endforeach; ?>
 																						</select>
 																					</div>
 																				</div>
 																				<div class="form-group row">
-																					<label for="fuenteInicial"
-																						class="col-sm-4 col-form-label">Consolidado de Evento</label>
+																					<label class="col-sm-4 col-form-label">Dirección</label>
 																					<div class="col-sm-8">
-																						<select class="form-control" name="evento_consolidado"
-																							id="evento_consolidado">
-																						<option value="0">Ninguna Espec&iacute;fica</option>
-																						<option value="1">Temporada de Lluvias</option>
-																						<option value="2">Temporada de Bajas Temperaturas</option>
-																						<option value="3">Sismos de Gran Intensidad</option>
-																						<option value="4">Accidentes de Tr&aacute;nsito</option>
-																						<option value="5">Incendios Forestales</option>
-																						<option value="6">Indendios Urbanos o Industriales</option>
-																						<option value="7">Conflictos Sociales</option>
-																						</select>
+																						<input id="direccion" name="direccion" class="form-control" type="text" placeholder="Ingrese la dirección" />
 																					</div>
 																				</div>
-																				<div class="form-group row">
-																					<label for="eventoAsociado" class="col-sm-4 col-form-label">Evento Asociado</label>
-																					<div class="col-sm-8">
-																						<select class="form-control" name="eventoAsociado"
-																							required="required" id="eventoAsociado">
-																							<option value="0">Ninguna Espec&iacute;fica</option>
-																							<?php foreach($eventoasociado as $row): ?>
-																							<option value="<?=$row->evento_asociado_id?>"><?=$row->evento_asociado_descripcion?></option>
-																							<?php endforeach; ?>
-																						</select>
-																					</div>
-																				</div>
-
-
 																			</div>
 																			<?php
 																				$region = $this->session->userdata("Codigo_Region");
@@ -255,54 +142,54 @@
 																				}
 																			?>
 																			<div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" >
-																				<input type="hidden" name="zoom" />
-																				<input type="hidden" name="hDepartamento" />
-																				<input type="hidden" name="hProvincia" />
-																				<input type="hidden" name="hDistrito" />
-																				<div class="margin-auto">
-																					<input id="ubicacion" name="ubicacion" class="controls form-control" type="text" placeholder="Direcci&oacute;n, Ciudad, Departamento" />
-																					<div id="map"></div>
-																					<input type="hidden" class="" name="latitud" id="latitud" value="" />
-																					<input type="hidden" class="" name="longitud" id="longitud" value="" /> <br />
-																					<div class="form-group row">
-																						<label class="col-sm-12 col-form-label">Datos del Ubigeo</label>
-																						<div class="col-sm-4">
-																							<select class="form-control" name="departamento" id="departamento">
-																								<option value="">-- Regi&oacute;n --</option>
-																								<?php foreach($listaDepartamento as $row): ?>
-																								<option value="<?=$row["Codigo_Departamento"]?>"
-																										<?=($region==$row["Codigo_Departamento"])?'selected':''?>><?=$row["Nombre"]?></option>
-																								<?php endforeach; ?>
-																							</select>
-																						</div>
-																						<div class="col-sm-4">
-																							<select class="form-control" name="provincia" id="provincia">
-																								<option value="">-- Elija Provincia --</option>
-																							</select>
-																						</div>
-																						<div class="col-sm-4">
-																							<select class="form-control" name="distrito" id="distrito">
-																								<option value="">-- Elija Distrito --</option>
-																							</select>
-																						</div>
+																				<div class="form-group row">
+																					<label for="idTipoParihuela" class="col-sm-4 col-form-label">Tipo de Parihuela</label>
+																					<div class="col-sm-8">
+																						<select class="form-control" name="idTipoParihuela"
+																							required="required" id="idTipoParihuela">
+																							<option value="">-- Seleccione --</option>
+																							<?php foreach($tipoparihuela as $row): ?>
+																							<option value="<?=$row->idtipoparihuela?>"><?=$row->descripcionparihuela?></option>
+																							<?php endforeach; ?>
+																						</select>
 																					</div>
-																					<div class="form-group row">
-																						<label class="col-sm-3">Lugar</label>
-																						<div class="col-sm-9">
-																							<input id="lugar" name="lugar" class="form-control" type="text" placeholder="Ingrese el lugar" />
-																						</div>
+																				</div>
+																				<div class="form-group row">
+																					<label for="idTipoJaba" class="col-sm-4 col-form-label">Tipo de Jaba</label>
+																					<div class="col-sm-8">
+																						<select class="form-control" name="idTipoJaba"
+																							required="required" id="idTipoJaba">
+																							<option value="">-- Seleccione --</option>
+																							<?php foreach($tipojaba as $row): ?>
+																							<option value="<?=$row->idtipjaba?>"><?=$row->descripcionjaba?></option>
+																							<?php endforeach; ?>
+																						</select>
 																					</div>
-																					<div class="clearfix"></div>
-																					<br />
-																					<div class="form-group row">
-																						<label for="descripcionGeneral" class="col-sm-3 col-form-label">Descripci&oacute;n General</label>
-																						<div class="col-sm-9">
-																							<textarea class="form-control" required="required" name="descripcionGeneral" id="descripcionGeneral" rows="3"></textarea>
-																						</div>
+																				</div>
+																				<div class="form-group row">
+																					<label for="idTipoFruta" class="col-sm-4 col-form-label">Medida de fruta</label>
+																					<div class="col-sm-8">
+																						<select class="form-control" name="idTipoFruta"
+																							required="required" id="idTipoFruta">
+																							<option value="">-- Seleccione --</option>
+																							<?php foreach($medidafruta as $row): ?>
+																							<option value="<?=$row->idtamfruta?>"><?=$row->desctamfruta?></option>
+																							<?php endforeach; ?>
+																						</select>
 																					</div>
-																					<div class="clearfix"></div>
-																					<br />
-																				</div>																	
+																				</div>
+																				<div class="form-group row">
+																					<label class="col-sm-4 col-form-label">Peso</label>
+																					<div class="col-sm-8">
+																						<input id="peso" name="peso" class="form-control" type="number" placeholder="Ingrese el peso" />
+																					</div>
+																				</div>																
+																				<div class="form-group row">
+																					<label class="col-sm-4 col-form-label">Número de jabas</label>
+																					<div class="col-sm-8">
+																						<input id="jabas" name="jabas" class="form-control" type="number" placeholder="Ingrese número de jabas" />
+																					</div>
+																				</div>																
 
 																			</div>
 																		</div>

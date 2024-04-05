@@ -57,12 +57,24 @@ class Eventos extends CI_Controller
         
         $this->setearMes();
         
+        $this->load->model("Cliente_model");
+        $this->load->model("TipoServicio_model");
+        $this->load->model("TipoParihuela_model");
+        $this->load->model("TipoJaba_model");
+        $this->load->model("TipoFruta_model");
+
         $this->load->model("EventoTipo_model");
         $this->load->model("EventoNivel_model");
         $this->load->model("EventoFuente_model");
         $this->load->model("Ubigeo_model");
         $this->load->model("AlertaPronostico_model");
         $this->load->model("EventoAsociado_Model");
+
+        $cliente = $this->Cliente_model->lista();
+        $tiposervicio = $this->TipoServicio_model->lista();
+        $tipoparihuela = $this->TipoParihuela_model->lista();
+        $tipojaba = $this->TipoJaba_model->lista();
+        $medidafruta = $this->TipoFruta_model->lista();
 
         $tipo = $this->EventoTipo_model->lista();
         $nivel = $this->EventoNivel_model->lista();
@@ -73,6 +85,11 @@ class Eventos extends CI_Controller
         $departamentos = $this->Ubigeo_model->departamentos();
         
         $data = array(
+            "cliente" => $cliente->result(),
+            "tiposervicio" => $tiposervicio->result(),
+            "tipoparihuela" => $tipoparihuela->result(),
+            "tipojaba" => $tipojaba->result(),
+            "medidafruta" => $medidafruta->result(),
             "tipo" => $tipo->result(),
             "nivel" => $nivel->result(),
             "fuente" => $fuente->result(),
@@ -306,85 +323,32 @@ class Eventos extends CI_Controller
 
     public function registrar()
     {
-        $this->load->model("EventoRegistrar_model");
-        $this->load->model("Notificacion_model");
-        
-        $Evento_Registro_Numero = $this->input->post("Evento_Registro_Numero");
-        
-        $tipoEvento = $this->input->post("tipoEvento");
-        $detalle = $this->input->post("eventoDetalle");
-        $evento = $this->input->post("evento");
-        $referencia = $this->input->post("referencia");
-        $fechaEvento = $this->input->post("fechaEvento");
-        $nombreFecha = $this->input->post("fechaEvento");
-        $nivelEmergencia = $this->input->post("nivelEmergencia");
-        $fuenteInicial = $this->input->post("fuenteInicial");
-        $latitud = $this->input->post("latitud");
-        $longitud = $this->input->post("longitud");
-        $latitudsismo = $this->input->post("latitudsismo");
-        $longitudsismo = $this->input->post("longitudsismo");
-        $departamento = $this->input->post("departamento");
-        $provincia = $this->input->post("provincia");
-        $distrito = $this->input->post("distrito");
-        $descripcionGeneral = $this->input->post("descripcionGeneral");
-        $profundidad = $this->input->post("profundidad");
-        $magnitud = $this->input->post("magnitud");
-        $intensidad = $this->input->post("intensidad");
-        $lugar = $this->input->post("lugar");
-        $consolidado = $this->input->post("evento_consolidado");
-        $zoom = $this->input->post("zoom");
 
-        $nombreTipoEvento = $this->input->post("nombreTipoEvento");
-        $nombreEvento = $this->input->post("nombreEvento");
-        $nombreEventoDetalle = $this->input->post("nombreEventoDetalle");
-        $nombreNivelEmergencia = $this->input->post("nombreNivelEmergencia");
-        $nombreFuenteInicial = $this->input->post("nombreFuenteInicial");
+        $this->load->model("ServicioRegistrar_model");
         
-        $ubigeoDescripcion = $this->input->post("hDepartamento") . ", " . $this->input->post("hProvincia") . ", " . $this->input->post("hDistrito");
-        
-        $fE = explode(" ", $fechaEvento);
-        
-        $fechaEvento = formatearFechaParaBD($fE[0]) . " " . $fE[1] . ":00";
-        $ExtAnio = explode("-", $fechaEvento);
-        $anio = $ExtAnio[0];
-        
-        $coordenadas = $latitud . ", " . $longitud;
-        $ubigeo = $departamento . '' . $provincia . '' . $distrito;
-        
-        $eventoAsociado = $this->input->post("eventoAsociado");
+        $direccion = $this->input->post("direccion");
+        $idCliente = $this->input->post("idCliente");
+        $idTipoFruta = $this->input->post("idTipoFruta");
+        $idTipoJaba = $this->input->post("idTipoJaba");
+        $idTipoParihuela = $this->input->post("idTipoParihuela");
+        $idTipoServicio = $this->input->post("idTipoServicio");
+        $jabas = $this->input->post("jabas");
+        $peso = $this->input->post("peso");
 
-        $this->EventoRegistrar_model->setAnio($anio);
 
-        $secuencia = $this->EventoRegistrar_model->getSecuencia();
+        $this->ServicioRegistrar_model->setDireccion($direccion);
+        $this->ServicioRegistrar_model->setCliente($idCliente);
+        $this->ServicioRegistrar_model->setIdTipoFruta($idTipoFruta);
+        $this->ServicioRegistrar_model->setIdTipoJaba($idTipoJaba);
+        $this->ServicioRegistrar_model->setIdTipoParihuela($idTipoParihuela);
+        $this->ServicioRegistrar_model->setIdTipoServicio($idTipoServicio);
+        $this->ServicioRegistrar_model->setJabas($jabas);
+        $this->ServicioRegistrar_model->setPeso($peso);
         
-        $this->EventoRegistrar_model->setTipoEvento($tipoEvento);
-        $this->EventoRegistrar_model->setEvento($evento);
-        $this->EventoRegistrar_model->setFechaEvento($fechaEvento);
-        $this->EventoRegistrar_model->setDetalle($detalle);
-        $this->EventoRegistrar_model->setNivelEmergencia($nivelEmergencia);
-        $this->EventoRegistrar_model->setFuenteInicial($fuenteInicial);
-        $this->EventoRegistrar_model->setReferencia($referencia);
-        $this->EventoRegistrar_model->setCoordenadas($coordenadas);
-        $this->EventoRegistrar_model->setLatitud($latitud);
-        $this->EventoRegistrar_model->setLongitud($longitud);
-        $this->EventoRegistrar_model->setLatitudSismo($latitudsismo);
-        $this->EventoRegistrar_model->setLongitudSismo($longitudsismo);
-        $this->EventoRegistrar_model->setUbigeo($ubigeo);
-        $this->EventoRegistrar_model->setUbigeoDescripcion($ubigeoDescripcion);
-        $this->EventoRegistrar_model->setDescripcionGeneral($descripcionGeneral);
-        $this->EventoRegistrar_model->setProfundidad($profundidad);
-        $this->EventoRegistrar_model->setMagnitud($magnitud);
-        $this->EventoRegistrar_model->setIntesidad($intensidad);
-        $this->EventoRegistrar_model->setSecuencia($secuencia);
-        $this->EventoRegistrar_model->setLugar($lugar);
-        $this->EventoRegistrar_model->setConsolidado($consolidado);
-        $this->EventoRegistrar_model->setZoom($zoom);
-        $this->EventoRegistrar_model->setEventoAsociado($eventoAsociado);
-
-        if ($Evento_Registro_Numero > 0) {
-            $this->EventoRegistrar_model->setId($Evento_Registro_Numero);
-            if ($this->EventoRegistrar_model->editar() > 0) {
-                $this->saveImage($Evento_Registro_Numero, $latitud, $longitud, $zoom, $evento);
+        $idServicio = $this->ServicioRegistrar_model->crearServicio();
+        if ($idServicio > 0) {
+            $this->ServicioRegistrar_model->setIdServicio($idServicio);
+            if($this->ServicioRegistrar_model->crearDetalle() > 0) {
                 $data = array(
                     "status" => 200
                 );
@@ -392,48 +356,10 @@ class Eventos extends CI_Controller
                 $data = array(
                     "status" => 500
                 );
-        } else {
-            $generateId = $this->EventoRegistrar_model->registrar();
-            $msg = array
-            (
-                'message' 	=> 'here is a message. message',
-                'title'		=> "SE HA REGISTRADO EL EVENTO SIREED NÚMERO: {$generateId}",
-                'subtitle'	=> 'This is a subtitle. subtitle',
-                'body'	=> "Evento {$secuencia}, {$nombreEvento} - Fuente: {$nombreFuenteInicial}",
+        } else
+            $data = array(
+                "status" => 500
             );
-
-            $dataInforme = base_url()."eventos/eventos/informe/".encriptarInforme($generateId,"ASC")."-".base_url()."eventos/eventos/informe/".encriptarInforme($generateId,"DESC");
-            $data = array
-            (
-                '1-Tipo_de_Evento'    => $nombreTipoEvento,
-                '2-Evento_producido'  => $nombreEvento,
-                '3-Detalle_del_evento'=> $nombreEventoDetalle,
-                '4-Lugar'             => $ubigeoDescripcion,
-                '5-Fecha_y_hora'      => "{$nombreFecha}",
-                '6-Fuente_inicial'    => $nombreFuenteInicial,
-                '7-Nivel_de_evento'   => $nombreNivelEmergencia,
-                '8-Descripción'       => $descripcionGeneral,
-                'Latitud'           => "{$latitud}",
-                'Longitud'           => "{$longitud}",
-                'url'               => "{$dataInforme}",
-                'notification'      => $msg,
-            );
-
-            $this->Notificacion_model->setData($data);
-            $this->Notificacion_model->setMensaje($msg);
-            $this->Notificacion_model->setColor("#cc3300");
-            $this->Notificacion_model->setTopic("sireed");
-            $this->Notificacion_model->enviarNotificacion();
-            if ($generateId > 0) {
-                $this->saveImage($generateId, $latitud, $longitud, $zoom, $evento);
-                $data = array(
-                    "status" => 200
-                );
-            } else
-                $data = array(
-                    "status" => 500
-                );
-        }
         
         echo json_encode($data);
     }
@@ -460,19 +386,13 @@ class Eventos extends CI_Controller
             $this->session->set_userdata('mes', $mes);
         }
         
-        $this->load->model("EventoRegistrar_model");
-        $this->load->model("Asignacion_model");
+        $this->load->model("ServicioRegistrar_model");
         $this->load->model("AnioEjecucion_model");
-        $this->load->model("EventoTipoEntidadAtencion_model");
-        $this->load->model("AlertaPronostico_model");
         
-        $this->EventoRegistrar_model->setAnio($anio);
-        $this->EventoRegistrar_model->setMes($mes);
-        $lista = $this->EventoRegistrar_model->lista();
-        $rs = $this->EventoTipoEntidadAtencion_model->lista();
+        $this->ServicioRegistrar_model->setAnio($anio);
+        $this->ServicioRegistrar_model->setMes($mes);
+        $lista = $this->ServicioRegistrar_model->lista();
         $listaAnioEjecucion = $this->AnioEjecucion_model->lista();
-        $medicamentos = $this->Asignacion_model->listaMedicamentosPresentacion();
-        $listaralerta = $this->AlertaPronostico_model->listaralerta();
         
         $datos = array();
         
@@ -481,19 +401,18 @@ class Eventos extends CI_Controller
             foreach ($lista->result() as $row) :
                 
                 $datos[] = array(
-                    "evento" => $row->evento,
-                    "fecha" => $row->fecha,
-                    "nivel" => $row->nivel,
-                    "Evento_Estado_Codigo" => $row->Evento_Estado_Codigo,
-                    "Evento_Registro_Numero" => $row->Evento_Registro_Numero,
-                    "ubigeo" => $row->ubigeo,
-                    "Evento_Coordenadas" => $row->Evento_Coordenadas,
-                    "orden" => $orden,
-                    "danios" => $row->danios,
-                    "lesionados" => $row->lesionados,
-                    "acciones" => $row->acciones,
-                    "salud" => $row->salud,
-                    "codigo" => $row->ANIO . " - " . addCeros5($row->Evento_Secuencia)
+                    "idservicio" => $row->idservicio,
+                    "direccion" => $row->direccion,
+                    "descservicio" => $row->descservicio,
+                    "fecregistro" => $row->fecregistro,
+                    "idecliente" => $row->idecliente,
+                    "tipodocumento" => $row->tipdocumento,
+                    "documento" => $row->documento,
+                    "nombres" => $row->nombres,
+                    "ape_paterno" => $row->ape_paterno,
+                    "ape_materno" => $row->ape_materno,
+                    "idtipservicio" => $row->idtipservicio,
+                    "estado" => $row->estado,
                 );
                 $orden ++;
             endforeach
@@ -502,12 +421,12 @@ class Eventos extends CI_Controller
         
         $data = array(
             "lista" => $datos,
-            "listaEntidadAtencion" => $rs->result(),
-            "medicamentos" => $medicamentos,
+            // "listaEntidadAtencion" => $rs->result(),
+            // "medicamentos" => $medicamentos,
             "anio" => $anio,
             "mes" => $mes,
             "listaAnioEjecucion" => $listaAnioEjecucion,
-            "listaralerta" => $listaralerta            
+            // "listaralerta" => $listaralerta            
         );
         
         $this->load->view("eventos/listaEventos", $data);

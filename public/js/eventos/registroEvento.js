@@ -29,23 +29,8 @@ function registroEvento(URI, EVENTO_CODIGO_REGION) {
 				eventoAsociado: { required: function () { if ($("#eventoAsociado").css("display") != "none") return true; else return false; } }
 			},
 			messages: {
-				tipoEvento: { required: "(*) Campo Requerido" },
-				evento: { required: "(*) Campo Requerido" },
-				eventoDetalle: { required: "(*) Campo Requerido" },
-				fechaEvento: { required: "(*) Campo Requerido" },
-				nivelEmergencia: { required: "(*) Campo Requerido" },
-				fuenteInicial: { required: "(*) Campo Requerido" },
-				descripcionGeneral: { required: "(*) Campo Requerido" },
-				departamento: { required: "(*) Campo Requerido" },
-				provincia: { required: "(*) Campo Requerido" },
-				distritio: { required: "(*) Campo Requerido" },
-				latitudsismo: { required: "(*) Campo Requerido" },
-				longitudsismo: { required: "(*) Campo Requerido" },
-				referencia: { required: "(*) Campo Requerido" },
-				profundidad: { required: "(*) Campo Requerido" },
-				magnitud: { required: "(*) Campo Requerido" },
-				intensidad: { required: "(*) Campo Requerido" },
-				eventoAsociado: { required: "(*) Campo Requerido" }
+				peso: { required: "(*) Campo Requerido" },
+				jabas: { required: "(*) Campo Requerido" },
 			},
 			submitHandler: function (form, event) {
 
@@ -64,42 +49,21 @@ function registroEvento(URI, EVENTO_CODIGO_REGION) {
 					return false;
 
 				}
-
-				var latitud = $("#latitud").val();
-				var longitud = $("#longitud").val();
-
-				if (latitud.length < 1 || longitud.length < 1) {
-
-					$("#alertaModal").modal("show");
-					$("#alertaModal #tituloalerta").text("Error");
-					$("#alertaModal #mensajealerta").html("Escoga la ubicaci\xf3n del evento en el mapa");
-					return false;
-
-				}
-
-				$("input[name=zoom]").val(generalZoom);
 				var formData = ($("#formEvento").serializeArray());
-				var data = {};
-				formData.forEach((item, index) => {
-					data[item.name] = item.value;
-				});
+				// var data = {};
+				// formData.forEach((item, index) => {
+				// 	data[item.name] = item.value;
+				// });
 
-				data = {
-					...data,
-					nombreTipoEvento: $("#tipoEvento option:selected").text(),
-					nombreEvento: $("#evento option:selected").text(),
-					nombreEventoDetalle: $("#eventoDetalle option:selected").text(),
-					nombreNivelEmergencia: $("#nivelEmergencia option:selected").text(),
-					nombreFuenteInicial: $("#fuenteInicial option:selected").text()
-				}
+				// console.log({data})
 
-				const toQueryString = (params) => {
-					const query = Object.keys(params).map(key => key + '=' + params[key]).join('&');
-					return query;
-				};
+				// const toQueryString = (params) => {
+				// 	const query = Object.keys(params).map(key => key + '=' + params[key]).join('&');
+				// 	return query;
+				// };
 
 				$.ajax({
-					data: toQueryString(data),
+					data: formData,
 					url: URI + "eventos/eventos/registrar",
 					method: "POST",
 					dataType: "json",
