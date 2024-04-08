@@ -325,6 +325,7 @@ class Eventos extends CI_Controller
     {
 
         $this->load->model("ServicioRegistrar_model");
+        $this->load->model("DetalleServicio_model");
         
         $direccion = $this->input->post("direccion");
         $idCliente = $this->input->post("idCliente");
@@ -338,17 +339,16 @@ class Eventos extends CI_Controller
 
         $this->ServicioRegistrar_model->setDireccion($direccion);
         $this->ServicioRegistrar_model->setCliente($idCliente);
-        $this->ServicioRegistrar_model->setIdTipoFruta($idTipoFruta);
-        $this->ServicioRegistrar_model->setIdTipoJaba($idTipoJaba);
         $this->ServicioRegistrar_model->setIdTipoParihuela($idTipoParihuela);
-        $this->ServicioRegistrar_model->setIdTipoServicio($idTipoServicio);
-        $this->ServicioRegistrar_model->setJabas($jabas);
+        $this->ServicioRegistrar_model->setIdTipoJaba($idTipoJaba);
+        $this->ServicioRegistrar_model->setIdTipoFruta($idTipoFruta);
         $this->ServicioRegistrar_model->setPeso($peso);
+        $this->ServicioRegistrar_model->setJabas($jabas);
+        $this->ServicioRegistrar_model->setIdTipoServicio($idTipoServicio);
         
         $idServicio = $this->ServicioRegistrar_model->crearServicio();
         if ($idServicio > 0) {
-            $this->ServicioRegistrar_model->setIdServicio($idServicio);
-            if($this->ServicioRegistrar_model->crearDetalle() > 0) {
+            if($this->guardarDetalle($idServicio, $idTipoParihuela, $idTipoJaba, $idTipoFruta, $peso, $jabas)) {
                 $data = array(
                     "status" => 200
                 );
@@ -362,6 +362,27 @@ class Eventos extends CI_Controller
             );
         
         echo json_encode($data);
+    }
+
+
+    public function guardarDetalle($idServicio, $idTipoParihuela, $idTipoJaba, $idTipoFruta, $peso, $jabas) {
+        $this->DetalleServicio_model->setIdServicio($idServicio);
+        $idTipoParihuela = explode("|", $idTipoParihuela);
+        $idTipoJaba = explode("|", $idTipoJaba);
+        $idTipoFruta = explode("|", $idTipoFruta);
+        $peso = explode("|", $peso);
+        $jabas = explode("|", $jabas);
+
+        foreach($idTipoParihuela as $key => $id):
+            $this->DetalleServicio_model->setIdTipoParihuela($id);
+            $this->DetalleServicio_model->setIdTipoJaba($idTipoJaba[$key]);
+            $this->DetalleServicio_model->setIdTipoFruta($idTipoFruta[$key]);
+            $this->DetalleServicio_model->setPeso($peso[$key]);
+            $this->DetalleServicio_model->setJabas($jabas[$key]);
+            $this->DetalleServicio_model->crearDetalle();
+        endforeach;
+
+        return $idServicio;
     }
 
     public function lista()

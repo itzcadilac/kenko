@@ -17,6 +17,55 @@
 	  <link rel="stylesheet" href="<?=base_url()?>public/css/bootstrap-datetimepicker.min.css" />
 	  <link rel="stylesheet" href="<?=base_url()?>public/css/eventos/registroEvento.css?v=<?=date("his")?>" />
 	<?php $titulo = "Registro de servicios";?>
+	<style>
+         .half-rule {
+         margin-left: 0;
+         text-align: left;
+         width: 50%;
+         }
+         .statis {
+            color: #EEE;
+            margin-top: 15px;
+         }
+         h3 {
+            color: #EEE;
+            font-size: 20px;
+         }
+         .statis .box {
+            position: relative;
+            padding: 15px;
+            overflow: hidden;
+            border-radius: 3px;
+            margin-bottom: 25px;
+         }
+         .statis .box h3:after {
+            content: "";
+            height: 2px;
+            width: 70%;
+            margin: auto;
+            background-color: rgba(255, 255, 255, 0.12);
+            display: block;
+            margin-top: 10px;
+         }
+         .statis .box i {
+            position: absolute;
+            height: 70px;
+            width: 70px;
+            font-size: 22px;
+            padding: 15px;
+            top: -25px;
+            left: -25px;
+            background-color: rgba(255, 255, 255, 0.15);
+            line-height: 60px;
+            text-align: right;
+            border-radius: 50%;
+         }
+         .warning {background-color: #f0ad4e}
+         .danger {background-color: #d9534f}
+         .success {background-color: #5cb85c}
+         .inf {background-color: #5bc0de}
+      </style>
+      <link rel="stylesheet" href="<?=base_url()?>public/css/tablero/gestionarTablero.css?v=<?=date(" s")?>" />
 	<?php $opciones = $this->session->userdata("Permisos_Opcion");?>
 </head>
 
@@ -145,8 +194,7 @@
 																				<div class="form-group row">
 																					<label for="idTipoParihuela" class="col-sm-4 col-form-label">Tipo de Parihuela</label>
 																					<div class="col-sm-8">
-																						<select class="form-control" name="idTipoParihuela"
-																							required="required" id="idTipoParihuela">
+																						<select class="form-control" name="idTipoParihuela" id="idTipoParihuela">
 																							<option value="">-- Seleccione --</option>
 																							<?php foreach($tipoparihuela as $row): ?>
 																							<option value="<?=$row->idtipoparihuela?>"><?=$row->descripcionparihuela?></option>
@@ -157,8 +205,7 @@
 																				<div class="form-group row">
 																					<label for="idTipoJaba" class="col-sm-4 col-form-label">Tipo de Jaba</label>
 																					<div class="col-sm-8">
-																						<select class="form-control" name="idTipoJaba"
-																							required="required" id="idTipoJaba">
+																						<select class="form-control" name="idTipoJaba" id="idTipoJaba">
 																							<option value="">-- Seleccione --</option>
 																							<?php foreach($tipojaba as $row): ?>
 																							<option value="<?=$row->idtipjaba?>"><?=$row->descripcionjaba?></option>
@@ -169,8 +216,7 @@
 																				<div class="form-group row">
 																					<label for="idTipoFruta" class="col-sm-4 col-form-label">Medida de fruta</label>
 																					<div class="col-sm-8">
-																						<select class="form-control" name="idTipoFruta"
-																							required="required" id="idTipoFruta">
+																						<select class="form-control" name="idTipoFruta" id="idTipoFruta">
 																							<option value="">-- Seleccione --</option>
 																							<?php foreach($medidafruta as $row): ?>
 																							<option value="<?=$row->idtamfruta?>"><?=$row->desctamfruta?></option>
@@ -189,7 +235,26 @@
 																					<div class="col-sm-8">
 																						<input id="jabas" name="jabas" class="form-control" type="number" placeholder="Ingrese número de jabas" />
 																					</div>
-																				</div>																
+																				</div>		
+																				<div class="form-group row">
+																					<button type="button" class="btn btn-primary col-sm-12 btn-buscar">Agregar detalle</button>
+																				</div>
+																				<div class="form-group row">
+																					<div class="table-responsive">
+																						<table class="tableArticuloIngresos table table-striped table-bordered" cellspacing="0" width="100%">
+																							<thead>
+																							<tr>
+																								<th>Tipo de parihuela</th>
+																								<th>Tipo de Jaba</th>
+																								<th>Medida de fruta</th>
+																								<th>Peso</th>
+																								<th>Número de jabas</th>
+																								<th></th>
+																							</tr>
+																							</thead>
+																						</table>
+																					</div>
+																				</div>														
 
 																			</div>
 																		</div>

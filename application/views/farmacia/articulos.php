@@ -14,6 +14,8 @@
       <!-- <link href="<?=base_url()?>public/css/datatables.min.css" rel="stylesheet" type="text/css"> -->
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css"/>
+  	  <link rel="stylesheet" href="<?=base_url()?>public/css/eventos/registroEvento.css?v=<?=date("his")?>" />
+
       <?php
       $titulo = "Lista General de Productos Farmacéuticos, Equipos de Protección Personal y Material Médico Registrado";
       ?>

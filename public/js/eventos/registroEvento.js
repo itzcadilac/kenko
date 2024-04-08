@@ -1,6 +1,71 @@
+
+var globalResources = {}
 function registroEvento(URI, EVENTO_CODIGO_REGION) {
 
 	$(document).ready(function () {
+		var tableArticuloIngresos = $('.tableArticuloIngresos').DataTable(
+			{
+			  pageLength: 5,
+			  lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+			  dom: 'Bfrt<"col-sm-12 inline"i> <"col-sm-12 inline"p>',
+			  language: languageDatatable,
+			  autoWidth: true,
+			  data: [],
+			  columns: [
+				{ data: "idTipoParihuela" },
+				{ data: "idTipoJaba" },
+				{ data: "idTipoFruta" },
+				{ data: "peso" },
+				{ data: "jabas" },
+				{
+				  data: null,
+				  className: "center",
+				  defaultContent: `<button class="btn btn-danger btn-circle actionDelete" title="ELIMINAR" type="button">
+					<i class="fa fa-trash" aria-hidden="true"></i>
+				  </button>`,
+				  orderable: false
+				}
+			  ],
+			  buttons: {
+				dom: {
+				  container: {
+					tag: 'div',
+					className: 'flexcontent'
+				  },
+				  buttonLiner: {
+					tag: null
+				  }
+				},
+				buttons: [
+				  {
+					extend: 'pageLength',
+					titleAttr: 'Registros a mostrar',
+					className: 'selectTable'
+				  }
+				]
+			  }
+			});
+		
+		$(".btn-buscar").on('click', function (event) {
+			let items = {};
+			var formData = ($("#formEvento").serializeArray());
+			formData.forEach(element => {
+				items[element.name] = element.value;
+			});
+			tableArticuloIngresos.rows.add([items]).draw();
+        	// $("#formEvento")[0].reset();
+			$("#idTipoParihuela").val("")
+			$("#idTipoJaba").val("")
+			$("#idTipoFruta").val("")
+			$("#peso").val("")
+			$("#jabas").val("")
+			if(!globalResources.idCliente)
+				globalResources = {
+					idCliente: formData.idCliente,
+					idTipoServicio: formData.idTipoServicio,
+					direccion: formData.direccion,
+				}
+		});
 
 		$("#datetimepicker").datetimepicker({
 			locale: 'ru',
@@ -49,21 +114,31 @@ function registroEvento(URI, EVENTO_CODIGO_REGION) {
 					return false;
 
 				}
+
 				var formData = ($("#formEvento").serializeArray());
-				// var data = {};
-				// formData.forEach((item, index) => {
-				// 	data[item.name] = item.value;
-				// });
 
-				// console.log({data})
+				var data = {};
+				formData.forEach((item, index) => {
+					data[item.name] = item.value;
+				});
 
-				// const toQueryString = (params) => {
-				// 	const query = Object.keys(params).map(key => key + '=' + params[key]).join('&');
-				// 	return query;
-				// };
+				const tableDataArticulos = tableArticuloIngresos.rows().data().toArray();
+				data["idTipoParihuela"] = tableDataArticulos.map((item) => item.idTipoParihuela).join('|');
+				data["idTipoJaba"] = tableDataArticulos.map((item) => item.idTipoJaba).join('|');
+				data["idTipoFruta"] = tableDataArticulos.map((item) => item.idTipoFruta).join('|');
+				data["peso"] = tableDataArticulos.map((item) => item.peso).join('|');
+				data["jabas"] = tableDataArticulos.map((item) => item.jabas).join('|');
+
+				const toQueryString = (params) => {
+					const query = Object.keys(params).map(key => key + '=' + params[key]).join('&');
+					return query;
+				};
+
+				console.log(data)
+
 
 				$.ajax({
-					data: formData,
+					data: toQueryString(data),
 					url: URI + "eventos/eventos/registrar",
 					method: "POST",
 					dataType: "json",
