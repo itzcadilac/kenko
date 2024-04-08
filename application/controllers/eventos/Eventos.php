@@ -101,6 +101,29 @@ class Eventos extends CI_Controller
         $this->load->view("eventos/registroEvento", $data);
     }
 
+    public function listaDetalle(){
+        $this->load->model("DetalleServicio_model");
+
+        $listaDetalle = $this->DetalleServicio_model->obtenerListaDetalle();
+       
+        if ($listaDetalle->num_rows() > 0) {
+            $listaDetalle = $listaDetalle->result();
+        } else {
+            $listaDetalle = array();
+        }
+
+        $detalle = array(
+          "listaDetalle" => $listaDetalle
+        );
+
+        $data = array(
+            "status" => 200,
+            "data" => $detalle
+        );
+
+        echo json_encode($data);
+    }
+
     public function editar()
     {
         $this->load->model("EventoTipo_model");
@@ -441,7 +464,7 @@ class Eventos extends CI_Controller
         }
         
         $data = array(
-            "lista" => $datos,
+            "listaServicios" => json_encode($datos),
             // "listaEntidadAtencion" => $rs->result(),
             // "medicamentos" => $medicamentos,
             "anio" => $anio,

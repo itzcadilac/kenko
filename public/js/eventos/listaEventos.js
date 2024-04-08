@@ -34,8 +34,50 @@ $(document).ready(function () {
 
 	});
 
+
+	var tableArticulo = $('.tableArticulo').DataTable(
+		{
+		  pageLength: 5,
+		  lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+		  dom: 'Bfrt<"col-sm-12 inline"i> <"col-sm-12 inline"p>',
+		  language: languageDatatable,
+		  autoWidth: true,
+		  data: [],
+		  columns: [
+			{ data: "peso" },
+			{ data: "cantjbs" },
+			{ data: "descripcionparihuela" },
+			{ data: "descripcionjaba" },
+			{
+			  data: "desctamfruta",
+			},
+			{
+			  data: "precio",
+			}
+		  ],
+		  buttons: {
+			dom: {
+			  container: {
+				tag: 'div',
+				className: 'flexcontent'
+			  },
+			  buttonLiner: {
+				tag: null
+			  }
+			},
+			buttons: [
+			  {
+				extend: 'pageLength',
+				titleAttr: 'Registros a mostrar',
+				className: 'selectTable'
+			  }
+			]
+		  }
+		});
+	
 	var table = $('.tbLista').DataTable({
 		"lengthMenu": [[25, 50, 100, -1,], [25, 50, 100, "Todos"]],
+		data: lista,
 		dom: 'Bfrt<"col-sm-12 inline"i> <"col-sm-12 inline"p>',
 		language: languageDatatable,
 		autoWidth: true,
@@ -50,40 +92,34 @@ $(document).ready(function () {
 			{ "data": "ape_paterno" },
 			{ "data": "estado" }
 		],
-		columnDefs: [{
-			"targets": [7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-			"visible": false,
-			"searchable": false
-		}],
-		"order": [[11, "asc"]],
-
+		columnDefs: [],
 		buttons: [
 			{
 				extend: 'copy',
 				title: 'lista-Eventos',
-				exportOptions: { columns: [0, 1, 2, 3, 4, 16, 17, 18, 19, 20] },
+				exportOptions: { columns: [0, 1, 2, 3, 4] },
 			},
 			{
 				extend: 'csv',
 				title: 'lista Eventos',
-				exportOptions: { columns: [0, 1, 2, 3, 4, 16, 17, 18, 19, 20] },
+				exportOptions: { columns: [0, 1, 2, 3, 4] },
 			},
 			{
 				extend: 'excel',
 				title: 'lista Eventos',
-				exportOptions: { columns: [0, 1, 2, 3, 4, 16, 17, 18, 19, 20] },
+				exportOptions: { columns: [0, 1, 2, 3, 4] },
 			},
 			{
 				extend: 'pdf',
 				title: 'lista Eventos',
 				orientation: 'landscape',
-				exportOptions: { columns: [0, 1, 2, 3, 4, 16, 17, 18, 19, 20] },
+				exportOptions: { columns: [0, 1, 2, 3, 4] },
 			},
 
 			{
 				extend: 'print',
 				title: 'lista Eventos',
-				exportOptions: { columns: [0, 1, 2, 3, 4, 16, 17, 18, 19, 20] },
+				exportOptions: { columns: [0, 1, 2, 3, 4] },
 				customize: function (win) {
 					$(win.document.body).addClass('white-bg');
 					$(win.document.body).css('font-size', '10px');
@@ -116,6 +152,36 @@ $(document).ready(function () {
 				}*/
 		]
 	});
+
+	$('.tbLista tbody').on('click', 'tr', function () {
+		let tr = $(this);
+		let row = table.row(tr);
+		let data = row.data();
+		selectedRow = data;
+		if ($(this).hasClass('selected')) {
+		  $('.btn-editar').removeClass('active');
+		  $(this).removeClass('selected');
+		} else {
+		  table.$('tr.selected').removeClass('selected');
+		  $(this).addClass('selected');
+		}
+
+		console.log({selectedRow})
+
+		$.ajax({
+			type: 'POST',
+			url: URI + 'eventos/eventos/listaDetalle',
+			data: selectedRow,
+			dataType: 'json',
+			success: function (response) {
+			  const { data: { listaDetalle } } = response;
+			  tableArticulo.clear();
+			  tableArticulo.rows.add(listaDetalle).draw();
+	  
+			  $("#tableArticuloModal").modal('show');
+			}
+		  });
+	  });
 
 	$('body').on('click', 'td i.addDanios', function () {
 		var tr = $(this).parents('tr');

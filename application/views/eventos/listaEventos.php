@@ -109,46 +109,17 @@
 																<!-- dataTables-example -->
 																<thead class="thead-template">
 																	<tr>
-																		<th class="text-center" >ID</th>
+																		<th>ID</th>
 																		<th>Tipo de servicio</th>
 																		<th>Dirección</th>
-																		<th style="width: 100px;">Fecha y Hora</th>
+																		<th>Fecha y Hora</th>
 																		<th>Tipo documento</th>
-																		<th class="text-center" style="width: 80px;">N. documento</th>
-																		<th class="text-center" style="width: 40px;">Nombres</th>
-																		<th class="text-center" style="width: 40px;">Apellidos</th>
+																		<th>N. documento</th>
+																		<th>Nombres</th>
+																		<th>Apellidos</th>
 																		<th>Estado</th>
 																	</tr>
 																</thead>
-																<tbody>
-																	<?php
-																	$n = 1;
-																	foreach ($lista as $row):
-																	?>
-																	<tr>
-																		<td align="center"><?=$row["idservicio"]?></td>
-																		<td><?=$row["descservicio"]?></td>
-																		<td><?=$row["direccion"]?></td>
-																		<td><?=$row["fecregistro"]?></td>
-																		<td class="text-center">
-																			<?php if ($row["tipodocumento"] == "1") {?>
-																			<span>DNI</span>
-																			<?php } else {?>
-																			<?php if (validarPermisosOpciones(2, $opciones)) {?>
-																				<span>Otros</span><?php }?>
-																			<?php }?>
-																		</td>
-																		<td><?=$row["documento"]?></td>
-																		<td><?=$row["nombres"]?></td>
-																		<td><?=$row["ape_paterno"]?> <?=$row["ape_materno"]?></td>
-																		<td><?=$row["estado"]?></td>
-																	</tr>
-																		<?php
-																		$n++;
-																		endforeach
-																		;
-																		?>
-																</tbody>
 														</table>
 													</div>
 								</div>
@@ -157,18 +128,50 @@
 					</div>
 				</div>	<!-- Aqui cierra row-->		
 
-				
+				<div class="modal fade" id="tableArticuloModal" tabindex="-1" role="dialog" aria-labelledby="tableArticuloLabel" aria-hidden="false" style="z-index: 1600;">
+					<div class="modal-dialog modal-lg" role="document" style="padding-top: 10px;">
+					<div class="modal-content">
+						<div class="modal-header">
+						<h5 class="modal-title" id="registrarTableroModalLabel">Seleccionar Artículo</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<table class="tableArticulo table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+							<thead>
+							<tr>
+								<th>peso</th>
+								<th>cantjbs</th>
+								<th>descripcionparihuela</th>
+								<th>descripcionjaba</th>
+								<th>desctamfruta</th>
+								<th>precio</th>
+							</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					</div>
+					</div>
+					</div>
+				</div>
 				<?php $this->load->view("inc/footer-template");?>
 		   	</div>
 		</div>
 	</div>
-	<?php $this->load->view("inc/resource-template");?>													
-	<script src="<?=base_url()?>public/js/eventos/listaEventos.js?v=<?=date("s")?>"></script>
+	<?php $this->load->view("inc/resource-template");?>		
+	<script>
+        var URI_MAP = "<?=base_url()?>";
+        var lista = JSON.parse('<?=$listaServicios?>');
+		console.log(lista)
+      </script>											
+	<script src="<?=base_url()?>public/js/eventos/listaEventos.js?v=<?=date(" his")?>"></script>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=<?=getenv('MAP_KEY')?>&libraries=places" async defer></script>
-	<script>
-    listaEventos("<?=base_url()?>");
-	</script>
 
 </body>
 

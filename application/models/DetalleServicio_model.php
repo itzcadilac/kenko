@@ -64,4 +64,16 @@ class DEtalleServicio_model extends CI_Model
         else
             return 0;
     }
+
+    public function obtenerListaDetalle()
+    {
+        $estados = array("1");
+        $this->db->select("sd.peso, sd. cantjbs, tp.descripcionparihuela, tj.descripcionjaba, mf.desctamfruta, mf.precio");
+        $this->db->from("serviciosdet sd");
+        $this->db->join("tipo_parihuela tp", "tp.idtipoparihuela = sd.idtipparihuela");
+        $this->db->join("tipo_jaba tj", "tj.idtipjaba = sd.idtipjaba");
+        $this->db->join("medida_fruta mf", "mf.idtamfruta = sd.idtipmedida");
+        // $this->db->where_in("sd.estado", $estados);
+        return $this->db->get();
+    }
 }
