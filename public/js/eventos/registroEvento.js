@@ -45,6 +45,16 @@ function registroEvento(URI, EVENTO_CODIGO_REGION) {
 				]
 			  }
 			});
+
+		$('body').on('click', 'td button.actionDelete', function (e) {
+			e.preventDefault();
+			tableArticuloIngresos.row($(this).parents('tr')).remove().draw(false);
+			const data = tableArticuloIngresos.rows().data();
+			// if (data.length === 0) {
+			// 	$('#almacen').removeAttr("disabled");
+			// 	$('.btn-buscar').removeAttr("disabled");
+			// }
+		});
 		
 		$(".btn-buscar").on('click', function (event) {
 			let items = {};
