@@ -120,7 +120,7 @@ function registroEvento(URI, EVENTO_CODIGO_REGION) {
 					
 					$(".nav-pills a:eq(0)").removeClass("active").addClass("disable");
 					$(".nav-pills a:eq(1)").removeClass("disable").addClass("active");
-					$("#btnEventoFinal").text("Registrar Evento");
+					$("#btnEventoFinal").text("Registrar Servicio");
 					return false;
 
 				}
@@ -161,8 +161,8 @@ function registroEvento(URI, EVENTO_CODIGO_REGION) {
 					success: function (data) {
 						$("#cargando").html("<i></i>");
 						var $message = "";
-						if (parseInt(data.status) == 200) $message = '<div class="alert alert-success"><h4 style="margin:0">Evento Registrado exitosamente</h4></div>';
-						else $message = '<div class="alert alert-error"><h4 style="margin:0">No se pudo registrar el Evento</h4></div>';
+						if (parseInt(data.status) == 200) $message = '<div class="alert alert-success"><h4 style="margin:0">Servicio Registrado exitosamente</h4></div>';
+						else $message = '<div class="alert alert-error"><h4 style="margin:0">No se pudo registrar el Servicio</h4></div>';
 
 						$('html, body').animate({ scrollTop: 0 }, 'fast');
 						$("#message").html($message);
