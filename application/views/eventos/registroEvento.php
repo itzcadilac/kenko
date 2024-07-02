@@ -148,7 +148,7 @@
 																					</div>
 																				</div>
 																				<div class="form-group row">
-																					<label for="idTipoServicio" class="col-sm-4 col-form-label">Tipo de Servicio</label>
+																					<label for="idTipoServicio" class="col-sm-4 col-form-label">Servicio</label>
 																					<div class="col-sm-8">
 																						<select class="form-control" name="idTipoServicio"
 																							required="required" id="idTipoServicio">
@@ -192,7 +192,7 @@
 																			?>
 																			<div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" >
 																				<div class="form-group row">
-																					<label for="idTipoParihuela" class="col-sm-4 col-form-label">Tipo de Parihuela</label>
+																					<label for="idTipoParihuela" class="col-sm-4 col-form-label">Parihuela</label>
 																					<div class="col-sm-8">
 																						<select class="form-control" name="idTipoParihuela" id="idTipoParihuela">
 																							<option value="">-- Seleccione --</option>
@@ -203,7 +203,7 @@
 																					</div>
 																				</div>
 																				<div class="form-group row">
-																					<label for="idTipoJaba" class="col-sm-4 col-form-label">Tipo de Jaba</label>
+																					<label for="idTipoJaba" class="col-sm-4 col-form-label">Jaba</label>
 																					<div class="col-sm-8">
 																						<select class="form-control" name="idTipoJaba" id="idTipoJaba">
 																							<option value="">-- Seleccione --</option>
@@ -214,7 +214,7 @@
 																					</div>
 																				</div>
 																				<div class="form-group row">
-																					<label for="idTipoFruta" class="col-sm-4 col-form-label">Medida de fruta</label>
+																					<label for="idTipoFruta" class="col-sm-4 col-form-label">Med. Fruta</label>
 																					<div class="col-sm-8">
 																						<select class="form-control" name="idTipoFruta" id="idTipoFruta">
 																							<option value="">-- Seleccione --</option>
@@ -231,7 +231,7 @@
 																					</div>
 																				</div>																
 																				<div class="form-group row">
-																					<label class="col-sm-4 col-form-label">Número de jabas</label>
+																					<label class="col-sm-4 col-form-label">Jabas</label>
 																					<div class="col-sm-8">
 																						<input id="jabas" name="jabas" class="form-control" type="number" placeholder="Ingrese número de jabas" />
 																					</div>
