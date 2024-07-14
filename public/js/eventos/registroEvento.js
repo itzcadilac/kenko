@@ -5,57 +5,54 @@ function registroEvento(URI, EVENTO_CODIGO_REGION) {
 	$(document).ready(function () {
 		var tableArticuloIngresos = $('.tableArticuloIngresos').DataTable(
 			{
-			  pageLength: 5,
-			  lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
-			  dom: 'Bfrt<"col-sm-12 inline"i> <"col-sm-12 inline"p>',
-			  language: languageDatatable,
-			  autoWidth: true,
-			  data: [],
-			  columns: [
-				{ data: "idTipoParihuela" },
-				{ data: "idTipoJaba" },
-				{ data: "idTipoFruta" },
-				{ data: "peso" },
-				{ data: "jabas" },
-				{
-				  data: null,
-				  className: "center",
-				  defaultContent: `<button class="btn btn-danger btn-circle actionDelete" title="ELIMINAR" type="button">
+				pageLength: 5,
+				lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+				dom: 'Bfrt<"col-sm-12 inline"i> <"col-sm-12 inline"p>',
+				language: languageDatatable,
+				autoWidth: true,
+				data: [],
+				columns: [
+					{ data: "idTipoParihuela" },
+					{ data: "idTipoJaba" },
+					{ data: "idTipoFruta" },
+					{ data: "peso" },
+					{ data: "jabas" },
+					{
+						data: null,
+						className: "center",
+						defaultContent: `<button class="btn btn-danger btn-circle actionDelete" title="ELIMINAR" type="button">
 					<i class="fa fa-trash" aria-hidden="true"></i>
 				  </button>`,
-				  orderable: false
+						orderable: false
+					}
+				],
+				buttons: {
+					dom: {
+						container: {
+							tag: 'div',
+							className: 'flexcontent'
+						},
+						buttonLiner: {
+							tag: null
+						}
+					},
+					buttons: [
+						{
+							extend: 'pageLength',
+							titleAttr: 'Registros a mostrar',
+							className: 'selectTable'
+						}
+					]
 				}
-			  ],
-			  buttons: {
-				dom: {
-				  container: {
-					tag: 'div',
-					className: 'flexcontent'
-				  },
-				  buttonLiner: {
-					tag: null
-				  }
-				},
-				buttons: [
-				  {
-					extend: 'pageLength',
-					titleAttr: 'Registros a mostrar',
-					className: 'selectTable'
-				  }
-				]
-			  }
 			});
 
 		$('body').on('click', 'td button.actionDelete', function (e) {
 			e.preventDefault();
 			tableArticuloIngresos.row($(this).parents('tr')).remove().draw(false);
 			const data = tableArticuloIngresos.rows().data();
-			// if (data.length === 0) {
-			// 	$('#almacen').removeAttr("disabled");
-			// 	$('.btn-buscar').removeAttr("disabled");
 			// }
 		});
-		
+
 		$(".btn-buscar").on('click', function (event) {
 			let items = {};
 			var formData = ($("#formEvento").serializeArray());
@@ -75,6 +72,44 @@ function registroEvento(URI, EVENTO_CODIGO_REGION) {
 					idTipoServicio: formData.idTipoServicio,
 					direccion: formData.direccion,
 				}
+		});
+
+		$(".btnclientSearch").on('click', function (event) {
+			$("#documentNumber").val("");
+			$("#clientData").val("");
+			$("#documentType").val("");
+			$("#clientId").val("");
+			$("#tableArticuloModal").modal('show');
+		});
+		
+		$(".btnActionClient").on('click', function (event) {
+			const identifier = $("#clientId").val()
+			$("#idCliente").val(identifier);
+		});
+
+		$("#btnDocumentSearch").on('click', function (event) {
+			var documentNumber = $("#documentNumber").val();
+
+			$.ajax({
+				url: URI + "eventos/cliente",
+				data: {
+					type: '01',
+					document: documentNumber
+				},
+				method: 'post',
+				dataType: 'json',
+				beforeSend: function () {
+				},
+				success: function (data) {
+					const { data: { listaCliente } } = data;
+					const { ape_materno, ape_paterno, documento, estado, nombres, tipdocumento, idecliente } = listaCliente[0]
+					if(idecliente) {
+						$("#clientData").val(nombres + ' ' + ape_paterno + ' ' + ape_materno);
+						$("#clientId").val(idecliente);
+						$("#documentType").val(tipdocumento);
+					}
+				}
+			});
 		});
 
 		$("#datetimepicker").datetimepicker({
@@ -117,7 +152,7 @@ function registroEvento(URI, EVENTO_CODIGO_REGION) {
 					$("#v-pills-home").css("display", "none");
 					$("#v-pills-profile").css("display", "block");
 					$("#v-pills-profile").addClass("show");
-					
+
 					$(".nav-pills a:eq(0)").removeClass("active").addClass("disable");
 					$(".nav-pills a:eq(1)").removeClass("disable").addClass("active");
 					$("#btnEventoFinal").text("Registrar Servicio");

@@ -101,6 +101,53 @@ class Eventos extends CI_Controller
         $this->load->view("eventos/registroEvento", $data);
     }
 
+    public function ticket()
+    {
+        $nivel = 1;
+        $idmenu = 1;
+        
+        validarPermisos($nivel, $idmenu, $this->permisos);
+        
+        $this->setearMes();
+        
+        $this->load->model("Cliente_model");
+        $this->load->model("TipoServicio_model");
+        $this->load->model("TipoFruta_model");
+
+        $this->load->model("EventoTipo_model");
+        $this->load->model("EventoNivel_model");
+        $this->load->model("EventoFuente_model");
+        $this->load->model("Ubigeo_model");
+        $this->load->model("AlertaPronostico_model");
+        $this->load->model("EventoAsociado_Model");
+
+        $cliente = $this->Cliente_model->lista();
+        $tiposervicio = $this->TipoServicio_model->lista();
+        $medidafruta = $this->TipoFruta_model->lista();
+
+        $tipo = $this->EventoTipo_model->lista();
+        $nivel = $this->EventoNivel_model->lista();
+        $fuente = $this->EventoFuente_model->lista();
+        $listaralerta = $this->AlertaPronostico_model->listaralerta();
+        $eventoasociado = $this->EventoAsociado_Model->listaeasociado();
+
+        $departamentos = $this->Ubigeo_model->departamentos();
+        
+        $data = array(
+            "cliente" => $cliente->result(),
+            "tiposervicio" => $tiposervicio->result(),
+            "medidafruta" => $medidafruta->result(),
+            "tipo" => $tipo->result(),
+            "nivel" => $nivel->result(),
+            "fuente" => $fuente->result(),
+            "departamentos" => $departamentos->result(),
+            "listaralerta" => $listaralerta,
+            "eventoasociado" => $eventoasociado->result()
+        );
+        
+        $this->load->view("eventos/registroTicket", $data);
+    }
+
     public function listaDetalle(){
         $this->load->model("DetalleServicio_model");
 
@@ -387,6 +434,133 @@ class Eventos extends CI_Controller
         echo json_encode($data);
     }
 
+
+    public function registroticket()
+    {
+
+        $this->load->model("TicketRegistrar_model");
+        
+        $idCliente = $this->input->post("idCliente");
+        $idTipoFruta = $this->input->post("idTipoFruta");
+        $idTipoServicio = $this->input->post("idTipoServicio");
+        $peso = $this->input->post("peso");
+        $direccion = $this->input->post("direccion");
+
+
+        $this->TicketRegistrar_model->setDireccion($direccion);
+        $this->TicketRegistrar_model->setCliente($idCliente);
+        $this->TicketRegistrar_model->setIdTipoFruta($idTipoFruta);
+        $this->TicketRegistrar_model->setPeso($peso);
+        $this->TicketRegistrar_model->setIdTipoServicio($idTipoServicio);
+        
+        $idServicio = $this->TicketRegistrar_model->crearTicket();
+        if ($idServicio > 0) {
+            $data = array(
+                "status" => 200
+            );
+        } else
+            $data = array(
+                "status" => 500
+            );
+        
+        echo json_encode($data);
+    }
+
+    public function listaticket()
+    {
+        $nivel = 1;
+        $idmenu = 2;
+        
+        validarPermisos($nivel, $idmenu, $this->permisos);
+        
+        $anio = $this->input->post('anio');
+        $mes = $this->input->post('mes');
+        
+        if (strlen($anio) < 1 or strlen($mes) < 1) {
+            $anio = date('Y');
+            $mes = $this->session->userdata('mes');
+            if (strlen($mes) > 0) {
+                $this->session->set_userdata('mes', $mes);
+            } else {
+                $mes = date('m');
+            }
+        } else {
+            $this->session->set_userdata('mes', $mes);
+        }
+        
+        $this->load->model("TicketRegistrar_model");
+        $this->load->model("AnioEjecucion_model");
+        
+        $this->TicketRegistrar_model->setAnio($anio);
+        $this->TicketRegistrar_model->setMes($mes);
+        $lista = $this->TicketRegistrar_model->lista();
+        $listaAnioEjecucion = $this->AnioEjecucion_model->lista();
+        
+        $datos = array();
+        
+        if ($lista->num_rows() > 0) {
+            $orden = 1;
+            foreach ($lista->result() as $row) :
+                
+                $datos[] = array(
+                    "idticket" => $row->idticket,
+                    "direccion" => $row->direccion,
+                    "descservicio" => $row->descservicio,
+                    "fecregistro" => $row->fecregistro,
+                    "idecliente" => $row->idecliente,
+                    "tipodocumento" => $row->tipdocumento,
+                    "documento" => $row->documento,
+                    "nombres" => $row->nombres,
+                    "ape_paterno" => $row->ape_paterno,
+                    "ape_materno" => $row->ape_materno,
+                    "idtipservicio" => $row->idtipservicio,
+                    "peso" => $row->peso,
+                    "estado" => $row->estado,
+                );
+                $orden ++;
+            endforeach
+            ;
+        }
+        
+        $data = array(
+            "listaServicios" => json_encode($datos),
+            "anio" => $anio,
+            "mes" => $mes,
+            "listaAnioEjecucion" => $listaAnioEjecucion,        
+        );
+        
+        $this->load->view("eventos/listaEventos", $data);
+    }
+
+    public function buscarCliente()
+    {
+        $nivel = 1;
+        $idmenu = 2;
+        
+        validarPermisos($nivel, $idmenu, $this->permisos);
+        $numeroDocumento = $this->input->post("document");
+        $this->load->model("Cliente_model");
+        
+        $this->Cliente_model->setNumeroDocumento($numeroDocumento);
+        $listaCliente = $this->Cliente_model->buscarDocumento();
+        
+        if ($listaCliente->num_rows() > 0) {
+            $listaCliente = $listaCliente->result();
+        } else {
+            $listaCliente = array();
+        }
+
+        $detalle = array(
+          "listaCliente" => $listaCliente
+        );
+
+        $data = array(
+            "status" => 200,
+            "data" => $detalle
+        );
+
+        echo json_encode($data);
+    }
 
     public function guardarDetalle($idServicio, $idTipoParihuela, $idTipoJaba, $idTipoFruta, $peso, $jabas) {
         $this->DetalleServicio_model->setIdServicio($idServicio);

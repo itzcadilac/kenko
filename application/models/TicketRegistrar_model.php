@@ -1,7 +1,7 @@
 <?php
 if (! defined('BASEPATH'))
     exit('No direct script access allowed');
-class ServicioRegistrar_model extends CI_Model
+class TicketRegistrar_model extends CI_Model
 {
     private $anio;
     private $mes;
@@ -69,46 +69,32 @@ class ServicioRegistrar_model extends CI_Model
         $estados = array("1");
         $idrol = $this->session->userdata("idrol");
         $codigoRegion = $this->session->userdata("Codigo_Region");
-        $this->db->select("serv.idservicio, serv.direccion, serv.fecregistro, serv.estado, c.idecliente, tdoc.Tipo_Documento_Nombre tipdocumento, c.documento, c.nombres, c.ape_paterno, c.ape_materno, tserv.idtipservicio, tserv.descservicio");
-        $this->db->select("DATE_FORMAT(serv.fecregistro,'%Y') anio");
-        $this->db->from("servicios serv");
-        $this->db->join("cliente c", "c.idecliente=serv.idcliente");
-        $this->db->join("tipo_servicio tserv", "tserv.idtipservicio=serv.idtipservicio ");
+        $this->db->select("tck.idticket, tck.direccion, tck.fecregistro, tck.estado, tck.peso, c.idecliente, tdoc.Tipo_Documento_Nombre tipdocumento, c.documento, c.nombres, c.ape_paterno, c.ape_materno, tserv.idtipservicio, tserv.descservicio");
+        $this->db->select("DATE_FORMAT(tck.fecregistro,'%Y') anio");
+        $this->db->from("ticket tck");
+        $this->db->join("cliente c", "c.idecliente=tck.idcliente");
+        $this->db->join("tipo_servicio tserv", "tserv.idtipservicio=tck.idtipservicio ");
         $this->db->join("tipo_documento tdoc", "tdoc.Tipo_Documento_Codigo=c.tipdocumento ");
-        $this->db->where("YEAR(serv.fecregistro)",$this->anio);
+        $this->db->where("YEAR(tck.fecregistro)",$this->anio);
         if ($this->mes != 0) {
-            $this->db->where("MONTH(serv.fecregistro)",$this->mes);
+            $this->db->where("MONTH(tck.fecregistro)",$this->mes);
         }        
-        $this->db->where_in("serv.estado", $estados);
+        $this->db->where_in("tck.estado", $estados);
         return $this->db->get();
     }
 
-    public function crearServicio()
+    public function crearTicket()
     {
         $data = array(
             "idcliente" => $this->idCliente,
             "idtipservicio" => $this->idTipoServicio,
             "direccion" => $this->direccion
+            "peso" => $this->peso
         );
-        if ($this->db->insert('servicios', $data))
+        if ($this->db->insert('ticket', $data))
             return $this->db->insert_id();
         else
             return 0;
     }
 
-    public function crearDetalle()
-    {
-        $data = array(
-            "idservicio" => $this->idServicio,
-            "idtipparihuela" => $this->idTipoParihuela,
-            "idtipjaba" => $this->idTipoJaba,
-            "idtipmedida" => $this->idTipoFruta,
-            "peso" => $this->peso,
-            "cantjbs" => $this->jabas
-        );
-        if ($this->db->insert('serviciosdet', $data))
-            return $this->db->insert_id();
-        else
-            return 0;
-    }
 }
