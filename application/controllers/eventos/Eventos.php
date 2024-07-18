@@ -56,6 +56,8 @@ class Eventos extends CI_Controller
         validarPermisos($nivel, $idmenu, $this->permisos);
         
         $this->setearMes();
+        $id = $this->input->post('id');
+
         
         $this->load->model("Cliente_model");
         $this->load->model("TipoServicio_model");
@@ -85,6 +87,7 @@ class Eventos extends CI_Controller
         $departamentos = $this->Ubigeo_model->departamentos();
         
         $data = array(
+            "id" => $id,
             "cliente" => $cliente->result(),
             "tiposervicio" => $tiposervicio->result(),
             "tipoparihuela" => $tipoparihuela->result(),
@@ -99,6 +102,7 @@ class Eventos extends CI_Controller
         );
         
         $this->load->view("eventos/registroEvento", $data);
+
     }
 
     public function ticket()
@@ -523,13 +527,13 @@ class Eventos extends CI_Controller
         }
         
         $data = array(
-            "listaServicios" => json_encode($datos),
+            "listaTicket" => json_encode($datos),
             "anio" => $anio,
             "mes" => $mes,
             "listaAnioEjecucion" => $listaAnioEjecucion,        
         );
         
-        $this->load->view("eventos/listaEventos", $data);
+        $this->load->view("eventos/listaTicket", $data);
     }
 
     public function buscarCliente()
@@ -649,6 +653,7 @@ class Eventos extends CI_Controller
         
         $this->load->view("eventos/listaEventos", $data);
     }
+
 
     public function setearMes()
     {
