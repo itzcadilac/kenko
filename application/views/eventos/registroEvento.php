@@ -112,7 +112,6 @@
 													<?php }?>
 													<?php $idrol = $this->session->userdata("idrol");?>
 													<input type="hidden" id="Tipo_Accion" />
-													
 													<div class="iq-card">
 														<div class="iq-card-header d-flex justify-content-between">
 														<div class="iq-header-title">
@@ -133,6 +132,7 @@
 																<div class="col-sm-9">
 																   	<form id="formEvento" name="formEvento" method="POST" action="" autocomplete="off">
 																		<div class="tab-content mt-0" id="v-pills-tabContent">
+																			<input type="text" id="id" name="id" value="<?=$id?>">
 																			<input type="hidden" name="Evento_Registro_Numero" value="0" />
 																			<input id="idCliente" type="hidden" name="idCliente"/>
 																			<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">

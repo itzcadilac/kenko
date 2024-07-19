@@ -88,7 +88,7 @@ class TicketRegistrar_model extends CI_Model
         $data = array(
             "idcliente" => $this->idCliente,
             "idtipservicio" => $this->idTipoServicio,
-            "direccion" => $this->direccion
+            "direccion" => $this->direccion,
             "peso" => $this->peso
         );
         if ($this->db->insert('ticket', $data))
