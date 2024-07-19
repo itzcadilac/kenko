@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Ministerio de Salud</title>
+	<title>Sistema Kenko</title>
 	<link rel="shortcut icon" type="image/png" href="<?=base_url()?>public/images/favicon.jpg"/>
 	<?php echo link_tag("public/css/font-awesome.min.css"); ?>
 	<?php echo link_tag("public/css/bootstrap.min.css"); ?>
@@ -16,7 +16,7 @@
 			<div class="col-xs-12 login-content">
 				<div class="form-wrap">
 				<h2>Ingreso al sistema. Inicia Sesi&oacute;n</h2>
-				<img class="logo-header" src="<?php echo base_url('public/images/login-icon.png'); ?>" alt="Minsa" />
+				<img class="logo-header" src="<?php echo base_url(''); ?>" alt="Minsa" />
 					<form role="form" action="<?=base_url()?>doLogin" method="post" id="login-form">
 						<div class="bordered-input form-group">
 							<input type="text" name="usuario" id="usuario" class="form-control box" required=""
@@ -57,8 +57,8 @@
    <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Ministerio de Salud</title>
-      <link rel="shortcut icon" type="image/png" href="<?=base_url()?>public/images/favicon.jpg"/>
+      <title>Sistema Kenko</title>
+      <link rel="shortcut icon" type="image/png" href=""/>
       <link rel="stylesheet" href="<?=base_url()?>public/template/css/bootstrap.min.css">
       <link rel="stylesheet" href="<?=base_url()?>public/template/css/typography.css">
       <link rel="stylesheet" href="<?=base_url()?>public/template/css/style.css">
