@@ -132,7 +132,7 @@
 																<div class="col-sm-9">
 																   	<form id="formEvento" name="formEvento" method="POST" action="" autocomplete="off">
 																		<div class="tab-content mt-0" id="v-pills-tabContent">
-																			<input type="text" id="id" name="id" value="<?=$id?>">
+																			<input type="hidden" id="idTicket" name="idTicket" value="<?=$id?>">
 																			<input type="hidden" name="Evento_Registro_Numero" value="0" />
 																			<input id="idCliente" type="hidden" name="idCliente"/>
 																			<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
@@ -162,7 +162,7 @@
 																					</div>
 																				</div>
 																				<div class="form-group row">
-																					<label class="col-sm-4 col-form-label label">Dirección</label>
+																					<label class="col-sm-4 col-form-label">Destino</label>
 																					<div class="col-sm-8">
 																						<input id="direccion" name="direccion" class="form-control input-direccion" type="text" placeholder="Ingrese la dirección" />
 																					</div>
@@ -291,7 +291,7 @@
 							<div class="form-group row">
 								<label class="col-sm-4 col-form-label">Documento de cliente</label>
 								<div class="col-sm-8">
-									<input id="documentNumber" name="documentNumber" class="form-control" type="text" placeholder="Ingrese el número de documento" />
+									<input id="documentNumber" name="documentNumber" class="form-control" type="text" placeholder="Ingrese el número de documento" value="<?=$document?>"/>
 								</div>
 							</div>
 							<div class="form-group row">

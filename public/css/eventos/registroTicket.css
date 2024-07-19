@@ -198,3 +198,11 @@ label.btn-fruta input[type="radio"] {
   height: 60px !important;
 }
 
+
+input[type="radio"] {
+  display: none;
+}
+
+.radio-item.active label {
+  background-color: lightblue;
+}

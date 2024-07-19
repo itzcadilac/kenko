@@ -168,7 +168,6 @@
 	<script>
         var URI_MAP = "<?=base_url()?>";
         var lista = JSON.parse('<?=$listaTicket?>');
-		console.log(lista)
       </script>											
 	<script src="<?=base_url()?>public/js/eventos/listaTicket.js?v=<?=date(" his")?>"></script>
 	<script

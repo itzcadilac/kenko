@@ -75,7 +75,6 @@ function registroEvento(URI, EVENTO_CODIGO_REGION) {
 		});
 
 		$(".btnclientSearch").on('click', function (event) {
-			$("#documentNumber").val("");
 			$("#clientData").val("");
 			$("#documentType").val("");
 			$("#clientId").val("");

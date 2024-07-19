@@ -57,6 +57,7 @@ class Eventos extends CI_Controller
         
         $this->setearMes();
         $id = $this->input->post('id');
+        $document = $this->input->post('document');
 
         
         $this->load->model("Cliente_model");
@@ -88,6 +89,7 @@ class Eventos extends CI_Controller
         
         $data = array(
             "id" => $id,
+            "document" => $document,
             "cliente" => $cliente->result(),
             "tiposervicio" => $tiposervicio->result(),
             "tipoparihuela" => $tipoparihuela->result(),
@@ -409,6 +411,7 @@ class Eventos extends CI_Controller
         $idTipoServicio = $this->input->post("idTipoServicio");
         $jabas = $this->input->post("jabas");
         $peso = $this->input->post("peso");
+        $idTicket = $this->input->post("idTicket");
 
 
         $this->ServicioRegistrar_model->setDireccion($direccion);
@@ -419,6 +422,7 @@ class Eventos extends CI_Controller
         $this->ServicioRegistrar_model->setPeso($peso);
         $this->ServicioRegistrar_model->setJabas($jabas);
         $this->ServicioRegistrar_model->setIdTipoServicio($idTipoServicio);
+        $this->ServicioRegistrar_model->setIdTicket($idTicket);
         
         $idServicio = $this->ServicioRegistrar_model->crearServicio();
         if ($idServicio > 0) {
@@ -550,8 +554,59 @@ class Eventos extends CI_Controller
         
         if ($listaCliente->num_rows() > 0) {
             $listaCliente = $listaCliente->result();
+
         } else {
-            $listaCliente = array();
+
+            // Iniciar llamada a API
+            $path = getenv('API_CONSULTA_DNI');
+            $token = getenv('API_TOKEN_CONSULTA_DNI');
+            $curl = curl_init();
+
+            // Buscar dni
+            curl_setopt_array($curl, array(
+            // para user api versión 2
+            CURLOPT_URL => $path . $numeroDocumento,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_SSL_VERIFYPEER => 0,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 2,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => array(
+                'Referer: https://apis.net.pe/consulta-dni-api',
+                'Authorization: Bearer ' . $token
+            ),
+            ));
+
+            $curl_response = curl_exec($curl);
+
+            $http_status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+            curl_close($curl);
+            $decoded = json_decode($curl_response,true);
+
+            //echo $http_status;
+
+            if($http_status == '200' || $http_status == 200){
+
+            $vCampo1 = str_replace("'", '\\\'', $decoded['nombres'] );
+            $vCampo2 = str_replace("'", '\\\'', $decoded['apellidoPaterno'] );
+            $vCampo3 = str_replace("'", '\\\'', $decoded['apellidoMaterno'] );
+
+            }
+
+            $this->Cliente_model->setTipoDocumento(1);
+            $this->Cliente_model->setNumeroDocumento($numeroDocumento);
+            $this->Cliente_model->setNombres($vCampo1);
+            $this->Cliente_model->setApePaterno($vCampo2);
+            $this->Cliente_model->setApeMaterno($vCampo3);
+            $idCliente = $this->Cliente_model->InsertarNuevoCliente();
+
+            $this->Cliente_model->setIdCliente($idCliente);
+            $listaCliente = $this->Cliente_model->buscarIdcliente();
+            $listaCliente = $listaCliente->result();
+
         }
 
         $detalle = array(

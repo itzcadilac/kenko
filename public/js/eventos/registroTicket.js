@@ -2,7 +2,21 @@
 var globalResources = {}
 function registroEvento(URI, EVENTO_CODIGO_REGION) {
 
+	
 	$(document).ready(function () {
+
+		document.querySelectorAll('.radio-group').forEach(group => {
+			group.querySelectorAll('input[type="radio"]').forEach(radio => {
+				radio.addEventListener('change', function() {
+					group.querySelectorAll('.radio-item').forEach(item => {
+						item.classList.remove('active');
+					});
+					this.closest('.radio-item').classList.add('active');
+				});
+			});
+		});
+
+		
 		var tableArticuloIngresos = $('.tableArticuloIngresos').DataTable(
 			{
 			  pageLength: 5,
@@ -168,7 +182,7 @@ function registroEvento(URI, EVENTO_CODIGO_REGION) {
 
 						$('html, body').animate({ scrollTop: 0 }, 'fast');
 						$("#message").html($message);
-						setTimeout(function () { $("#message").slideUp(); location.href = URI + "eventos/ticketera"; }, 3500);
+						setTimeout(function () { $("#message").slideUp(); location.href = URI + "eventos/listaticket"; }, 3500);
 					}
 				});
 
