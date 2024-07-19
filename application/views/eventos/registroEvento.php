@@ -164,7 +164,7 @@
 																				<div class="form-group row">
 																					<label class="col-sm-4 col-form-label">Destino</label>
 																					<div class="col-sm-8">
-																						<input id="direccion" name="direccion" class="form-control input-direccion" type="text" placeholder="Ingrese la dirección" />
+																						<input id="direccion" name="direccion" class="form-control input-direccion" type="text" placeholder="Ingrese destino" />
 																					</div>
 																				</div>
 																			</div>
