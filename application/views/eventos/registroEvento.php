@@ -123,9 +123,9 @@
 														<div class="row">
 															<div class="col-sm-3">
 																<div class="nav flex-column nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-																	<a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Datos del Servicio</a>
+																	<a class="nav-link link-a active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Datos del Servicio</a>
 																	<br>
-																	<a class="nav-link disable" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Detalle de servicio</a>
+																	<a class="nav-link link-a disable" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Detalle de servicio</a>
 																</div>
 															</div>
 															
@@ -137,7 +137,7 @@
 																			<input id="idCliente" type="hidden" name="idCliente"/>
 																			<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 																				<div class="form-group row">
-																					<label for="idCliente" class="col-sm-4 col-form-label">Cliente</label>
+																					<label for="idCliente" class="col-sm-4 col-form-label label">Cliente</label>
 																					<div class="col-sm-8">
 																						<button type="button" class="btn btn-primary col-sm-12 btnclientSearch">Buscar Cliente</button>
 																						<!-- <select class="form-control" name="idCliente"
@@ -150,9 +150,9 @@
 																					</div>
 																				</div>
 																				<div class="form-group row">
-																					<label for="idTipoServicio" class="col-sm-4 col-form-label">Servicio</label>
+																					<label for="idTipoServicio" class="col-sm-4 col-form-label label">Servicio</label>
 																					<div class="col-sm-8">
-																						<select class="form-control" name="idTipoServicio"
+																						<select class="form-control select-service" name="idTipoServicio"
 																							required="required" id="idTipoServicio">
 																							<option value="">-- Seleccione --</option>
 																							<?php foreach($tiposervicio as $row): ?>
@@ -162,9 +162,9 @@
 																					</div>
 																				</div>
 																				<div class="form-group row">
-																					<label class="col-sm-4 col-form-label">Dirección</label>
+																					<label class="col-sm-4 col-form-label label">Dirección</label>
 																					<div class="col-sm-8">
-																						<input id="direccion" name="direccion" class="form-control" type="text" placeholder="Ingrese la dirección" />
+																						<input id="direccion" name="direccion" class="form-control input-direccion" type="text" placeholder="Ingrese la dirección" />
 																					</div>
 																				</div>
 																			</div>
@@ -261,9 +261,9 @@
 																			</div>
 																		</div>
 
-																		<div class="col-xs-12 text-left">
-																			<button type="submit" id="btnEventoFinal" class="btn btn-primary">Siguiente ></button>
-																			<button type="button" id="btnCancelar" class="btn btn-danger">Cancelar</button>
+																		<div class="p-0 col-sm-4 text-left d-flex justify-content-between ">
+																			<button type="submit" id="btnEventoFinal" class="btn btn-primary link-a">Siguiente ></button>
+																			<button type="button" id="btnCancelar" class="btn btn-danger link-a">Cancelar</button>
 																		</div>
 																		<div class="col-md-12 text-left" id="cargando"></div>
 																  	</form>

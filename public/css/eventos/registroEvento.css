@@ -116,3 +116,15 @@
 	left: 0;
 	margin-top: 14px;
 }
+.btnclientSearch, 
+.select-service,
+.input-direccion,
+.link-a{
+	height: 60px;
+	font-size: 1rem;
+}
+.label, .link-a{
+	font-size: 1rem;
+	display: flex;
+	align-items: center;
+}
