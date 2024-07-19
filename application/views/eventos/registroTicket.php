@@ -165,34 +165,29 @@
 																<div class="form-group row">
 																	<label for="idTipoServicio" class="col-sm-2 col-form-label tag-name">Servicio</label>
 																	<div class="col-sm-8">
-									
-																		<div class="form-servicio">
+																		<div class="form-servicio radio-group">
 																			<?php foreach ($tiposervicio as $row) : ?>
-																				<label class="btn btn-servicio">
-																					<input type="radio" name="idTipoServicio" value="<?= $row->idtipservicio ?>" required>
-																					<?= $row->descservicio ?>
-																				</label>
+																				<div class="radio-item">
+																					<input type="radio" name="idTipoServicio" value="<?= $row->idtipservicio ?>" id="optserv<?= $row->idtipservicio ?>">
+																					<label class="btn btn-servicio" for="optserv<?=$row->idtipservicio?>">
+																						<?= $row->descservicio ?>
+																					</label>
+																				</div>
 																			<?php endforeach; ?>
 																		</div>
 
 																	</div>
-																	<!-- Nombre del cliente  idCliente
-
-																		Servicio a realizar idTipoServicio
-
-																		Tipo o.nombre fruta idTipoFruta
-
-																		Peso bruto (sucio) peso -->
 																</div>
-
-																<div class="form-group">
+																<div class="form-group row">
 																	<label for="idTipoFruta" class="col-sm-2 col-form-label tag-name">Tipo de Fruta</label>
-																	<div class="form-fruta col-sm-8">
+																	<div class="form-fruta col-sm-8 radio-group">
 																		<?php foreach ($medidafruta as $row) : ?>
-																			<label class="btn btn-fruta">
-																				<input type="radio" name="idTipoFruta" value="<?= $row->idtamfruta ?>" required>
-																				<?= $row->desctamfruta ?><?= $row->idtamfruta ?>
-																			</label>
+																			<div class="radio-item">
+																				<input type="radio" name="idTipoFruta" value="<?=$row->idtamfruta?>" id="optfrut<?=$row->idtamfruta?>">
+																				<label class="btn btn-fruta" for="optfrut<?=$row->idtamfruta?>">
+																					<?= $row->desctamfruta ?><?= $row->idtamfruta ?>
+																				</label>
+																			</div>
 																		<?php endforeach; ?>
 																	</div>
 
@@ -303,12 +298,12 @@
 
 															</div>
 														</div> -->
-
-															<div class="col-xs-12 text-left mt-2">
+																			</br>
+															<div class="col-sm-12 text-right">
 																<button type="submit" id="btnEventoFinal" class="btn btn-primary">Generar Ticket ></button>
 																<button type="button" id="btnCancelar" class="btn btn-danger">Cancelar</button>
 															</div>
-															<div class="col-md-12 text-left" id="cargando"></div>
+															<div class="col-md-12 " id="cargando"></div>
 													</form>
 												</div>
 											</div>
