@@ -85,7 +85,7 @@ $(document).ready(function () {
 			{	data: "Acciones",
 				render: function (data, type, row) {
 					return `<div style="display: flex; justify-content: center; align-items: center;">
-					  			<button class="btn btn-warning btn-circle actionEdit2" title="EDITAR" type="button" style="display: flex; justify-content: center; align-items: center;">
+					  			<button class="btn btn-warning btn-circle serviceAction" title="EDITAR" type="button" style="display: flex; justify-content: center; align-items: center;">
 								<i style="display: flex; justify-content: center; align-items: center; margin: 0 !important;padding: 0 !important;" class="fa fa-pencil-square-o"></i>
 					  			</button>
 							</div>`;
@@ -208,9 +208,9 @@ $(document).ready(function () {
 			});
 
 	});
-	$('.tbLista').on('click', 'td .actionEdit2', function () {
+	$('.tbLista').on('click', 'td .serviceAction', function () {
 		var data = table.row($(this).closest('tr')).data();
-		post(URI + "eventos/nuevo", { id: data.ID });
+		post(URI + "eventos/nuevo", { id: data.idticket, document: data.documento });
 	  });
 
 	$('body').on('click', 'td i.addLesionados', function () {

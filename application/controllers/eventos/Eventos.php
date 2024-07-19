@@ -57,6 +57,7 @@ class Eventos extends CI_Controller
         
         $this->setearMes();
         $id = $this->input->post('id');
+        $document = $this->input->post('document');
 
         
         $this->load->model("Cliente_model");
@@ -88,6 +89,7 @@ class Eventos extends CI_Controller
         
         $data = array(
             "id" => $id,
+            "document" => $document,
             "cliente" => $cliente->result(),
             "tiposervicio" => $tiposervicio->result(),
             "tipoparihuela" => $tipoparihuela->result(),
@@ -409,6 +411,7 @@ class Eventos extends CI_Controller
         $idTipoServicio = $this->input->post("idTipoServicio");
         $jabas = $this->input->post("jabas");
         $peso = $this->input->post("peso");
+        $idTicket = $this->input->post("idTicket");
 
 
         $this->ServicioRegistrar_model->setDireccion($direccion);
@@ -419,6 +422,7 @@ class Eventos extends CI_Controller
         $this->ServicioRegistrar_model->setPeso($peso);
         $this->ServicioRegistrar_model->setJabas($jabas);
         $this->ServicioRegistrar_model->setIdTipoServicio($idTipoServicio);
+        $this->ServicioRegistrar_model->setIdTicket($idTicket);
         
         $idServicio = $this->ServicioRegistrar_model->crearServicio();
         if ($idServicio > 0) {

@@ -200,7 +200,7 @@
 																	</div>
 																</div>
 																<div class="form-group row">
-																	<label class="col-sm-2 col-form-label tag-name">Dirección</label>
+																	<label class="col-sm-2 col-form-label tag-name">Destino</label>
 																	<div class="col-sm-8">
 																		<input id="direccion" name="direccion" class="form-control" type="text" placeholder="Ingrese la dirección" />
 																	</div>
