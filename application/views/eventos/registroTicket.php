@@ -196,13 +196,13 @@
 																<div class="form-group row">
 																	<label class="col-sm-2 col-form-label tag-name">Peso Bruto</label>
 																	<div class="col-sm-8">
-																		<input id="peso" name="peso" class="form-control" type="text" placeholder="Ingrese el peso" />
+																		<input id="peso" name="peso" class="form-control" type="text" placeholder="Ingrese peso" />
 																	</div>
 																</div>
 																<div class="form-group row">
 																	<label class="col-sm-2 col-form-label tag-name">Destino</label>
 																	<div class="col-sm-8">
-																		<input id="direccion" name="direccion" class="form-control" type="text" placeholder="Ingrese la dirección" />
+																		<input id="direccion" name="direccion" class="form-control" type="text" placeholder="Ingrese destino" />
 																	</div>
 																</div>
 															</div>
