@@ -150,6 +150,12 @@
 																					</div>
 																				</div>
 																				<div class="form-group row">
+																					<label for="idTipoServicio" class="col-sm-4 col-form-label label"></label>
+																					<div class="col-sm-8">
+																						<input id="nombcliente" name="nombcliente" class="form-control input-direccion" type="text" placeholder="" disabled/>
+																					</div>
+																				</div>
+																				<div class="form-group row">
 																					<label for="idTipoServicio" class="col-sm-4 col-form-label label">Servicio</label>
 																					<div class="col-sm-8">
 																						<select class="form-control select-service" name="idTipoServicio"

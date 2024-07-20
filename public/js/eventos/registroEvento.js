@@ -106,6 +106,7 @@ function registroEvento(URI, EVENTO_CODIGO_REGION) {
 						$("#clientData").val(nombres + ' ' + ape_paterno + ' ' + ape_materno);
 						$("#clientId").val(idecliente);
 						$("#documentType").val(tipdocumento);
+						$("#nombcliente").val(nombres + ' ' + ape_paterno + ' ' + ape_materno);						
 					}
 				}
 			});

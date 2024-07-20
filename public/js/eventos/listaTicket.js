@@ -88,6 +88,11 @@ $(document).ready(function () {
 					  			<button class="btn btn-warning btn-circle serviceAction" title="EDITAR" type="button" style="display: flex; justify-content: center; align-items: center;">
 								<i style="display: flex; justify-content: center; align-items: center; margin: 0 !important;padding: 0 !important;" class="fa fa-pencil-square-o"></i>
 					  			</button>
+								</br>
+								</br>
+					  			<button class="btn btn-danger btn-circle serviceAction" title="TICKET" type="button" style="display: flex; justify-content: center; align-items: center;">
+								<i style="display: flex; justify-content: center; align-items: center; margin: 0 !important;padding: 0 !important;" class="fa fa-pencil-square-o"></i>
+					  			</button>								
 							</div>`;
 				 }
 			  },

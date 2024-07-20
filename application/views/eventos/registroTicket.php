@@ -107,7 +107,7 @@
 						<div class="iq-card">
 							<div class="iq-card-header d-flex justify-content-between">
 								<div class="iq-header-title">
-									<h4 class="card-title">Registro de servicios</h4>
+									<h4 class="card-title">Registro de Ingreso</h4>
 								</div>
 							</div>
 							<div class="iq-card-body">
@@ -132,7 +132,7 @@
 									<div class="iq-card">
 										<div class="iq-card-header d-flex justify-content-between">
 											<div class="iq-header-title">
-												<h5 class="card-title">Ingrese los datos solicitados para poder registrar el servicio</h5>
+												<h5 class="card-title">Ingrese los datos solicitados para poder registrar el ingreso y generar ticket</h5>
 											</div>
 										</div>
 										<div class="iq-card-body">
@@ -154,12 +154,13 @@
 																<div class="form-group row">
 																	<label for="idCliente" class="col-sm-2 col-form-label tag-name">Cliente</label>
 																	<div class="col-sm-8">
-																		<select class="form-control" name="idCliente" required="required" id="idCliente">
-																			<option value="">-- Seleccione --</option>
-																			<?php foreach ($cliente as $row) : ?>
-																				<option value="<?= $row->idecliente ?>"><?= $row->nombres ?> <?= $row->ape_paterno ?></option>
-																			<?php endforeach; ?>
-																		</select>
+																		<button type="button" class="btn btn-primary col-sm-12 btnclientSearch">Buscar Cliente</button>
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label for="idCliente" class="col-sm-2 col-form-label tag-name"></label>
+																	<div class="col-sm-8">
+																		<input id="nombcliente" name="nombcliente" class="form-control" type="text" placeholder="" disabled/>
 																	</div>
 																</div>
 																<div class="form-group row">
@@ -315,7 +316,50 @@
 						</div>
 					</div>
 				</div> <!-- Aqui cierra row-->
-
+				<div class="modal fade" id="tableArticuloModal" tabindex="-1" role="dialog" aria-labelledby="tableArticuloLabel" aria-hidden="false" style="z-index: 1600;">
+					<div class="modal-dialog modal-lg" role="document" style="padding-top: 10px;">
+					<div class="modal-content">
+						<div class="modal-header">
+						<h5 class="modal-title" id="registrarTableroModalLabel">Buscar Cliente</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<!-- <form id="formDocument" name="formDocument"> -->
+							<div class="form-group row">
+								<label class="col-sm-4 col-form-label">Documento de cliente</label>
+								<div class="col-sm-8">
+									<input id="documentNumber" name="documentNumber" class="form-control" type="text" placeholder="Ingrese el número de documento" value=""/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-8">
+									<button id="btnDocumentSearch" class="btn btn-primary">Buscar</button>
+								</div>
+							</div>
+							<input id="clientId" type="hidden" name="clientId"/>
+							<div class="form-group row">
+								<label class="col-sm-4 col-form-label">Datos de cliente</label>
+								<div class="col-sm-8">
+									<input id="clientData" name="clientData" class="form-control" type="text" disabled/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-4 col-form-label">Tipo de documento</label>
+								<div class="col-sm-8">
+									<input id="documentType" name="documentType" class="form-control" type="text" disabled/>
+								</div>
+							</div>
+						<!-- </form> -->
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary btnActionClient" data-dismiss="modal">Agregar</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					</div>
+					</div>
+					</div>
+				</div>																	
 				<?php $this->load->view("inc/footer-template"); ?>
 			</div>
 		</div>

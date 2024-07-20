@@ -91,6 +91,44 @@ function registroEvento(URI, EVENTO_CODIGO_REGION) {
 				}
 		});
 
+		$(".btnclientSearch").on('click', function (event) {
+			$("#clientData").val("");
+			$("#documentType").val("");
+			$("#clientId").val("");
+			$("#tableArticuloModal").modal('show');
+		});
+		
+		$(".btnActionClient").on('click', function (event) {
+			const identifier = $("#clientId").val()
+			$("#idCliente").val(identifier);
+		});
+
+		$("#btnDocumentSearch").on('click', function (event) {
+			var documentNumber = $("#documentNumber").val();
+
+			$.ajax({
+				url: URI + "eventos/cliente",
+				data: {
+					type: '01',
+					document: documentNumber
+				},
+				method: 'post',
+				dataType: 'json',
+				beforeSend: function () {
+				},
+				success: function (data) {
+					const { data: { listaCliente } } = data;
+					const { ape_materno, ape_paterno, documento, estado, nombres, tipdocumento, idecliente } = listaCliente[0]
+					if(idecliente) {
+						$("#clientData").val(nombres + ' ' + ape_paterno + ' ' + ape_materno);
+						$("#clientId").val(idecliente);
+						$("#documentType").val(tipdocumento);
+						$("#nombcliente").val(nombres + ' ' + ape_paterno + ' ' + ape_materno);						
+					}
+				}
+			});
+		});
+		
 		$("#datetimepicker").datetimepicker({
 			locale: 'ru',
 			maxDate: moment(),

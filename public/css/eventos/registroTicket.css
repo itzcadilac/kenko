@@ -206,3 +206,11 @@ input[type="radio"] {
 .radio-item.active label {
   background-color: lightblue;
 }
+
+.btnclientSearch, 
+.select-service,
+.input-direccion,
+.link-a{
+	height: 60px;
+	font-size: 1rem;
+}
