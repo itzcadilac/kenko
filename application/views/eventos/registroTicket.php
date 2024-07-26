@@ -148,6 +148,7 @@
 
 												<div class="col-sm-12">
 													<form id="formEvento" name="formEvento" method="POST" action="" autocomplete="off">
+														<input id="idCliente" type="hidden" name="idCliente"/>
 														<div class="tab-content mt-0" id="v-pills-tabContent">
 														
 															<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
