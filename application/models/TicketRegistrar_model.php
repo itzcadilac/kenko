@@ -13,6 +13,7 @@ class TicketRegistrar_model extends CI_Model
     private $idTipoServicio;
     private $jabas;
     private $peso;
+    private $apodo;
   
     public function setDireccion($data)
     {
@@ -59,6 +60,10 @@ class TicketRegistrar_model extends CI_Model
     {
         $this->idServicio = $this->db->escape_str($data);
     }
+    public function setApodo($data)
+    {
+        $this->apodo = $this->db->escape_str($data);
+    }
     
     public function __construct()
     {
@@ -69,7 +74,7 @@ class TicketRegistrar_model extends CI_Model
         $estados = array("1");
         $idrol = $this->session->userdata("idrol");
         $codigoRegion = $this->session->userdata("Codigo_Region");
-        $this->db->select("tck.idticket, tck.direccion, tck.fecregistro, tck.estado, tck.peso, c.idecliente, tdoc.Tipo_Documento_Nombre tipdocumento, c.documento, c.nombres, c.ape_paterno, c.ape_materno, tserv.idtipservicio, tserv.descservicio");
+        $this->db->select("tck.idticket, tck.direccion, tck.fecregistro, tck.estado, tck.peso, tck.apodo, c.idecliente, tdoc.Tipo_Documento_Nombre tipdocumento, c.documento, c.nombres, c.ape_paterno, c.ape_materno, tserv.idtipservicio, tserv.descservicio");
         $this->db->select("DATE_FORMAT(tck.fecregistro,'%Y') anio");
         $this->db->from("ticket tck");
         $this->db->join("cliente c", "c.idecliente=tck.idcliente");
@@ -89,8 +94,12 @@ class TicketRegistrar_model extends CI_Model
         $data = array(
             "idcliente" => $this->idCliente,
             "idtipservicio" => $this->idTipoServicio,
+            "idtipfruta" => $this->idTipoFruta,
+            "idTipJaba" => $this->idTipoJaba,
+            "cantjabas" => $this->jabas,
             "direccion" => $this->direccion,
-            "peso" => $this->peso
+            "peso" => $this->peso,
+            "apodo" => $this->apodo
         );
         if ($this->db->insert('ticket', $data))
             return $this->db->insert_id();

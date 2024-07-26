@@ -155,13 +155,37 @@
 	border: 1px solid #ccc;
   }
 
+  .btn-jaba{
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 200;
+    height: 60px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 1rem;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    }
+    
 .btn-servicio:hover,
 .btn-fruta:hover {
   background-color: #e0e0e0;
 }
 
+.btn-jaba:hover {
+  background-color: #e0e0e0;
+}
+
 label.btn-servicio input[type="radio"],
 label.btn-fruta input[type="radio"] {
+  display: none;
+}
+
+label.btn-jaba input[type="radio"] {
   display: none;
 }
 

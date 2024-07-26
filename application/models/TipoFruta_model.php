@@ -15,7 +15,7 @@ class TipoFruta_model extends CI_Model
     public function lista()
     {
         $this->db->select("*");
-        $this->db->from("medida_fruta");
+        $this->db->from("tipo_fruta");
         $this->db->where("estado", "1");
         return $this->db->get();
     }

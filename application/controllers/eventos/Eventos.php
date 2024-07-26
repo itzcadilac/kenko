@@ -119,6 +119,7 @@ class Eventos extends CI_Controller
         $this->load->model("Cliente_model");
         $this->load->model("TipoServicio_model");
         $this->load->model("TipoFruta_model");
+        $this->load->model("TipoJaba_model");
 
         $this->load->model("EventoTipo_model");
         $this->load->model("EventoNivel_model");
@@ -129,7 +130,8 @@ class Eventos extends CI_Controller
 
         $cliente = $this->Cliente_model->lista();
         $tiposervicio = $this->TipoServicio_model->lista();
-        $medidafruta = $this->TipoFruta_model->lista();
+        $tipofruta = $this->TipoFruta_model->lista();
+        $tipojaba = $this->TipoJaba_model->lista();
 
         $tipo = $this->EventoTipo_model->lista();
         $nivel = $this->EventoNivel_model->lista();
@@ -142,7 +144,8 @@ class Eventos extends CI_Controller
         $data = array(
             "cliente" => $cliente->result(),
             "tiposervicio" => $tiposervicio->result(),
-            "medidafruta" => $medidafruta->result(),
+            "tipofruta" => $tipofruta->result(),
+            "tipojaba" => $tipojaba->result(),
             "tipo" => $tipo->result(),
             "nivel" => $nivel->result(),
             "fuente" => $fuente->result(),
@@ -451,16 +454,24 @@ class Eventos extends CI_Controller
         $idCliente = $this->input->post("idCliente");
         $idTipoFruta = $this->input->post("idTipoFruta");
         $idTipoServicio = $this->input->post("idTipoServicio");
+        $idtipjaba = $this->input->post("idtipjaba");
+        $cantjabas = $this->input->post("cantjabas");
         $peso = $this->input->post("peso");
         $direccion = $this->input->post("direccion");
-
+        $apodo = $this->input->post("apodo");
 
         $this->TicketRegistrar_model->setDireccion($direccion);
         $this->TicketRegistrar_model->setCliente($idCliente);
+        $this->TicketRegistrar_model->setIdTipoJaba($idtipjaba);
+        $this->TicketRegistrar_model->setJabas($cantjabas);
+
         $this->TicketRegistrar_model->setIdTipoFruta($idTipoFruta);
         $this->TicketRegistrar_model->setPeso($peso);
         $this->TicketRegistrar_model->setIdTipoServicio($idTipoServicio);
-        
+        $this->TicketRegistrar_model->setApodo($apodo);
+
+
+
         $idServicio = $this->TicketRegistrar_model->crearTicket();
         if ($idServicio > 0) {
             $data = array(
@@ -521,6 +532,7 @@ class Eventos extends CI_Controller
                     "nombres" => $row->nombres,
                     "ape_paterno" => $row->ape_paterno,
                     "ape_materno" => $row->ape_materno,
+                    "apodo" => $row->apodo,
                     "idtipservicio" => $row->idtipservicio,
                     "peso" => $row->peso,
                     "estado" => $row->estado,

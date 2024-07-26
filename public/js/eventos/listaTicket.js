@@ -104,10 +104,20 @@ $(document).ready(function () {
 			{ data: "documento" },
 			{ data: "nombres" },
 			{ data: "ape_paterno" },
+			{ data: "apodo" },
 			{ data: "estado", 
 				render: function (data, type, row, meta) {
 					return `<span class="badge ${data === '1' ? 'badge-info' : 'badge-default'}">${data === '1' ? 'Activo' : data}</span>`			 } 
 			},
+			{	data: "idticket",
+				render: function (data, type, row) {
+					return `<div style="display: flex; justify-content: center; align-items: center;">
+					  			<button class="btn btn-warning btn-circle imprimticket" title="TICKET" type="button" style="display: flex; justify-content: center; align-items: center;">
+								<i style="display: flex; justify-content: center; align-items: center; margin: 0 !important;padding: 0 !important;" class="fa fa-file-pdf-o"></i>
+					  			</button>							
+							</div>`;
+				 }
+			  },
 		],
 		columnDefs: [],
 		buttons: [

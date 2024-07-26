@@ -118,7 +118,9 @@
 																		<th>N. documento</th>
 																		<th>Nombres</th>
 																		<th>Apellidos</th>
+																		<th>Apodo</th>
 																		<th>Estado</th>
+																		<th>TIcket</th>
 																	</tr>
 																</thead>
 														</table>
