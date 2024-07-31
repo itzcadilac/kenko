@@ -119,6 +119,10 @@
 																		<th>Nombres</th>
 																		<th>Apellidos</th>
 																		<th>Apodo</th>
+																		<th></th>
+																		<th></th>
+																		<th></th>
+																		<th></th>
 																		<th>Estado</th>
 																		<th>TIcket</th>
 																	</tr>

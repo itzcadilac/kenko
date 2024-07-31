@@ -105,6 +105,10 @@ $(document).ready(function () {
 			{ data: "nombres" },
 			{ data: "ape_paterno" },
 			{ data: "apodo" },
+			{ data: "descripcionfruta" },
+			{ data: "descripcionjaba" },
+			{ data: "peso" },
+			{ data: "cantjabas" },
 			{ data: "estado", 
 				render: function (data, type, row, meta) {
 					return `<span class="badge ${data === '1' ? 'badge-info' : 'badge-default'}">${data === '1' ? 'Activo' : data}</span>`			 } 
@@ -119,7 +123,11 @@ $(document).ready(function () {
 				 }
 			  },
 		],
-		columnDefs: [],
+		columnDefs: [{
+			"targets": [10, 11, 12, 13],
+			"visible": false,
+			"searchable": false
+		}],
 		buttons: [
 			{
 				extend: 'copy',
@@ -230,7 +238,7 @@ $(document).ready(function () {
 
 
 	  /*
-	  		{ data: "idticket" },
+			{ data: "idticket" },
 			{ data: "descservicio" },
 			{ data: "direccion" },
 			{ data: "fecregistro" },
@@ -239,10 +247,15 @@ $(document).ready(function () {
 			{ data: "nombres" },
 			{ data: "ape_paterno" },
 			{ data: "apodo" },
+			{ data: "descripcionfruta" },
+			{ data: "descripcionjaba" },
+			{ data: "peso" },
+			{ data: "cantjabas" },
+			{ data: "estado", 
 	  */
 	  $('.tbLista').on('click', 'td .imprimticket', function () {
 		var data = table.row($(this).closest('tr')).data();
-		post(URI + "ticket/ticket.php?id=" + data.idticket+"&direccion=" + data.direccion +"&cliente=" + data.apodo +"&dni=" + data.documento);
+		post(URI + "ticket/ticket.php?id=" + data.idticket+"&direccion=" + data.direccion +"&cliente=" + data.apodo +"&dni=" + data.documento +"&peso=" + data.peso +"&descripcionfruta=" + data.descripcionfruta +"&descripcionjaba=" + data.descripcionjaba +"&cantjabas=" + data.cantjabas);
 	  });
 
 	$('body').on('click', 'td i.addLesionados', function () {
