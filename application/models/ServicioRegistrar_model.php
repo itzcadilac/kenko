@@ -14,6 +14,7 @@ class ServicioRegistrar_model extends CI_Model
     private $jabas;
     private $peso;
     private $idTicket;
+    private $costo;
   
     public function setDireccion($data)
     {
@@ -65,6 +66,10 @@ class ServicioRegistrar_model extends CI_Model
     {
         $this->idTicket = $this->db->escape_str($data);
     }
+    public function setCosto($data)
+    {
+        $this->costo = $this->db->escape_str($data);
+    }
     
     public function __construct()
     {
@@ -95,7 +100,8 @@ class ServicioRegistrar_model extends CI_Model
             "idcliente" => $this->idCliente,
             "idtipservicio" => $this->idTipoServicio,
             "idticket" => $this->idTicket,
-            "direccion" => $this->direccion
+            "direccion" => $this->direccion,
+            "costo" => $this->costo
         );
         if ($this->db->insert('servicios', $data))
             return $this->db->insert_id();

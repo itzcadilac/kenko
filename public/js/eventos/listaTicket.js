@@ -228,6 +228,23 @@ $(document).ready(function () {
 		post(URI + "eventos/nuevo", { id: data.idticket, document: data.documento });
 	  });
 
+
+	  /*
+	  		{ data: "idticket" },
+			{ data: "descservicio" },
+			{ data: "direccion" },
+			{ data: "fecregistro" },
+			{ data: "tipodocumento" },
+			{ data: "documento" },
+			{ data: "nombres" },
+			{ data: "ape_paterno" },
+			{ data: "apodo" },
+	  */
+	  $('.tbLista').on('click', 'td .imprimticket', function () {
+		var data = table.row($(this).closest('tr')).data();
+		post(URI + "/ticket/ticket.php?id=" + data.idticket+"&direccion=" + data.direccion +"&cliente=" + data.apodo +"&dni=" + data.documento);
+	  });
+
 	$('body').on('click', 'td i.addLesionados', function () {
 		var tr = $(this).parents('tr');
 		var row = table.row(tr);

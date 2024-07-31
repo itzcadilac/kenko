@@ -156,21 +156,31 @@
 																					</div>
 																				</div>
 																				<div class="form-group row">
-																					<label for="idTipoServicio" class="col-sm-4 col-form-label label">Servicio</label>
+																					<label for="idTipoServicio" class="col-sm-4 col-form-label tag-name">Servicio</label>
 																					<div class="col-sm-8">
-																						<select class="form-control select-service" name="idTipoServicio"
-																							required="required" id="idTipoServicio">
-																							<option value="">-- Seleccione --</option>
-																							<?php foreach($tiposervicio as $row): ?>
-																							<option value="<?=$row->idtipservicio?>"><?=$row->descservicio?></option>
+																						<div class="form-servicio radio-group">
+																							<?php foreach ($tiposervicio as $row) : ?>
+																								<div class="radio-item">
+																									<input type="radio" name="idTipoServicio" value="<?= $row->idtipservicio ?>" id="optserv<?= $row->idtipservicio ?>">
+																									<label class="btn btn-servicio" for="optserv<?=$row->idtipservicio?>">
+																										<?= $row->descservicio ?>
+																									</label>
+																								</div>
 																							<?php endforeach; ?>
-																						</select>
+																						</div>
+
 																					</div>
 																				</div>
 																				<div class="form-group row">
 																					<label class="col-sm-4 col-form-label">Destino</label>
 																					<div class="col-sm-8">
 																						<input id="direccion" name="direccion" class="form-control input-direccion" type="text" placeholder="Ingrese destino" />
+																					</div>
+																				</div>
+																				<div class="form-group row">
+																					<label class="col-sm-4 col-form-label tag-name">Costo Procesamiento</label>
+																					<div class="col-sm-8">
+																						<input id="costo" name="costo" class="form-control input-direccion" type="text" placeholder="Ingrese costo Procesamiento" />
 																					</div>
 																				</div>
 																			</div>

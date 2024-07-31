@@ -65,6 +65,7 @@ class Eventos extends CI_Controller
         $this->load->model("TipoParihuela_model");
         $this->load->model("TipoJaba_model");
         $this->load->model("TipoFruta_model");
+        $this->load->model("MedidaFruta_model");
 
         $this->load->model("EventoTipo_model");
         $this->load->model("EventoNivel_model");
@@ -77,7 +78,7 @@ class Eventos extends CI_Controller
         $tiposervicio = $this->TipoServicio_model->lista();
         $tipoparihuela = $this->TipoParihuela_model->lista();
         $tipojaba = $this->TipoJaba_model->lista();
-        $medidafruta = $this->TipoFruta_model->lista();
+        $medidafruta = $this->MedidaFruta_model->lista();
 
         $tipo = $this->EventoTipo_model->lista();
         $nivel = $this->EventoNivel_model->lista();
@@ -155,6 +156,34 @@ class Eventos extends CI_Controller
         );
         
         $this->load->view("eventos/registroTicket", $data);
+    }
+
+    public function imprimirticket()
+    {
+        require "./ticket/ticket.php";
+        session_start();
+       // $nivel = 1;
+        //$idmenu = 1;
+        
+        //validarPermisos($nivel, $idmenu, $this->permisos);
+        
+        //$this->setearMes();
+        $id = $this->input->post('id');
+        //$document = $this->input->post('document');
+
+        
+        $this->load->model("TicketRegistrar_model");
+        $this->TicketRegistrar_model->setIdTicket($id);
+        $cliente = $this->TicketRegistrar_model->ticketimprimir();
+
+       // href='cyedocs.php?id=" + rowObject[10] + "';
+        /*
+        $data = array(
+            "id" => $id
+        );
+        */
+        //$this->load->view("eventos/registroEvento", $data);
+
     }
 
     public function listaDetalle(){
@@ -415,6 +444,7 @@ class Eventos extends CI_Controller
         $jabas = $this->input->post("jabas");
         $peso = $this->input->post("peso");
         $idTicket = $this->input->post("idTicket");
+        $costo = $this->input->post("costo");
 
 
         $this->ServicioRegistrar_model->setDireccion($direccion);
@@ -426,7 +456,8 @@ class Eventos extends CI_Controller
         $this->ServicioRegistrar_model->setJabas($jabas);
         $this->ServicioRegistrar_model->setIdTipoServicio($idTipoServicio);
         $this->ServicioRegistrar_model->setIdTicket($idTicket);
-        
+        $this->ServicioRegistrar_model->setCosto($costo);
+
         $idServicio = $this->ServicioRegistrar_model->crearServicio();
         if ($idServicio > 0) {
             if($this->guardarDetalle($idServicio, $idTipoParihuela, $idTipoJaba, $idTipoFruta, $peso, $jabas)) {

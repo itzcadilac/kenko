@@ -141,12 +141,12 @@
 						<table class="tableArticulo table table-striped table-bordered table-sm" cellspacing="0" width="100%">
 							<thead>
 							<tr>
-								<th>peso</th>
-								<th>cantjbs</th>
-								<th>descripcionparihuela</th>
-								<th>descripcionjaba</th>
-								<th>desctamfruta</th>
-								<th>precio</th>
+								<th>Peso</th>
+								<th>Cantidad Jabas</th>
+								<th>Parihuela</th>
+								<th>Tipo Jaba</th>
+								<th>Tamaño Fruta</th>
+								<th>Costo</th>
 							</tr>
 							</thead>
 							<tbody>

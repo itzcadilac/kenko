@@ -14,6 +14,8 @@ class TicketRegistrar_model extends CI_Model
     private $jabas;
     private $peso;
     private $apodo;
+    private $idticket;
+    
   
     public function setDireccion($data)
     {
@@ -64,6 +66,10 @@ class TicketRegistrar_model extends CI_Model
     {
         $this->apodo = $this->db->escape_str($data);
     }
+    public function setIdTicket($data)
+    {
+        $this->idticket = $this->db->escape_str($data);
+    }
     
     public function __construct()
     {
@@ -88,6 +94,27 @@ class TicketRegistrar_model extends CI_Model
         $this->db->order_by("tck.idticket", "DESC");
         return $this->db->get();
     }
+
+    public function ticketimprimir()
+    {
+        $estados = array("1");
+        $idrol = $this->session->userdata("idrol");
+        $codigoRegion = $this->session->userdata("Codigo_Region");
+        $this->db->select("tck.idticket, tck.direccion, tck.fecregistro, tck.estado, tck.peso, tck.apodo, c.idecliente, tdoc.Tipo_Documento_Nombre tipdocumento, c.documento, c.nombres, c.ape_paterno, c.ape_materno, tserv.idtipservicio, tserv.descservicio");
+        $this->db->select("DATE_FORMAT(tck.fecregistro,'%Y') anio");
+        $this->db->from("ticket tck");
+        $this->db->join("cliente c", "c.idecliente=tck.idcliente");
+        $this->db->join("tipo_servicio tserv", "tserv.idtipservicio=tck.idtipservicio ");
+        $this->db->join("tipo_documento tdoc", "tdoc.Tipo_Documento_Codigo=c.tipdocumento ");
+        $this->db->where("YEAR(tck.fecregistro)",$this->anio);
+        if ($this->mes != 0) {
+            $this->db->where("MONTH(tck.fecregistro)",$this->mes);
+        }        
+        $this->db->where_in("tck.estado", $estados);
+        $this->db->order_by("tck.idticket", "DESC");
+        return $this->db->get();
+    }
+
 
     public function crearTicket()
     {
