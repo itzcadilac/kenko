@@ -242,7 +242,7 @@ $(document).ready(function () {
 	  */
 	  $('.tbLista').on('click', 'td .imprimticket', function () {
 		var data = table.row($(this).closest('tr')).data();
-		post(URI + "/ticket/ticket.php?id=" + data.idticket+"&direccion=" + data.direccion +"&cliente=" + data.apodo +"&dni=" + data.documento);
+		post(URI + "ticket/ticket.php?id=" + data.idticket+"&direccion=" + data.direccion +"&cliente=" + data.apodo +"&dni=" + data.documento);
 	  });
 
 	$('body').on('click', 'td i.addLesionados', function () {
