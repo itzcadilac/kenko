@@ -150,17 +150,16 @@
 																					</div>
 																				</div>
 																				<div class="form-group row">
-																					<label for="idTipoServicio" class="col-sm-4 col-form-label label"></label>
+																					<label for="nombcliente" class="col-sm-4 col-form-label label"></label>
 																					<div class="col-sm-8">
 																						<input id="nombcliente" name="nombcliente" class="form-control input-direccion" type="text" placeholder="" disabled/>
 																					</div>
 																				</div>
 																				<div class="form-group row">
 																					<label for="idTipoServicio" class="col-sm-4 col-form-label tag-name">Servicio</label>
-																					<div class="col-sm-8">
-																						<div class="form-servicio radio-group">
+																						<div class="row col-sm-8 radio-group pr-0">
 																							<?php foreach ($tiposervicio as $row) : ?>
-																								<div class="radio-item">
+																								<div class="radio-item col pr-0">
 																									<input type="radio" name="idTipoServicio" value="<?= $row->idtipservicio ?>" id="optserv<?= $row->idtipservicio ?>">
 																									<label class="btn btn-servicio" for="optserv<?=$row->idtipservicio?>">
 																										<?= $row->descservicio ?>
@@ -168,8 +167,6 @@
 																								</div>
 																							<?php endforeach; ?>
 																						</div>
-
-																					</div>
 																				</div>
 																				<div class="form-group row">
 																					<label class="col-sm-4 col-form-label">Destino</label>
@@ -181,6 +178,12 @@
 																					<label class="col-sm-4 col-form-label tag-name">Costo Procesamiento</label>
 																					<div class="col-sm-8">
 																						<input id="costo" name="costo" class="form-control input-direccion" type="text" placeholder="Ingrese costo Procesamiento" />
+																					</div>
+																				</div>
+																				<div class="form-group row">
+																					<label class="col-sm-4 col-form-label tag-name">Monto de Papel Blanco</label>
+																					<div class="col-sm-8">
+																						<input id="papel" name="papel" class="form-control input-direccion" type="number" placeholder="Ingrese Monto de Papel" />
 																					</div>
 																				</div>
 																			</div>
@@ -351,6 +354,9 @@
 	<script src="<?=base_url()?>public/js/eventos/initMapRegistro.js"></script>
 	<script src="<?=base_url()?>public/js/eventos/registroEvento.js?v=<?=date("his")?>"></script>
 	<script>
+		const listaTipoparihuela = JSON.parse('<?=$listaTipoparihuela?>');
+		const listaTipojaba = JSON.parse('<?=$listaTipojaba?>');
+		const listaMedidafruta = JSON.parse('<?=$listaMedidafruta?>');
 		registroEvento("<?=base_url()?>","<?=$region?>");
 	</script>
 
