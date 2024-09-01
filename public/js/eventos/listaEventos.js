@@ -90,7 +90,10 @@ $(document).ready(function () {
 			{ "data": "documento" },
 			{ "data": "nombres" },
 			{ "data": "ape_paterno" },
-			{ "data": "estado" }
+			{ "data": "estado", 
+				render: function (data, type, row, meta) {
+					return `<span class="badge ${data === '1' ? 'badge-info' : 'badge-default'}">${data === '1' ? 'Activo' : data}</span>`			 } 
+			}
 		],
 		columnDefs: [],
 		buttons: [

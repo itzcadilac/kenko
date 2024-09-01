@@ -91,7 +91,7 @@ a:hover { text-decoration: none; color: #02818f; }
 /*---------------------------------------------------------------------
                                   Badge
 -----------------------------------------------------------------------*/
-.badge { padding: .3em .6em; line-height: 1.3; text-transform: capitalize; }
+.badge { padding: 8px 12px; line-height: 1.3; text-transform: capitalize; }
 .breadcrumb.bg-primary .breadcrumb-item+.breadcrumb-item::before { color: #ffffff; }
 
 /*---------------------------------------------------------------------

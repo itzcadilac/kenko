@@ -1,8 +1,19 @@
 
 var globalResources = {}
 function registroEvento(URI, EVENTO_CODIGO_REGION) {
-
 	$(document).ready(function () {
+
+		document.querySelectorAll('.radio-group').forEach(group => {
+			group.querySelectorAll('input[type="radio"]').forEach(radio => {
+				radio.addEventListener('change', function() {
+					group.querySelectorAll('.radio-item').forEach(item => {
+						item.classList.remove('active');
+					});
+					this.closest('.radio-item').classList.add('active');
+				});
+			});
+		});
+		
 		var tableArticuloIngresos = $('.tableArticuloIngresos').DataTable(
 			{
 				pageLength: 5,
@@ -12,9 +23,9 @@ function registroEvento(URI, EVENTO_CODIGO_REGION) {
 				autoWidth: true,
 				data: [],
 				columns: [
-					{ data: "idTipoParihuela" },
-					{ data: "idTipoJaba" },
-					{ data: "idTipoFruta" },
+					{ data: "descripcionParihuela" },
+					{ data: "descripcionTipoJaba" },
+					{ data: "descripcionTipoFruta" },
 					{ data: "peso" },
 					{ data: "jabas" },
 					{
@@ -56,8 +67,12 @@ function registroEvento(URI, EVENTO_CODIGO_REGION) {
 		$(".btn-buscar").on('click', function (event) {
 			let items = {};
 			var formData = ($("#formEvento").serializeArray());
+			console.log({formData})
 			formData.forEach(element => {
 				items[element.name] = element.value;
+				if(element.name === 'idTipoParihuela') items['descripcionParihuela'] = listaTipoparihuela.find(item => item.idtipoparihuela == [element.value]).descripcionparihuela
+				if(element.name === 'idTipoJaba') items['descripcionTipoJaba'] = listaTipojaba.find(item => item.idtipjaba == [element.value]).descripcionjaba
+				if(element.name === 'idTipoFruta') items['descripcionTipoFruta'] = listaMedidafruta.find(item => item.idtamfruta == [element.value]).desctamfruta
 			});
 			tableArticuloIngresos.rows.add([items]).draw();
         	// $("#formEvento")[0].reset();
@@ -298,19 +313,19 @@ function registroEvento(URI, EVENTO_CODIGO_REGION) {
 			}
 		});
 
-		$("#distrito").change(function () {
+		// $("#distrito").change(function () {
 
-			var id = $(this).val();
+		// 	var id = $(this).val();
 
-			if (id.length > 0) {
+		// 	if (id.length > 0) {
 
-				$("input[name=hDepartamento]").val($("#departamento option:selected").text());
-				$("input[name=hProvincia]").val($("#provincia option:selected").text());
-				$("input[name=hDistrito]").val($("#distrito option:selected").text());
+		// 		$("input[name=hDepartamento]").val($("#departamento option:selected").text());
+		// 		$("input[name=hProvincia]").val($("#provincia option:selected").text());
+		// 		$("input[name=hDistrito]").val($("#distrito option:selected").text());
 
-			}
+		// 	}
 
-		});
+		// });
 
 		$("#tipoEvento").change(function () {
 

@@ -87,15 +87,21 @@ class Eventos extends CI_Controller
         $eventoasociado = $this->EventoAsociado_Model->listaeasociado();
 
         $departamentos = $this->Ubigeo_model->departamentos();
-        
+        $tipoparihuela = $tipoparihuela->result();
+        $tipojaba = $tipojaba->result();
+        $medidafruta = $medidafruta->result();
+
         $data = array(
             "id" => $id,
             "document" => $document,
             "cliente" => $cliente->result(),
             "tiposervicio" => $tiposervicio->result(),
-            "tipoparihuela" => $tipoparihuela->result(),
-            "tipojaba" => $tipojaba->result(),
-            "medidafruta" => $medidafruta->result(),
+            "tipoparihuela" => $tipoparihuela,
+            "tipojaba" => $tipojaba,
+            "medidafruta" => $medidafruta,
+            "listaTipoparihuela" => json_encode($tipoparihuela),
+            "listaTipojaba" => json_encode($tipojaba),
+            "listaMedidafruta" => json_encode($medidafruta),
             "tipo" => $tipo->result(),
             "nivel" => $nivel->result(),
             "fuente" => $fuente->result(),

@@ -124,24 +124,9 @@
   justify-content: space-between;
   align-items: center;
 }
-.btn-servicio{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2rem;
-  font-weight: 200;
-  width: 320px;
-  height: 60px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 1rem;
-  background-color: #f0f0f0;
-  cursor: pointer;
-  border: 1px solid #ccc;
-}
-.btn-fruta{
+
+.btn-default{
 	display: flex;
-	
 	justify-content: center;
 	align-items: center;
 	font-size: 1.2rem;
@@ -154,22 +139,6 @@
 	cursor: pointer;
 	border: 1px solid #ccc;
   }
-
-  .btn-jaba{
-    display: flex;
-    
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    font-weight: 200;
-    height: 60px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 1rem;
-    background-color: #f0f0f0;
-    cursor: pointer;
-    border: 1px solid #ccc;
-    }
     
 .btn-servicio:hover,
 .btn-fruta:hover {
@@ -204,12 +173,6 @@ label.btn-jaba input[type="radio"] {
 	height: 60px;
 	font-size: 1.2rem;
  	font-weight: 200;
-}
-.form-fruta{
-	display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
-	align-items: center;
 }
 .tag-name{
 	font-size: 1.2rem;
