@@ -583,7 +583,7 @@ $("#anio, #mes").on("change", function () {
 
 	if (anio.length > 0 && mes.length > 0) {
 
-		post(URI + "eventos/lista", { anio, mes });
+		post(URI + "eventos/listaticket", { anio, mes });
 
 	}
 
