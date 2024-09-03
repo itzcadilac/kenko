@@ -66,6 +66,7 @@ class Eventos extends CI_Controller
         $this->load->model("TipoJaba_model");
         $this->load->model("TipoFruta_model");
         $this->load->model("MedidaFruta_model");
+        $this->load->model("TipoFruta_model");
 
         $this->load->model("EventoTipo_model");
         $this->load->model("EventoNivel_model");
@@ -85,6 +86,7 @@ class Eventos extends CI_Controller
         $fuente = $this->EventoFuente_model->lista();
         $listaralerta = $this->AlertaPronostico_model->listaralerta();
         $eventoasociado = $this->EventoAsociado_Model->listaeasociado();
+        $tipofruta = $this->TipoFruta_model->lista();
 
         $departamentos = $this->Ubigeo_model->departamentos();
         $tipoparihuela = $tipoparihuela->result();
@@ -107,7 +109,8 @@ class Eventos extends CI_Controller
             "fuente" => $fuente->result(),
             "departamentos" => $departamentos->result(),
             "listaralerta" => $listaralerta,
-            "eventoasociado" => $eventoasociado->result()
+            "eventoasociado" => $eventoasociado->result(),
+            "tipofruta" => $tipofruta->result()
         );
         
         $this->load->view("eventos/registroEvento", $data);
@@ -443,30 +446,34 @@ class Eventos extends CI_Controller
         
         $direccion = $this->input->post("direccion");
         $idCliente = $this->input->post("idCliente");
-        $idTipoFruta = $this->input->post("idTipoFruta");
+        $idTipoFruta = $this->input->post("idTipFruta");
         $idTipoJaba = $this->input->post("idTipoJaba");
         $idTipoParihuela = $this->input->post("idTipoParihuela");
         $idTipoServicio = $this->input->post("idTipoServicio");
+        $idTamFruta = $this->input->post("idTamFruta");
         $jabas = $this->input->post("jabas");
         $peso = $this->input->post("peso");
         $idTicket = $this->input->post("idTicket");
         $costo = $this->input->post("costo");
+        $montopapelblanco = $this->input->post("montopapelblanco");
 
 
         $this->ServicioRegistrar_model->setDireccion($direccion);
         $this->ServicioRegistrar_model->setCliente($idCliente);
         $this->ServicioRegistrar_model->setIdTipoParihuela($idTipoParihuela);
         $this->ServicioRegistrar_model->setIdTipoJaba($idTipoJaba);
+        $this->ServicioRegistrar_model->setIdTamFruta($idTamFruta);
         $this->ServicioRegistrar_model->setIdTipoFruta($idTipoFruta);
         $this->ServicioRegistrar_model->setPeso($peso);
         $this->ServicioRegistrar_model->setJabas($jabas);
         $this->ServicioRegistrar_model->setIdTipoServicio($idTipoServicio);
         $this->ServicioRegistrar_model->setIdTicket($idTicket);
         $this->ServicioRegistrar_model->setCosto($costo);
+        $this->ServicioRegistrar_model->setMontoPapelBlanco($montopapelblanco);
 
         $idServicio = $this->ServicioRegistrar_model->crearServicio();
         if ($idServicio > 0) {
-            if($this->guardarDetalle($idServicio, $idTipoParihuela, $idTipoJaba, $idTipoFruta, $peso, $jabas)) {
+            if($this->guardarDetalle($idServicio, $idTipoParihuela, $idTipoJaba, $idTamFruta, $peso, $jabas)) {
                 $data = array(
                     "status" => 200
                 );
@@ -673,18 +680,18 @@ class Eventos extends CI_Controller
         echo json_encode($data);
     }
 
-    public function guardarDetalle($idServicio, $idTipoParihuela, $idTipoJaba, $idTipoFruta, $peso, $jabas) {
+    public function guardarDetalle($idServicio, $idTipoParihuela, $idTipoJaba, $idTamFruta, $peso, $jabas) {
         $this->DetalleServicio_model->setIdServicio($idServicio);
         $idTipoParihuela = explode("|", $idTipoParihuela);
         $idTipoJaba = explode("|", $idTipoJaba);
-        $idTipoFruta = explode("|", $idTipoFruta);
+        $idTamFruta = explode("|", $idTamFruta);
         $peso = explode("|", $peso);
         $jabas = explode("|", $jabas);
 
         foreach($idTipoParihuela as $key => $id):
             $this->DetalleServicio_model->setIdTipoParihuela($id);
             $this->DetalleServicio_model->setIdTipoJaba($idTipoJaba[$key]);
-            $this->DetalleServicio_model->setIdTipoFruta($idTipoFruta[$key]);
+            $this->DetalleServicio_model->setIdTamFruta($idTamFruta[$key]);
             $this->DetalleServicio_model->setPeso($peso[$key]);
             $this->DetalleServicio_model->setJabas($jabas[$key]);
             $this->DetalleServicio_model->crearDetalle();

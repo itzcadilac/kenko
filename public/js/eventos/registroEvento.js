@@ -25,7 +25,7 @@ function registroEvento(URI, EVENTO_CODIGO_REGION) {
 				columns: [
 					{ data: "descripcionParihuela" },
 					{ data: "descripcionTipoJaba" },
-					{ data: "descripcionTipoFruta" },
+					{ data: "desctamfruta" },
 					{ data: "peso" },
 					{ data: "jabas" },
 					{
@@ -72,13 +72,13 @@ function registroEvento(URI, EVENTO_CODIGO_REGION) {
 				items[element.name] = element.value;
 				if(element.name === 'idTipoParihuela') items['descripcionParihuela'] = listaTipoparihuela.find(item => item.idtipoparihuela == [element.value]).descripcionparihuela
 				if(element.name === 'idTipoJaba') items['descripcionTipoJaba'] = listaTipojaba.find(item => item.idtipjaba == [element.value]).descripcionjaba
-				if(element.name === 'idTipoFruta') items['descripcionTipoFruta'] = listaMedidafruta.find(item => item.idtamfruta == [element.value]).desctamfruta
+				if(element.name === 'idTamFruta') items['desctamfruta'] = listaMedidafruta.find(item => item.idtamfruta == [element.value]).desctamfruta
 			});
 			tableArticuloIngresos.rows.add([items]).draw();
         	// $("#formEvento")[0].reset();
 			$("#idTipoParihuela").val("")
 			$("#idTipoJaba").val("")
-			$("#idTipoFruta").val("")
+			$("#idTamFruta").val("")
 			$("#peso").val("")
 			$("#jabas").val("")
 			if(!globalResources.idCliente)
@@ -185,7 +185,7 @@ function registroEvento(URI, EVENTO_CODIGO_REGION) {
 				const tableDataArticulos = tableArticuloIngresos.rows().data().toArray();
 				data["idTipoParihuela"] = tableDataArticulos.map((item) => item.idTipoParihuela).join('|');
 				data["idTipoJaba"] = tableDataArticulos.map((item) => item.idTipoJaba).join('|');
-				data["idTipoFruta"] = tableDataArticulos.map((item) => item.idTipoFruta).join('|');
+				data["idTamFruta"] = tableDataArticulos.map((item) => item.idTamFruta).join('|');
 				data["peso"] = tableDataArticulos.map((item) => item.peso).join('|');
 				data["jabas"] = tableDataArticulos.map((item) => item.jabas).join('|');
 

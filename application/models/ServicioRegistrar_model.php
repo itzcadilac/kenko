@@ -15,7 +15,9 @@ class ServicioRegistrar_model extends CI_Model
     private $peso;
     private $idTicket;
     private $costo;
-  
+    private $idTamFruta;
+    private $MontoPapelBlanco;
+
     public function setDireccion($data)
     {
         $this->direccion = $this->db->escape_str($data);
@@ -70,7 +72,15 @@ class ServicioRegistrar_model extends CI_Model
     {
         $this->costo = $this->db->escape_str($data);
     }
-    
+    public function setIdTamFruta($data)
+    {
+        $this->idTamFruta = $this->db->escape_str($data);
+    }
+    public function setMontoPapelBlanco($data)
+    {
+        $this->MontoPapelBlanco = $this->db->escape_str($data);
+    }
+
     public function __construct()
     {
         parent::__construct();
@@ -101,7 +111,9 @@ class ServicioRegistrar_model extends CI_Model
             "idtipservicio" => $this->idTipoServicio,
             "idticket" => $this->idTicket,
             "direccion" => $this->direccion,
-            "costo" => $this->costo
+            "costo" => $this->costo,
+            "idtipfruta" => $this->idTipoFruta,
+            "montopapelblanco" => $this->MontoPapelBlanco
         );
         if ($this->db->insert('servicios', $data))
             return $this->db->insert_id();
@@ -115,7 +127,7 @@ class ServicioRegistrar_model extends CI_Model
             "idservicio" => $this->idServicio,
             "idtipparihuela" => $this->idTipoParihuela,
             "idtipjaba" => $this->idTipoJaba,
-            "idtipmedida" => $this->idTipoFruta,
+            "idtamfruta" => $this->idTamFruta,
             "peso" => $this->peso,
             "cantjbs" => $this->jabas
         );
