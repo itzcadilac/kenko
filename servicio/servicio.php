@@ -2,10 +2,15 @@
 
 	# Incluyendo librerias necesarias #
     require "./code128.php";
-    //require "C:\AppServ\www\kenko\system\database\drivers\mysqli\mysqli_driver.php";
+    require('../vendor/autoload.php');
+    
+    $dotenv = new Dotenv\Dotenv('../application/'); $dotenv->load();
+    $DB_USER = getenv('DB_USER');    
+    $DB_PASS = getenv('DB_PASS');    
+    $DB_NAME = getenv('DB_NAME');    
 
-    $conexion = new mysqli('localhost', 'root', 'casa123456', 'procesamientosist');
-    //mysqli_set_charset($conexion, 'utf8');
+    $conexion = new mysqli('localhost', $DB_USER, $DB_PASS, $DB_NAME);
+    
     $id = $_GET["id"];
     $sqldetalle = "SELECT 
 						mf.desctamfruta,
@@ -156,48 +161,7 @@ $sqldatosserv = "SELECT
     $pdf->Cell(20,4,iconv("UTF-8", "ISO-8859-1", ""),0,0,'R');
     $pdf->Cell(7,4,iconv("UTF-8", "ISO-8859-1", "S/"),0,0,'R');
     $pdf->Cell(15,4,iconv("UTF-8", "ISO-8859-1", $numero2),0,0,'R');
-    /*
-        $pdf->Ln(5);
-   
-    # Impuestos & totales #
-    $pdf->Cell(18,5,iconv("UTF-8", "ISO-8859-1",""),0,0,'C');
-    $pdf->Cell(22,5,iconv("UTF-8", "ISO-8859-1","SUBTOTAL"),0,0,'C');
-    $pdf->Cell(32,5,iconv("UTF-8", "ISO-8859-1","+ $70.00 USD"),0,0,'C');
 
-    $pdf->Ln(5);
-
-    $pdf->Cell(18,5,iconv("UTF-8", "ISO-8859-1",""),0,0,'C');
-    $pdf->Cell(22,5,iconv("UTF-8", "ISO-8859-1","IVA (13%)"),0,0,'C');
-    $pdf->Cell(32,5,iconv("UTF-8", "ISO-8859-1","+ $0.00 USD"),0,0,'C');
-
-    $pdf->Ln(5);
-
-    $pdf->Cell(72,5,iconv("UTF-8", "ISO-8859-1","-------------------------------------------------------------------"),0,0,'C');
-    
-    $pdf->Ln(5);
-
-    $pdf->Cell(18,5,iconv("UTF-8", "ISO-8859-1",""),0,0,'C');
-    $pdf->Cell(22,5,iconv("UTF-8", "ISO-8859-1","TOTAL A PAGAR"),0,0,'C');
-    $pdf->Cell(32,5,iconv("UTF-8", "ISO-8859-1","$70.00 USD"),0,0,'C');
-
-    $pdf->Ln(5);
-    
-    $pdf->Cell(18,5,iconv("UTF-8", "ISO-8859-1",""),0,0,'C');
-    $pdf->Cell(22,5,iconv("UTF-8", "ISO-8859-1","TOTAL PAGADO"),0,0,'C');
-    $pdf->Cell(32,5,iconv("UTF-8", "ISO-8859-1","$100.00 USD"),0,0,'C');
-
-    $pdf->Ln(5);
-
-    $pdf->Cell(18,5,iconv("UTF-8", "ISO-8859-1",""),0,0,'C');
-    $pdf->Cell(22,5,iconv("UTF-8", "ISO-8859-1","CAMBIO"),0,0,'C');
-    $pdf->Cell(32,5,iconv("UTF-8", "ISO-8859-1","$30.00 USD"),0,0,'C');
-
-    $pdf->Ln(5);
-
-    $pdf->Cell(18,5,iconv("UTF-8", "ISO-8859-1",""),0,0,'C');
-    $pdf->Cell(22,5,iconv("UTF-8", "ISO-8859-1","USTED AHORRA"),0,0,'C');
-    $pdf->Cell(32,5,iconv("UTF-8", "ISO-8859-1","$0.00 USD"),0,0,'C');
-    */
     $pdf->Ln(8);
 
     $pdf->MultiCell(0,5,iconv("UTF-8", "ISO-8859-1","*** Se hace entrega de este ticket como referencia al producto y peso recibido ***"),0,'C',false);
@@ -214,4 +178,4 @@ $sqldatosserv = "SELECT
     $pdf->MultiCell(0,5,iconv("UTF-8", "ISO-8859-1","COD000001V000".$id),0,'C',false);
     
     # Nombre del archivo PDF #
-    $pdf->Output("D","Ticket.pdf",true);
+    $pdf->Output("D","Servicio".$id.".pdf",true);

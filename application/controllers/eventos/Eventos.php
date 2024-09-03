@@ -217,6 +217,8 @@ class Eventos extends CI_Controller
 
     public function listaDetalle(){
         $this->load->model("DetalleServicio_model");
+        $idservicio = $this->input->post("idservicio");
+        $this->DetalleServicio_model->setIdServicio($idservicio);
 
         $listaDetalle = $this->DetalleServicio_model->obtenerListaDetalle();
        
@@ -297,6 +299,7 @@ class Eventos extends CI_Controller
         
         $this->load->view("eventos/edicionEvento", $data);
     }
+    
 
     public function cambiarEstado()
     {

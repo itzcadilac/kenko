@@ -37,44 +37,44 @@ $(document).ready(function () {
 
 	var tableArticulo = $('.tableArticulo').DataTable(
 		{
-		  pageLength: 5,
-		  lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
-		  dom: 'Bfrt<"col-sm-12 inline"i> <"col-sm-12 inline"p>',
-		  language: languageDatatable,
-		  autoWidth: true,
-		  data: [],
-		  columns: [
-			{ data: "peso" },
-			{ data: "cantjbs" },
-			{ data: "descripcionparihuela" },
-			{ data: "descripcionjaba" },
-			{
-			  data: "desctamfruta",
-			},
-			{
-			  data: "precio",
+			pageLength: 5,
+			lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+			dom: 'Bfrt<"col-sm-12 inline"i> <"col-sm-12 inline"p>',
+			language: languageDatatable,
+			autoWidth: true,
+			data: [],
+			columns: [
+				{ data: "peso" },
+				{ data: "cantjbs" },
+				{ data: "descripcionparihuela" },
+				{ data: "descripcionjaba" },
+				{
+					data: "desctamfruta",
+				},
+				{
+					data: "precio",
+				}
+			],
+			buttons: {
+				dom: {
+					container: {
+						tag: 'div',
+						className: 'flexcontent'
+					},
+					buttonLiner: {
+						tag: null
+					}
+				},
+				buttons: [
+					{
+						extend: 'pageLength',
+						titleAttr: 'Registros a mostrar',
+						className: 'selectTable'
+					}
+				]
 			}
-		  ],
-		  buttons: {
-			dom: {
-			  container: {
-				tag: 'div',
-				className: 'flexcontent'
-			  },
-			  buttonLiner: {
-				tag: null
-			  }
-			},
-			buttons: [
-			  {
-				extend: 'pageLength',
-				titleAttr: 'Registros a mostrar',
-				className: 'selectTable'
-			  }
-			]
-		  }
 		});
-	
+
 	var table = $('.tbLista').DataTable({
 		"lengthMenu": [[25, 50, 100, -1,], [25, 50, 100, "Todos"]],
 		data: lista,
@@ -82,20 +82,16 @@ $(document).ready(function () {
 		language: languageDatatable,
 		autoWidth: true,
 		columns: [
-			{	data: "Acciones",
+			{
+				data: "Acciones",
 				render: function (data, type, row) {
 					return `<div style="display: flex; justify-content: center; align-items: center;">
-					  			<button class="btn btn-warning btn-circle serviceAction" title="EDITAR" type="button" style="display: flex; justify-content: center; align-items: center;">
-								<i style="display: flex; justify-content: center; align-items: center; margin: 0 !important;padding: 0 !important;" class="fa fa-pencil-square-o"></i>
-					  			</button>
-								</br>
-								</br>
-					  			<button class="btn btn-danger btn-circle serviceAction" title="TICKET" type="button" style="display: flex; justify-content: center; align-items: center;">
+					  			<button class="btn btn-warning btn-circle serviceAction" title="Agregar Servicio" type="button" style="display: flex; justify-content: center; align-items: center;">
 								<i style="display: flex; justify-content: center; align-items: center; margin: 0 !important;padding: 0 !important;" class="fa fa-pencil-square-o"></i>
 					  			</button>								
 							</div>`;
-				 }
-			  },
+				}
+			},
 			{ data: "idticket" },
 			{ data: "descservicio" },
 			{ data: "direccion" },
@@ -109,19 +105,22 @@ $(document).ready(function () {
 			{ data: "descripcionjaba" },
 			{ data: "peso" },
 			{ data: "cantjabas" },
-			{ data: "estado", 
+			{
+				data: "estado",
 				render: function (data, type, row, meta) {
-					return `<span class="badge ${data === '1' ? 'badge-info' : 'badge-default'}">${data === '1' ? 'Activo' : data}</span>`			 } 
+					return `<span class="badge ${data === '1' ? 'badge-info' : 'badge-default'}">${data === '1' ? 'Activo' : data}</span>`
+				}
 			},
-			{	data: "idticket",
+			{
+				data: "idticket",
 				render: function (data, type, row) {
 					return `<div style="display: flex; justify-content: center; align-items: center;">
 					  			<button class="btn btn-warning btn-circle imprimticket" title="TICKET" type="button" style="display: flex; justify-content: center; align-items: center;">
 								<i style="display: flex; justify-content: center; align-items: center; margin: 0 !important;padding: 0 !important;" class="fa fa-file-pdf-o"></i>
 					  			</button>							
 							</div>`;
-				 }
-			  },
+				}
+			},
 		],
 		columnDefs: [{
 			"targets": [10, 11, 12, 13],
@@ -212,7 +211,7 @@ $(document).ready(function () {
 	// 		  const { data: { listaDetalle } } = response;
 	// 		  tableArticulo.clear();
 	// 		  tableArticulo.rows.add(listaDetalle).draw();
-	  
+
 	// 		  $("#tableArticuloModal").modal('show');
 	// 		}
 	// 	  });
@@ -234,29 +233,12 @@ $(document).ready(function () {
 	$('.tbLista').on('click', 'td .serviceAction', function () {
 		var data = table.row($(this).closest('tr')).data();
 		post(URI + "eventos/nuevo", { id: data.idticket, document: data.documento });
-	  });
+	});
 
-
-	  /*
-			{ data: "idticket" },
-			{ data: "descservicio" },
-			{ data: "direccion" },
-			{ data: "fecregistro" },
-			{ data: "tipodocumento" },
-			{ data: "documento" },
-			{ data: "nombres" },
-			{ data: "ape_paterno" },
-			{ data: "apodo" },
-			{ data: "descripcionfruta" },
-			{ data: "descripcionjaba" },
-			{ data: "peso" },
-			{ data: "cantjabas" },
-			{ data: "estado", 
-	  */
-	  $('.tbLista').on('click', 'td .imprimticket', function () {
+	$('.tbLista').on('click', 'td .imprimticket', function () {
 		var data = table.row($(this).closest('tr')).data();
-		post(URI + "ticket/ticket.php?id=" + data.idticket+"&direccion=" + data.direccion +"&cliente=" + data.apodo +"&dni=" + data.documento +"&peso=" + data.peso +"&descripcionfruta=" + data.descripcionfruta +"&descripcionjaba=" + data.descripcionjaba +"&cantjabas=" + data.cantjabas);
-	  });
+		post(URI + "ticket/ticket.php?id=" + data.idticket + "&direccion=" + data.direccion + "&cliente=" + data.apodo + "&dni=" + data.documento + "&peso=" + data.peso + "&descripcionfruta=" + data.descripcionfruta + "&descripcionjaba=" + data.descripcionjaba + "&cantjabas=" + data.cantjabas);
+	});
 
 	$('body').on('click', 'td i.addLesionados', function () {
 		var tr = $(this).parents('tr');

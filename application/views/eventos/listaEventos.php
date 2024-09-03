@@ -118,7 +118,7 @@
 																		<th>Nombres</th>
 																		<th>Apellidos</th>
 																		<th>Estado</th>
-																		<th></th>
+																		<th>Imprimir</th>
 																	</tr>
 																</thead>
 														</table>
@@ -147,7 +147,6 @@
 								<th>Parihuela</th>
 								<th>Tipo Jaba</th>
 								<th>Tamaño Fruta</th>
-								<th>Costo</th>
 							</tr>
 							</thead>
 							<tbody>
