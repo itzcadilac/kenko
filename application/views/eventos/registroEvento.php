@@ -213,48 +213,54 @@
 																			?>
 																			<div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" >
 																				<div class="form-group row">
-																					<label for="idTipoParihuela" class="col-sm-4 col-form-label">Parihuela</label>
-																					<div class="col-sm-8">
-																						<select class="form-control" name="idTipoParihuela" id="idTipoParihuela">
-																							<option value="">-- Seleccione --</option>
-																							<?php foreach($tipoparihuela as $row): ?>
-																							<option value="<?=$row->idtipoparihuela?>"><?=$row->descripcionparihuela?></option>
-																							<?php endforeach; ?>
-																						</select>
+																					<label for="idTipoParihuela" class="col-sm-3 col-form-label-sg tag-name">Parihuela</label>
+																					<div class="row col-sm-8 radio-group pr-0">
+																						<?php foreach ($tipoparihuela as $row) : ?>
+																							<div class="radio-item col pr-0">
+																								<input type="radio" name="idTipoParihuela" value="<?=$row->idtipoparihuela?>" id="optparih<?=$row->idtipoparihuela?>">
+																								<label class="btn btn-servicio" for="optparih<?=$row->idtipoparihuela?>">
+																									<?= $row->descripcionparihuela ?>
+																								</label>
+																							</div>
+																						<?php endforeach; ?>
 																					</div>
 																				</div>
 																				<div class="form-group row">
-																					<label for="idTipoJaba" class="col-sm-4 col-form-label">Jaba</label>
-																					<div class="col-sm-8">
-																						<select class="form-control" name="idTipoJaba" id="idTipoJaba">
-																							<option value="">-- Seleccione --</option>
-																							<?php foreach($tipojaba as $row): ?>
-																							<option value="<?=$row->idtipjaba?>"><?=$row->descripcionjaba?></option>
-																							<?php endforeach; ?>
-																						</select>
+																					<label for="idTipoJaba" class="col-sm-3 col-form-label-sg tag-name">Jaba</label>
+																					<div class="row col-sm-8 radio-group pr-0">
+																						<?php foreach ($tipojaba as $row) : ?>
+																							<div class="radio-item col pr-0">
+																								<input type="radio" name="idTipoJaba" value="<?=$row->idtipjaba?>" id="optjab<?=$row->idtipjaba?>">
+																								<label class="btn btn-servicio" for="optjab<?=$row->idtipjaba?>">
+																									<?= $row->descripcionjaba ?>
+																								</label>
+																							</div>
+																						<?php endforeach; ?>
 																					</div>
 																				</div>
 																				<div class="form-group row">
-																					<label for="idTipoFruta" class="col-sm-4 col-form-label">Med. Fruta</label>
-																					<div class="col-sm-8">
-																						<select class="form-control" name="idTipoFruta" id="idTipoFruta">
-																							<option value="">-- Seleccione --</option>
-																							<?php foreach($medidafruta as $row): ?>
-																							<option value="<?=$row->idtamfruta?>"><?=$row->desctamfruta?></option>
-																							<?php endforeach; ?>
-																						</select>
+																					<label for="idTipoFruta" class="col-sm-3 col-form-label-sg tag-name">Med. Fruta</label>
+																					<div class="row col-sm-8 radio-group pr-0">
+																						<?php foreach ($medidafruta as $row) : ?>
+																							<div class="radio-item col pr-0">
+																								<input type="radio" name="idTipoFruta" value="<?=$row->idtamfruta?>" id="optfruta<?=$row->idtamfruta?>">
+																								<label class="btn btn-servicio" for="optfruta<?=$row->idtamfruta?>">
+																									<?= $row->desctamfruta ?>
+																								</label>
+																							</div>
+																						<?php endforeach; ?>
 																					</div>
 																				</div>
 																				<div class="form-group row">
-																					<label class="col-sm-4 col-form-label">Peso</label>
+																					<label class="col-sm-3 col-form-label-sg">Peso</label>
 																					<div class="col-sm-8">
-																						<input id="peso" name="peso" class="form-control" type="number" placeholder="Ingrese el peso" />
+																						<input id="peso" name="peso" class="form-control1" type="number" placeholder="Ingrese valor..." />
 																					</div>
 																				</div>																
 																				<div class="form-group row">
-																					<label class="col-sm-4 col-form-label">Jabas</label>
+																					<label class="col-sm-3 col-form-label-sg">Jabas</label>
 																					<div class="col-sm-8">
-																						<input id="jabas" name="jabas" class="form-control" type="number" placeholder="Ingrese número de jabas" />
+																						<input id="jabas" name="jabas" class="form-control1" type="number" placeholder="Ingrese valor..." />
 																					</div>
 																				</div>		
 																				<div class="form-group row">
