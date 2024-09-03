@@ -73,7 +73,7 @@ class DEtalleServicio_model extends CI_Model
         $this->db->join("tipo_parihuela tp", "tp.idtipoparihuela = sd.idtipparihuela");
         $this->db->join("tipo_jaba tj", "tj.idtipjaba = sd.idtipjaba");
         $this->db->join("medida_fruta mf", "mf.idtamfruta = sd.idtamfruta");
-        // $this->db->where_in("sd.estado", $estados);
+        $this->db->where_in("sd.idservicio", $this->idServicio);
         return $this->db->get();
     }
 }

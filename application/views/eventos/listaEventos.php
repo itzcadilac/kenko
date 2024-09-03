@@ -118,6 +118,7 @@
 																		<th>Nombres</th>
 																		<th>Apellidos</th>
 																		<th>Estado</th>
+																		<th></th>
 																	</tr>
 																</thead>
 														</table>

@@ -195,6 +195,26 @@ class Eventos extends CI_Controller
 
     }
 
+    public function imprimirservicio()
+    {
+        require "./servicio/servicio.php";
+        session_start();
+        $id = $this->input->post('id');
+        
+        $this->load->model("TicketRegistrar_model");
+        $this->TicketRegistrar_model->setIdTicket($id);
+        $cliente = $this->TicketRegistrar_model->ticketimprimir();
+
+       // href='cyedocs.php?id=" + rowObject[10] + "';
+        /*
+        $data = array(
+            "id" => $id
+        );
+        */
+        //$this->load->view("eventos/registroEvento", $data);
+
+    }
+
     public function listaDetalle(){
         $this->load->model("DetalleServicio_model");
 
