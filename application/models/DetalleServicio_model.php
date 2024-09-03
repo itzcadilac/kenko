@@ -3,16 +3,16 @@ if (! defined('BASEPATH'))
     exit('No direct script access allowed');
 class DEtalleServicio_model extends CI_Model
 {
-    private $idTipoFruta;
+    private $idTamFruta;
     private $idTipoJaba;
     private $idTipoParihuela;
     private $jabas;
     private $peso;
     private $idServicio;
   
-    public function setIdTipoFruta($data)
+    public function setIdTamFruta($data)
     {
-        $this->idTipoFruta = $this->db->escape_str($data);
+        $this->idTamFruta = $this->db->escape_str($data);
     }
     public function setIdTipoJaba($data)
     {
@@ -55,7 +55,7 @@ class DEtalleServicio_model extends CI_Model
             "idservicio" => $this->idServicio,
             "idtipparihuela" => $this->idTipoParihuela,
             "idtipjaba" => $this->idTipoJaba,
-            "idtipmedida" => $this->idTipoFruta,
+            "idtamfruta" => $this->idTamFruta,
             "peso" => $this->peso,
             "cantjbs" => $this->jabas
         );
@@ -72,7 +72,7 @@ class DEtalleServicio_model extends CI_Model
         $this->db->from("serviciosdet sd");
         $this->db->join("tipo_parihuela tp", "tp.idtipoparihuela = sd.idtipparihuela");
         $this->db->join("tipo_jaba tj", "tj.idtipjaba = sd.idtipjaba");
-        $this->db->join("medida_fruta mf", "mf.idtamfruta = sd.idtipmedida");
+        $this->db->join("medida_fruta mf", "mf.idtamfruta = sd.idtamfruta");
         // $this->db->where_in("sd.estado", $estados);
         return $this->db->get();
     }
