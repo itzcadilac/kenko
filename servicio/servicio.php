@@ -145,8 +145,6 @@ $sqldatosserv = "SELECT
     $pdf->Cell(72,5,iconv("UTF-8", "ISO-8859-1","-------------------------------------------------------------------"),0,0,'C');
     $pdf->Ln(4);
     $pdf->Cell(10,4,iconv("UTF-8", "ISO-8859-1", "Total"),0,0,'R');
-    $pdf->Ln(4);
-    $pdf->Cell(10,4,iconv("UTF-8", "ISO-8859-1", "Total". $DB_USER),0,0,'R');
     $pdf->Cell(19,4,iconv("UTF-8", "ISO-8859-1", $totaljabas . " Jbs."),0,0,'R');
     $pdf->Cell(21,4,iconv("UTF-8", "ISO-8859-1", $totalpeso . " Kgs."),0,0,'R');
     $pdf->Cell(7,4,iconv("UTF-8", "ISO-8859-1", "S/"),0,0,'R');
