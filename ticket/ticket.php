@@ -133,4 +133,4 @@
     $pdf->MultiCell(0,5,iconv("UTF-8", "ISO-8859-1","COD000001V000".$id),0,'C',false);
     
     # Nombre del archivo PDF #
-    $pdf->Output("I","Ticket.pdf",true);
+    $pdf->Output("D","Ticket.pdf",true);
