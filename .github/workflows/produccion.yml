@@ -17,3 +17,6 @@ jobs:
         server: ${{ secrets.FTP_SP_SERVER }}
         username: ${{ secrets.FTP_USERSP_PROD }}
         password: ${{ secrets.FTP_PASSSP_PROD }}
+        exclude: |
+          .htaccess
+          .env
