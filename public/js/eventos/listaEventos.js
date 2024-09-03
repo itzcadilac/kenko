@@ -91,15 +91,15 @@ $(document).ready(function () {
 				render: function (data, type, row, meta) {
 					return `<span class="badge ${data === '1' ? 'badge-info' : 'badge-default'}">${data === '1' ? 'Activo' : data}</span>`			 } 
 			},
-			{	data: "print",
+			{	data: "idservicio",
 				render: function (data, type, row) {
 					return `<div style="display: flex; justify-content: center; align-items: center;">
-					  			<button class="btn btn-warning btn-circle imprimticket" title="print" type="button" style="display: flex; justify-content: center; align-items: center;">
+					  			<button class="btn btn-warning btn-circle imprimservicio" title="Servicio" type="button" style="display: flex; justify-content: center; align-items: center;">
 								<i style="display: flex; justify-content: center; align-items: center; margin: 0 !important;padding: 0 !important;" class="fa fa-file-pdf-o"></i>
 					  			</button>							
 							</div>`;
 				 }
-			  }
+			  },
 		],
 		columnDefs: [],
 		buttons: [
@@ -193,6 +193,11 @@ $(document).ready(function () {
 			  $("#tableArticuloModal").modal('show');
 			}
 		  });
+	  });
+
+	  $('.tbLista').on('click', 'td .imprimservicio', function () {
+		var data = table.row($(this).closest('tr')).data();
+		post(URI + "servicio/servicio.php?id=" + data.idservicio);
 	  });
 
 	$('body').on('click', 'td i.addDanios', function () {
