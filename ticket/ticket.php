@@ -59,8 +59,6 @@
     $pdf->Cell(72,5,iconv("UTF-8", "ISO-8859-1","-------------------------------------------------------------------"),0,0,'C');
     $pdf->Ln(3);
 
-    
-
     /*----------  Detalles de la tabla  ----------*/
     //$pdf->MultiCell(0,4,iconv("UTF-8", "ISO-8859-1","Nombre de producto a vender"),0,'C',false);
     $pdf->Cell(10,4,iconv("UTF-8", "ISO-8859-1", $descripcionjaba),0,0,'C');
@@ -72,51 +70,7 @@
     $pdf->Ln(7);
     /*----------  Fin Detalles de la tabla  ----------*/
 
-
-
     $pdf->Cell(72,5,iconv("UTF-8", "ISO-8859-1","-------------------------------------------------------------------"),0,0,'C');
- /*
-        $pdf->Ln(5);
-   
-    # Impuestos & totales #
-    $pdf->Cell(18,5,iconv("UTF-8", "ISO-8859-1",""),0,0,'C');
-    $pdf->Cell(22,5,iconv("UTF-8", "ISO-8859-1","SUBTOTAL"),0,0,'C');
-    $pdf->Cell(32,5,iconv("UTF-8", "ISO-8859-1","+ $70.00 USD"),0,0,'C');
-
-    $pdf->Ln(5);
-
-    $pdf->Cell(18,5,iconv("UTF-8", "ISO-8859-1",""),0,0,'C');
-    $pdf->Cell(22,5,iconv("UTF-8", "ISO-8859-1","IVA (13%)"),0,0,'C');
-    $pdf->Cell(32,5,iconv("UTF-8", "ISO-8859-1","+ $0.00 USD"),0,0,'C');
-
-    $pdf->Ln(5);
-
-    $pdf->Cell(72,5,iconv("UTF-8", "ISO-8859-1","-------------------------------------------------------------------"),0,0,'C');
-    
-    $pdf->Ln(5);
-
-    $pdf->Cell(18,5,iconv("UTF-8", "ISO-8859-1",""),0,0,'C');
-    $pdf->Cell(22,5,iconv("UTF-8", "ISO-8859-1","TOTAL A PAGAR"),0,0,'C');
-    $pdf->Cell(32,5,iconv("UTF-8", "ISO-8859-1","$70.00 USD"),0,0,'C');
-
-    $pdf->Ln(5);
-    
-    $pdf->Cell(18,5,iconv("UTF-8", "ISO-8859-1",""),0,0,'C');
-    $pdf->Cell(22,5,iconv("UTF-8", "ISO-8859-1","TOTAL PAGADO"),0,0,'C');
-    $pdf->Cell(32,5,iconv("UTF-8", "ISO-8859-1","$100.00 USD"),0,0,'C');
-
-    $pdf->Ln(5);
-
-    $pdf->Cell(18,5,iconv("UTF-8", "ISO-8859-1",""),0,0,'C');
-    $pdf->Cell(22,5,iconv("UTF-8", "ISO-8859-1","CAMBIO"),0,0,'C');
-    $pdf->Cell(32,5,iconv("UTF-8", "ISO-8859-1","$30.00 USD"),0,0,'C');
-
-    $pdf->Ln(5);
-
-    $pdf->Cell(18,5,iconv("UTF-8", "ISO-8859-1",""),0,0,'C');
-    $pdf->Cell(22,5,iconv("UTF-8", "ISO-8859-1","USTED AHORRA"),0,0,'C');
-    $pdf->Cell(32,5,iconv("UTF-8", "ISO-8859-1","$0.00 USD"),0,0,'C');
-    */
     $pdf->Ln(10);
 
     $pdf->MultiCell(0,5,iconv("UTF-8", "ISO-8859-1","*** Se hace entrega de este ticket como referencia al producto y peso recibido ***"),0,'C',false);
@@ -133,4 +87,4 @@
     $pdf->MultiCell(0,5,iconv("UTF-8", "ISO-8859-1","COD000001V000".$id),0,'C',false);
     
     # Nombre del archivo PDF #
-    $pdf->Output("D","Ticket.pdf",true);
+    $pdf->Output("D","Ticket".$id.".pdf",true);
