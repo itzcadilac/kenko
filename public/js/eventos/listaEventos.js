@@ -50,9 +50,6 @@ $(document).ready(function () {
 			{ data: "descripcionjaba" },
 			{
 			  data: "desctamfruta",
-			},
-			{
-			  data: "precio",
 			}
 		  ],
 		  buttons: {
@@ -93,7 +90,16 @@ $(document).ready(function () {
 			{ "data": "estado", 
 				render: function (data, type, row, meta) {
 					return `<span class="badge ${data === '1' ? 'badge-info' : 'badge-default'}">${data === '1' ? 'Activo' : data}</span>`			 } 
-			}
+			},
+			{	data: "print",
+				render: function (data, type, row) {
+					return `<div style="display: flex; justify-content: center; align-items: center;">
+					  			<button class="btn btn-warning btn-circle imprimticket" title="print" type="button" style="display: flex; justify-content: center; align-items: center;">
+								<i style="display: flex; justify-content: center; align-items: center; margin: 0 !important;padding: 0 !important;" class="fa fa-file-pdf-o"></i>
+					  			</button>							
+							</div>`;
+				 }
+			  }
 		],
 		columnDefs: [],
 		buttons: [
@@ -156,6 +162,11 @@ $(document).ready(function () {
 		]
 	});
 
+	$('.tbLista').on('click', 'td .imprimticket', function () {
+		var data = table.row($(this).closest('tr')).data();
+		post(URI + "eventos/eventos/generatePdf?id=" + data.idservicio);
+	});
+
 	$('.tbLista tbody').on('click', 'tr', function () {
 		let tr = $(this);
 		let row = table.row(tr);
@@ -168,8 +179,6 @@ $(document).ready(function () {
 		  table.$('tr.selected').removeClass('selected');
 		  $(this).addClass('selected');
 		}
-
-		console.log({selectedRow})
 
 		$.ajax({
 			type: 'POST',
@@ -318,7 +327,6 @@ $(document).ready(function () {
 	$("#btn-eliminar").on("click", function (e) {
 		e.preventDefault();
 		var Evento_Registro_Numero = $(this).find("label").attr("rel");
-		console.log('here eliminar', { Evento_Registro_Numero })
 
 		$("#Tipo_Accion").val("4");
 
@@ -330,7 +338,6 @@ $(document).ready(function () {
 
 	$("#btn-restaurar").on("click", function (e) {
 		var Evento_Registro_Numero = $(this).find("label").attr("rel");
-		console.log('here restaurar', { Evento_Registro_Numero })
 
 		$("#Tipo_Accion").val("5");
 
@@ -417,7 +424,6 @@ $(document).ready(function () {
 		var punto = new google.maps.LatLng(centro[0], centro[1]);
 
 		$("#mapModal").modal("show");
-		console.log("punto: " + punto);
 		var mapDiv = document.getElementById('map');
 		map = new google.maps.Map(mapDiv, {
 			center: punto,
