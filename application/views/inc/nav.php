@@ -12,9 +12,7 @@
 					<div class="nav-header pull-left">
 						<div class="logo-wrap">
 							<a href="javascript:;">
-								<img class="brand-img" src="<?=base_url()?>public/images/logo-brand-responsive.jpg" alt="Sireed">
-								<span class="brand-text full"><img src="<?=base_url()?>public/images/logo-brand-full.png" alt="Sireed"></span>
-								<span class="brand-text responsive"><img src="<?=base_url()?>public/images/logo-brand-responsive.jpg" alt="Sireed"></span>
+
 							</a>
 						</div>
 					</div>

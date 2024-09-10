@@ -111,7 +111,7 @@
 																	<tr>
 																		<th>ID</th>
 																		<th>Tipo de servicio</th>
-																		<th>Dirección</th>
+																		<th>Destino</th>
 																		<th>Fecha y Hora</th>
 																		<th>Tipo documento</th>
 																		<th>N. documento</th>

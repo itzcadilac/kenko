@@ -82,16 +82,6 @@ $(document).ready(function () {
 		language: languageDatatable,
 		autoWidth: true,
 		columns: [
-			{
-				data: "Acciones",
-				render: function (data, type, row) {
-					return `<div style="display: flex; justify-content: center; align-items: center;">
-					  			<button class="btn btn-warning btn-circle serviceAction" title="Agregar Servicio" type="button" style="display: flex; justify-content: center; align-items: center;">
-								<i style="display: flex; justify-content: center; align-items: center; margin: 0 !important;padding: 0 !important;" class="fa fa-pencil-square-o"></i>
-					  			</button>								
-							</div>`;
-				}
-			},
 			{ data: "idticket" },
 			{ data: "descservicio" },
 			{ data: "direccion" },
@@ -121,9 +111,19 @@ $(document).ready(function () {
 							</div>`;
 				}
 			},
+			{
+				data: "Acciones",
+				render: function (data, type, row) {
+					return `<div style="display: flex; justify-content: center; align-items: center;">
+					  			<button class="btn btn-warning btn-circle serviceAction" title="Agregar Servicio" type="button" style="display: flex; justify-content: center; align-items: center;">
+								<i style="display: flex; justify-content: center; align-items: center; margin: 0 !important;padding: 0 !important;" class="fa fa-pencil-square-o"></i>
+					  			</button>								
+							</div>`;
+				}
+			},
 		],
 		columnDefs: [{
-			"targets": [10, 11, 12, 13],
+			"targets": [0, 5, 9, 10, 11, 12, 13],
 			"visible": false,
 			"searchable": false
 		}],
