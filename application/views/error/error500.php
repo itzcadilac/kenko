@@ -17,13 +17,6 @@
 		</div>
 		<div class="wrapper  error-page pa-0">
 			<header class="sp-header">
-				<div class="sp-logo-wrap pull-left">
-					<a href="<?=base_url()?>">
-						<img class="brand-img error-icon" src="<?=base_url()?>public/images/logo-brand-responsive.jpg" alt="Sireed">
-						<span class="brand-text full error-icon"><img src="<?=base_url()?>public/images/logo-brand-full.png" alt="Sireed"></span>
-						<span class="brand-text responsive error-icon"><img src="<?=base_url()?>public/images/logo-brand-responsive.jpg" alt="Sireed"></span>
-					</a>
-				</div>
 				<div class="form-group mb-0 pull-right">
 					<a class="inline-block btn btn-danger btn-rounded nonecase-font" href="<?=base_url()?>">Regresar al inicio</a>
 				</div>

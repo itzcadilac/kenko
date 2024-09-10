@@ -193,12 +193,6 @@
 																						<input id="costo" name="costo" class="form-control input-direccion" type="text" placeholder="Ingrese costo Procesamiento" />
 																					</div>
 																				</div>
-																				<div class="form-group row">
-																					<label class="col-sm-4 col-form-label tag-name">Monto de Papel Blanco</label>
-																					<div class="col-sm-8">
-																						<input id="montopapelblanco" name="montopapelblanco" class="form-control input-direccion" type="number" placeholder="Ingrese Monto de Papel" />
-																					</div>
-																				</div>
 																			</div>
 																			<?php
 																				$region = $this->session->userdata("Codigo_Region");
@@ -267,13 +261,19 @@
 																				<div class="form-group row">
 																					<label class="col-sm-3 col-form-label-sg">Peso</label>
 																					<div class="col-sm-8">
-																						<input id="peso" name="peso" class="form-control1" type="number" placeholder="Ingrese valor..." />
+																						<input id="peso" name="peso" class="form-control1" type="number" placeholder="  Ingrese valor..." />
 																					</div>
 																				</div>																
 																				<div class="form-group row">
 																					<label class="col-sm-3 col-form-label-sg">Jabas</label>
 																					<div class="col-sm-8">
-																						<input id="jabas" name="jabas" class="form-control1" type="number" placeholder="Ingrese valor..." />
+																						<input id="jabas" name="jabas" class="form-control1" type="number" placeholder="  Ingrese valor..." />
+																					</div>
+																				</div>
+																				<div class="form-group row">
+																					<label class="col-sm-3 col-form-label-sg tag-name"></label>
+																					<div class="col-sm-8">
+																						<input id="montopapelblanco" name="montopapelblanco" class="form-control1 input-direccion" type="number" placeholder=" Monto de Papel Blanco" />
 																					</div>
 																				</div>		
 																				<div class="form-group row">

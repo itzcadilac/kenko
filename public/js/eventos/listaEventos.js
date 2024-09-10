@@ -101,7 +101,11 @@ $(document).ready(function () {
 				 }
 			  },
 		],
-		columnDefs: [],
+		columnDefs: [{
+			"targets": [0, 4, 8],
+			"visible": false,
+			"searchable": false
+		}],
 		buttons: [
 			{
 				extend: 'copy',

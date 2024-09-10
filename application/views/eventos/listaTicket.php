@@ -109,10 +109,9 @@
 																<!-- dataTables-example -->
 																<thead class="thead-template">
 																	<tr>
-																		<th>Acciones</th>
 																		<th>ID</th>
 																		<th>Tipo de servicio</th>
-																		<th>Dirección</th>
+																		<th>Destino</th>
 																		<th>Fecha y Hora</th>
 																		<th>Tipo documento</th>
 																		<th>N. documento</th>
@@ -124,7 +123,8 @@
 																		<th></th>
 																		<th></th>
 																		<th>Estado</th>
-																		<th>TIcket</th>
+																		<th>Ticket</th>
+																		<th>Acciones</th>
 																	</tr>
 																</thead>
 														</table>
