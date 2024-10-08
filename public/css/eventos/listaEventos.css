@@ -35,9 +35,9 @@
 
  .btn-secondary {
 	color: #fff;
-	background-color: #099fb0;
-	border-color: #099fb0;
-	background: #099fb0;
+	background-color: #ED222A;
+	border-color: #ED222A;
+	background: #ED222A;
  }
 
  .btn-secondary:hover {
@@ -133,7 +133,7 @@ input[class^='mes'], input[class*='mes'] {
 .inputfile-1:focus + label,
 .inputfile-1.has-focus + label,
 .inputfile-1 + label:hover {
-    background-color: #0f9eed;
+    background-color: #ED222A;
 }
 
 .btn.btn-default i.fa-file-code-o{

@@ -295,7 +295,7 @@ function usuarios(URI, ANIO_EJECUCION) {
 			lengthMenu: [[25, 50, 100, -1], [25, 50, 100, "All"]],
 			columnDefs: [
 				{
-					"targets": [13, 14, 15, 16, 17, 18, 19, 20],
+					"targets": [7, 8 ,13, 14, 15, 16, 17, 18, 19, 20],
 					"visible": false,
 					"searchable": false
 				}

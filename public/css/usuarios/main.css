@@ -1,15 +1,15 @@
 
 .btn-secondary {
 	color: #fff;
-	background-color: #099fb0;
-	border-color: #099fb0;
-	background: #099fb0;
+	background-color: #ED222A;
+	border-color: #ED222A;
+	background: #ED222A;
 }
 
 .btn-secondary:hover {
 	color: #fff;
-	background-color: #315f86;
-	border-color: #545b62;
+	background-color: #ED222A;
+	border-color: #ED222A;
 }
 
 .btn-circle {
@@ -22,7 +22,7 @@
 }
 
 .btn-circle.active {
-	background: #1976D2 !important;
+	background: #ED222A !important;
 	color: #FFF !important;
 }
 

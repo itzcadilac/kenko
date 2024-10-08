@@ -74,31 +74,36 @@
             <div class="container sign-in-page-bg mt-5 p-0">
                 <div class="row no-gutters">
                     <div class="col-md-6 text-center">
-                        <div class="sign-in-detail text-white"><!--
-                            <a class="sign-in-logo mb-3" href="#"><img style="width:700px; height:250px" src="<?php echo base_url('public/images/logo-white.png'); ?>" alt="Minsa" class="img-fluid"  ></a>
+                        <div class="sign-in-detail text-white">
+                            <a class="sign-in-logo mb-3" href="#"><img style="width:700px; height:250px" src="<?php echo base_url('public/images/logo_kenko.png'); ?>" alt="Minsa" class="img-fluid"  ></a>
                             <div class="owl-carousel" data-autoplay="true" data-loop="true" data-nav="false" data-dots="true" data-items="1" data-items-laptop="1" data-items-tab="1" data-items-mobile="1" data-items-mobile-sm="1" data-margin="0">
                                 <div class="item">
-                                    <img src="<?=base_url()?>public/template/images/login/1.png" class="img-fluid mb-4" alt="logo">
-                                    <h4 class="mb-1 text-white">HOSPITAL MÓVIL REGIÓN CUSCO</h4>
-                                    <p>Se realizó el despliegue de una oferta móvil en la Región de Cusco, para la atención directa de casos positivos por COVID-19</p>
+                                    <img src="<?=base_url()?>public/template/images/login/Foto1.jpg" class="img-fluid mb-4" alt="logo">
+                                    <h4 class="mb-1 text-white">DISTRIBUCIÓN EFICIENTE</h4>
+                                    <p>Nuestro servicio de Procesamiento realiza una distribución eficiente de los productos que nos entregan.</p>
                                 </div>
                                 <div class="item">
-                                    <img src="<?=base_url()?>public/template/images/login/2.png" class="img-fluid mb-4" alt="logo">
-                                    <h4 class="mb-1 text-white">OFERTA MÓVIL INSTALADA EN CARABAYLLO</h4>
-                                    <p>La oferta móvil busca cubrir la demanda de atenciones del distrito de Carabayllo para descarte de casos positivos por COVID-19.</p>
+                                    <img src="<?=base_url()?>public/template/images/login/Foto2.webp" class="img-fluid mb-4" alt="logo">
+                                    <h4 class="mb-1 text-white">ALMACENAMIENTO CONTROLADO</h4>
+                                    <p>Una vez procesado, el producto es almacenado de forma controlada y a medida en nuestros almacenes.</p>
                                 </div>
                                 <div class="item">
-                                    <img src="<?=base_url()?>public/template/images/login/3.png" class="img-fluid mb-4" alt="logo">
-                                    <h4 class="mb-1 text-white">EMERGENCIA EN VILLA EL SALVADOR</h4>
-                                    <p>La Digerd atendió de manera íntegra y directa a las personas afectadas por el accidente generado por la explosión de una cisterna de gas.</p>
+                                    <img src="<?=base_url()?>public/template/images/login/Foto3.jpg" class="img-fluid mb-4" alt="logo">
+                                    <h4 class="mb-1 text-white">LIMPIEZA IDEAL</h4>
+                                    <p>Ejecutamos un alto desempeño y rendimiento en la limpieza de sus productos, para así entregarles un producto de calidad.</p>
 								</div>
-                            </div>-->
+                                <div class="item">
+                                    <img src="<?=base_url()?>public/template/images/login/Foto4.png" class="img-fluid mb-4" alt="logo">
+                                    <h4 class="mb-1 text-white">RIGUROSO CONTROL DE CALIDAD</h4>
+                                    <p>Nuestro proceso de control de calidad es altamente riguroso.</p>
+								</div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6 position-relative">
                         <div class="sign-in-from">
                             <h1 class="mb-0">Iniciar Sesión</h1>
-                            <p>Ingrese su Usuario y Clave para ingresar al Sistema</p>
+                            <p>Digite sus datos para ingresar al Sistema</p>
                             <form class="mt-4" action="<?=base_url()?>doLogin" method="post" id="login-form">
                                 <div class="form-group">
                                     <label for="usuario">Usuario</label>
