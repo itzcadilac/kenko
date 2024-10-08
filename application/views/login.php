@@ -4,7 +4,7 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Sistema Kenko</title>
-	<link rel="shortcut icon" type="image/png" href="<?=base_url()?>public/images/favicon.jpg"/>
+	<link rel="shortcut icon" type="image/png" href="<?=base_url()?>public/images/logo_kenko.png"/>
 	<?php echo link_tag("public/css/font-awesome.min.css"); ?>
 	<?php echo link_tag("public/css/bootstrap.min.css"); ?>
 	<?php echo link_tag("public/css/login.css"); ?>
@@ -59,6 +59,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Sistema Kenko</title>
       <link rel="shortcut icon" type="image/png" href=""/>
+      <link rel="shortcut icon" type="image/png" href="<?=base_url()?>public/images/logo_kenko.png"/>
       <link rel="stylesheet" href="<?=base_url()?>public/template/css/bootstrap.min.css">
       <link rel="stylesheet" href="<?=base_url()?>public/template/css/typography.css">
       <link rel="stylesheet" href="<?=base_url()?>public/template/css/style.css">

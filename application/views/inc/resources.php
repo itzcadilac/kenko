@@ -1,6 +1,6 @@
 <!-- Favicon -->
-<link rel="shortcut icon" href="<?=base_url()?>public/images/favicon.jpg">
-<link rel="icon" href="<?=base_url()?>public/images/favicon.jpg" type="image/x-icon">
+<link rel="shortcut icon" href="<?=base_url()?>public/images/logo_kenko.png">
+<link rel="icon" href="<?=base_url()?>public/images/logo_kenko.png" type="image/x-icon">
 
 <!-- Data table CSS -->
 <link href="<?=base_url()?>public/css/datatables.min.css" rel="stylesheet" type="text/css">

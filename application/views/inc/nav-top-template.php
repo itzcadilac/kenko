@@ -3,7 +3,7 @@
       <div class="iq-sidebar-logo">
          <div class="top-logo">
             <a href="index.html" class="logo">
-            <img src="<?=base_url()?>public/template/images/logo.png" class="img-fluid" alt="">
+            <img src="<?=base_url()?>public/template/images/logo_kenko.png" class="img-fluid" alt="">
             <span>XRay</span>
             </a>
          </div>
@@ -69,7 +69,7 @@
                          
                </li>
                <li class="nav-item">
-                           <a class="search-toggle iq-waves-effect language-title" href="#" target="_blank"><img src="<?=base_url()?>public/images/flag-02.png" alt="img-flaf" class="img-fluid mr-1" style="height: 30px; width: 30px;" />  </a>
+                           <a class="search-toggle iq-waves-effect language-title" href="#" target="_blank"><img src="<?=base_url()?>public/images/flag-02.webp" alt="img-flaf" class="img-fluid mr-1" style="height: 30px; width: 30px;" />  </a>
                          
                </li>
 

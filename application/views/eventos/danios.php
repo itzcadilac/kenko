@@ -6,9 +6,9 @@
 <meta name="description" content="">
 <meta name="keywords" content="">
 <meta name="author" content="<?=AUTOR?>">
-<link rel="shortcut icon" href="<?=base_url()?>public/images/favicon.jpg">
+<link rel="shortcut icon" href="<?=base_url()?>public/images/logo_kenko.png">
 <link rel="stylesheet" href="<?=base_url()?>public/css/bootstrap-datetimepicker.min.css">
-<link rel="icon" href="<?=base_url()?>public/images/favicon.jpg" type="image/x-icon">
+<link rel="icon" href="<?=base_url()?>public/images/logo_kenko.png" type="image/x-icon">
 <link rel="stylesheet" href="<?=base_url()?>public/template/css/bootstrap.min.css">
 <link rel="stylesheet" href="<?=base_url()?>public/template/css/typography.css">
 <link rel="stylesheet" href="<?=base_url()?>public/template/css/style.css">

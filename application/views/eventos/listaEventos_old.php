@@ -9,8 +9,8 @@
 	<meta name="author" content="<?=AUTOR?>">
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="<?=base_url()?>public/images/favicon.jpg">
-	<link rel="icon" href="<?=base_url()?>public/images/favicon.jpg" type="image/x-icon">
+	<link rel="shortcut icon" href="<?=base_url()?>public/images/logo_kenko.png">
+	<link rel="icon" href="<?=base_url()?>public/images/logo_kenko.png" type="image/x-icon">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="<?=base_url()?>public/template/css/bootstrap.min.css">
 	<!-- Typography CSS -->
