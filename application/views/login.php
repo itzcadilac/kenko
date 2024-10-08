@@ -66,7 +66,7 @@
       <link rel="stylesheet" href="<?=base_url()?>public/template/css/responsive.css">
 	  <!-- <?php echo link_tag("public/css/login.css"); ?> -->
    </head>
-   <body style="background-color:#244B5A;">
+   <body style="background-color:#fc9e5b9c;">
       <div id="loading">
          <div id="loading-center">
 		</div>
