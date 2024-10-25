@@ -13,10 +13,10 @@
     
     $id = $_GET["id"];
     $sqldetalle = "SELECT 
-						mf.desctamfruta,
-						sdt.cantjbs,
-						tj.nombcorto, 
-						sdt.peso 		
+						mf.desctamfruta as desctamfruta1,
+						sdt.cantjbs as cantjbs1,
+						tj.nombcorto as nombcorto1, 
+						sdt.peso as peso1 		
                         FROM 
                             serviciosdet sdt
 						INNER JOIN medida_fruta mf ON sdt.idtamfruta = mf.idtamfruta 
@@ -97,7 +97,7 @@ $sqldatosserv = "SELECT
     $pdf->MultiCell(0,5,iconv("UTF-8", "ISO-8859-1","Fecha: ".date("d/m/Y")." ".date("h:s A")),0,'C',false);
     //$pdf->MultiCell(0,5,iconv("UTF-8", "ISO-8859-1","Caja Nro: 1"),0,'C',false);
     $pdf->SetFont('Arial','B',10);
-    $pdf->MultiCell(0,5,iconv("UTF-8", "ISO-8859-1",strtoupper("Ticket Nro: ". $id)),0,'C',false);
+    $pdf->MultiCell(0,5,iconv("UTF-8", "ISO-8859-1",strtoupper("Servicio Nro: ". $id)),0,'C',false);
     $pdf->SetFont('Arial','',9);
 
     $pdf->Ln(1);
@@ -134,12 +134,12 @@ $sqldatosserv = "SELECT
     while($row=mysqli_fetch_array($result))
                             {
                                
-                            $pdf->Cell(10,5,iconv("UTF-8", "ISO-8859-1", $row[desctamfruta]),0,0,'R');
-                            $pdf->Cell(19,5,iconv("UTF-8", "ISO-8859-1", $row[cantjbs] . " " . $row[nombcorto]),0,0,'R');
-                            $pdf->Cell(21,5,iconv("UTF-8", "ISO-8859-1", $row[peso] ." Kgs."),0,0,'R');
+                            $pdf->Cell(10,5,iconv("UTF-8", "ISO-8859-1", $row[desctamfruta1]),0,0,'R');
+                            $pdf->Cell(19,5,iconv("UTF-8", "ISO-8859-1", $row[cantjbs1] . " " . $row[nombcorto1]),0,0,'R');
+                            $pdf->Cell(21,5,iconv("UTF-8", "ISO-8859-1", $row[peso1] ." Kgs."),0,0,'R');
                             //$pdf->MultiCell(0,4,iconv("UTF-8", "ISO-8859-1","Garantía de fábrica: 2 Meses"),0,'C',false);
                             $pdf->Ln(4);
-                                
+
                             }
     /*----------  Fin Detalles de la tabla  ----------*/
     $pdf->Cell(72,5,iconv("UTF-8", "ISO-8859-1","-------------------------------------------------------------------"),0,0,'C');
@@ -164,7 +164,7 @@ $sqldatosserv = "SELECT
 
     $pdf->Ln(8);
 
-    $pdf->MultiCell(0,5,iconv("UTF-8", "ISO-8859-1","*** Se hace entrega de este ticket como referencia al producto y peso recibido ***"),0,'C',false);
+    $pdf->MultiCell(0,5,iconv("UTF-8", "ISO-8859-1","*** Se hace entrega de este hoja como información del procesamiento realizado. ***"),0,'C',false);
 
     $pdf->SetFont('Arial','B',9);
     $pdf->Cell(0,7,iconv("UTF-8", "ISO-8859-1","Gracias por su preferencia"),'',0,'C');

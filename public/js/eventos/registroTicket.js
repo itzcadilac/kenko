@@ -158,6 +158,9 @@ function registroEvento(URI, EVENTO_CODIGO_REGION) {
 			messages: {
 				peso: { required: "(*) Campo Requerido" }, // tienes que agregar campos
 				direccion: { required: "(*) Campo Requerido" },
+				idTipoServicio: { required: "(*) Campo Requerido" },
+				cantjabas: { required: "(*) Campo Requerido" },
+				nombcliente: { required: "(*) Campo Requerido" },
 			},
 			submitHandler: function (form, event) {
 

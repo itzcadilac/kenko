@@ -161,7 +161,7 @@
 																<div class="form-group row">
 																	<label for="idCliente" class="col-sm-2 col-form-label tag-name"></label>
 																	<div class="col-sm-8">
-																		<input id="nombcliente" name="nombcliente" class="form-control" type="text" placeholder="" disabled/>
+																		<input id="nombcliente" name="nombcliente" class="form-control" type="text" placeholder="" disabled required/>
 																	</div>
 																</div>
 																<div class="form-group row">
@@ -175,7 +175,7 @@
 																	<div class="row col-sm-8 radio-group pl-0">
 																		<?php foreach ($tiposervicio as $row) : ?>
 																			<div class="radio-item col pl-0">
-																				<input type="radio" name="idTipoServicio" value="<?= $row->idtipservicio ?>" id="optserv<?= $row->idtipservicio ?>">
+																				<input type="radio" name="idTipoServicio" value="<?= $row->idtipservicio ?>" id="optserv<?= $row->idtipservicio ?>" >
 																				<label class="btn btn-default" for="optserv<?=$row->idtipservicio?>">
 																					<?= $row->descservicio ?>
 																				</label>
@@ -188,7 +188,7 @@
 																	<div class="row col-sm-8 radio-group pl-0">
 																		<?php foreach ($tipofruta as $row) : ?>
 																			<div class="radio-item col pl-0">
-																				<input type="radio" name="idTipoFruta" value="<?=$row->idtipfruta?>" id="optfrut<?=$row->idtipfruta?>">
+																				<input type="radio" name="idTipoFruta" value="<?=$row->idtipfruta?>" id="optfrut<?=$row->idtipfruta?>" >
 																				<label class="btn btn-default" for="optfrut<?=$row->idtipfruta?>">
 																					<?= $row->descripcionfruta ?>
 																				</label>
@@ -202,7 +202,7 @@
 																	<div class="row col-sm-8 radio-group pl-0">
 																		<?php foreach ($tipojaba as $row) : ?>
 																			<div class="radio-item col pl-0">
-																				<input type="radio" name="idtipjaba" value="<?=$row->idtipjaba?>" id="optjab<?=$row->idtipjaba?>">
+																				<input type="radio" name="idtipjaba" value="<?=$row->idtipjaba?>" id="optjab<?=$row->idtipjaba?>" >
 																				<label class="btn btn-default" for="optjab<?=$row->idtipjaba?>">
 																					<?= $row->descripcionjaba ?>
 																				</label>
@@ -213,19 +213,19 @@
 																<div class="form-group row">
 																	<label class="col-sm-2 col-form-label tag-name">Cantidad Jabas</label>
 																	<div class="col-sm-8">
-																		<input id="cantjabas" name="cantjabas" class="form-control" type="text" placeholder="Ingrese cantidad jabas" />
+																		<input id="cantjabas" name="cantjabas" class="form-control" type="text" placeholder="Ingrese cantidad jabas" required/>
 																	</div>
 																</div>
 																<div class="form-group row">
 																	<label class="col-sm-2 col-form-label tag-name">Peso Bruto</label>
 																	<div class="col-sm-8">
-																		<input id="peso" name="peso" class="form-control" type="text" placeholder="Ingrese peso" />
+																		<input id="peso" name="peso" class="form-control" type="text" placeholder="Ingrese peso" required />
 																	</div>
 																</div>
 																<div class="form-group row">
 																	<label class="col-sm-2 col-form-label tag-name">Destino</label>
 																	<div class="col-sm-8">
-																		<input id="direccion" name="direccion" class="form-control" type="text" placeholder="Ingrese destino" />
+																		<input id="direccion" name="direccion" class="form-control" type="text" placeholder="Ingrese destino" required/>
 																	</div>
 																</div>
 															</div>
