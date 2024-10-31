@@ -85,6 +85,7 @@ class Menu_model extends CI_Model
         $this->db->select("idmenu,idmodulo,descripcion,nivel,url,icono,estado");
         $this->db->from("menu");
         $this->db->where("estado", "1");
+        $this->db->order_by("orden", "ASC");
         return $this->db->get();
     }
     public function listaSubMenuUsuario(){
