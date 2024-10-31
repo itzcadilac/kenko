@@ -42,6 +42,7 @@ class Menu_model extends CI_Model
         $this->db->select("idmenu,descripcion,nivel,url,icono");
         $this->db->from("menu");
         $this->db->where("idmodulo", $this->idmodulo);
+        $this->db->order_by("orden", "ASC");
         return $this->db->get();
     }
     public function listaPermisos()
