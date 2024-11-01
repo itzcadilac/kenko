@@ -53,6 +53,7 @@ class Menu_model extends CI_Model
         $this->db->where("idmodulo", $this->idmodulo);
         $this->db->where("idusuario", $this->idusuario);
         $this->db->where("Activo", "1");
+        $this->db->order_by("m.orden", "ASC");
         return $this->db->get();
     }
     public function listaSubMenu()
