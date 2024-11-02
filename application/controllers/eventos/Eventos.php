@@ -58,7 +58,11 @@ class Eventos extends CI_Controller
         $this->setearMes();
         $id = $this->input->post('id');
         $document = $this->input->post('document');
-
+        $idecliente = $this->input->post('idecliente');
+        $nombrest = $this->input->post('nombrest');
+        $apepaternot = $this->input->post('apepaternot');
+        $apematernot = $this->input->post('apematernot');
+        $tipodocumento = $this->input->post('tipodocumento');
         
         $this->load->model("Cliente_model");
         $this->load->model("TipoServicio_model");
@@ -96,6 +100,11 @@ class Eventos extends CI_Controller
         $data = array(
             "id" => $id,
             "document" => $document,
+            "idecliente" => $idecliente,
+            "nombrest" => $nombrest,
+            "apepaternot" => $apepaternot,
+            "apematernot" => $apematernot,
+            "tipodocumento" => $tipodocumento,
             "cliente" => $cliente->result(),
             "tiposervicio" => $tiposervicio->result(),
             "tipoparihuela" => $tipoparihuela,

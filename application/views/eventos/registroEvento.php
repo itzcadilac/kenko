@@ -134,7 +134,7 @@
 																		<div class="tab-content mt-0" id="v-pills-tabContent">
 																			<input type="hidden" id="idTicket" name="idTicket" value="<?=$id?>">
 																			<input type="hidden" name="Evento_Registro_Numero" value="0" />
-																			<input id="idCliente" type="hidden" name="idCliente"/>
+																			<input id="idCliente" type="hidden" name="idCliente" value="<?=$idecliente?>" />
 																			<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 																				<div class="form-group row">
 																					<label for="idCliente" class="col-sm-4 col-form-label label">Cliente</label>
@@ -152,7 +152,7 @@
 																				<div class="form-group row">
 																					<label for="nombcliente" class="col-sm-4 col-form-label label"></label>
 																					<div class="col-sm-8">
-																						<input id="nombcliente" name="nombcliente" class="form-control input-direccion" type="text" placeholder="" disabled/>
+																						<input id="nombcliente" name="nombcliente" class="form-control input-direccion" type="text" placeholder="<?=$nombrest?> <?=$apepaternot?> <?=$apematernot?>"  value="<?=$nombrest?> <?=$apepaternot?> <?=$apematernot?>" disabled/>
 																					</div>
 																				</div>
 																				<div class="form-group row">
@@ -337,17 +337,17 @@
 									<button id="btnDocumentSearch" class="btn btn-primary">Buscar</button>
 								</div>
 							</div>
-							<input id="clientId" type="hidden" name="clientId"/>
+							<input id="clientId" type="hidden" name="clientId" value="<?=$idecliente?>"/>
 							<div class="form-group row">
 								<label class="col-sm-4 col-form-label">Datos de cliente</label>
 								<div class="col-sm-8">
-									<input id="clientData" name="clientData" class="form-control" type="text" disabled/>
+									<input id="clientData" name="clientData" class="form-control" type="text" placeholder="<?=$nombrest?> <?=$apepaternot?> <?=$apematernot?>" value="<?=$nombrest?> <?=$apepaternot?> <?=$apematernot?>"  disabled/>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label class="col-sm-4 col-form-label">Tipo de documento</label>
 								<div class="col-sm-8">
-									<input id="documentType" name="documentType" class="form-control" type="text" disabled/>
+									<input id="documentType" name="documentType" class="form-control" type="text" placeholder="<?=$tipodocumento?>" value="<?=$tipodocumento?>"  disabled/>
 								</div>
 							</div>
 						<!-- </form> -->

@@ -116,7 +116,8 @@
 																		<th>Tipo documento</th>
 																		<th>N. documento</th>
 																		<th>Nombres</th>
-																		<th>Apellidos</th>
+																		<th>Apellido Paterno</th>
+																		<th>Apellido M.</th>
 																		<th>Apodo</th>
 																		<th></th>
 																		<th></th>
@@ -125,6 +126,7 @@
 																		<th>Estado</th>
 																		<th>Ticket</th>
 																		<th>Acciones</th>
+																		<th></th>
 																	</tr>
 																</thead>
 														</table>

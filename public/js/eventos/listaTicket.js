@@ -90,6 +90,7 @@ $(document).ready(function () {
 			{ data: "documento" },
 			{ data: "nombres" },
 			{ data: "ape_paterno" },
+			{ data: "ape_materno" },
 			{ data: "apodo" },
 			{ data: "descripcionfruta" },
 			{ data: "descripcionjaba" },
@@ -121,9 +122,10 @@ $(document).ready(function () {
 							</div>`;
 				}
 			},
+			{ data: "idecliente" },
 		],
 		columnDefs: [{
-			"targets": [0, 5, 9, 10, 11, 12, 13],
+			"targets": [0, 4, 8, 10, 11, 12, 13, 14, 17],
 			"visible": false,
 			"searchable": false
 		}],
@@ -232,7 +234,7 @@ $(document).ready(function () {
 	});
 	$('.tbLista').on('click', 'td .serviceAction', function () {
 		var data = table.row($(this).closest('tr')).data();
-		post(URI + "eventos/nuevo", { id: data.idticket, document: data.documento });
+		post(URI + "eventos/nuevo", { id: data.idticket, document: data.documento, nombrest: data.nombres, apepaternot: data.ape_paterno, apematernot: data.ape_materno, idecliente: data.idecliente, tipodocumento: data.tipodocumento });
 	});
 
 	$('.tbLista').on('click', 'td .imprimticket', function () {
