@@ -99,7 +99,7 @@ $(document).ready(function () {
 			{
 				data: "estado",
 				render: function (data, type, row, meta) {
-					return `<span class="badge ${data === '1' ? 'badge-info' : 'badge-default'}">${data === '1' ? 'Activo' : data}</span>`
+					return `<span class="badge ${data === '1' ? 'badge-info' : 'badge-danger'}">${data === '1' ? 'Activo' : 'Inactivo'}</span>`
 				}
 			},
 			{
@@ -113,10 +113,10 @@ $(document).ready(function () {
 				}
 			},
 			{
-				data: "Acciones",
+				data: "estado",
 				render: function (data, type, row) {
 					return `<div style="display: flex; justify-content: center; align-items: center;">
-					  			<button class="btn btn-warning btn-circle serviceAction" title="Agregar Servicio" type="button" style="display: flex; justify-content: center; align-items: center;">
+					  			<button class="btn btn-warning btn-circle serviceAction" title="Agregar Servicio" type="button" style="display: flex; justify-content: center; align-items: center;" ${data == 0 ? 'disabled' : 'enabled'}>
 								<i style="display: flex; justify-content: center; align-items: center; margin: 0 !important;padding: 0 !important;" class="fa fa-pencil-square-o"></i>
 					  			</button>								
 							</div>`;
@@ -127,7 +127,7 @@ $(document).ready(function () {
 			{ data: "idtipservicio" }, 
 		],
 		columnDefs: [{
-			"targets": [0, 4, 8, 10, 11, 12, 13, 14, 17, 18, 19],
+			"targets": [0, 4, 8, 10, 11, 12, 13, 17, 18, 19],
 			"visible": false,
 			"searchable": false
 		}],

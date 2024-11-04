@@ -513,7 +513,7 @@ class Eventos extends CI_Controller
 
         $idServicio = $this->ServicioRegistrar_model->crearServicio();
         if ($idServicio > 0) {
-            if($this->guardarDetalle($idServicio, $idTipoParihuela, $idTipoJaba, $idTamFruta, $peso, $jabas)) {
+            if($this->guardarDetalle($idServicio, $idTipoParihuela, $idTipoJaba, $idTamFruta, $peso, $jabas, $idTicket)) {
                 $data = array(
                     "status" => 200
                 );
@@ -721,8 +721,9 @@ class Eventos extends CI_Controller
         echo json_encode($data);
     }
 
-    public function guardarDetalle($idServicio, $idTipoParihuela, $idTipoJaba, $idTamFruta, $peso, $jabas) {
+    public function guardarDetalle($idServicio, $idTipoParihuela, $idTipoJaba, $idTamFruta, $peso, $jabas, $idTicket) {
         $this->DetalleServicio_model->setIdServicio($idServicio);
+        $this->DetalleServicio_model->setIdTicket($idTicket);
         $idTipoParihuela = explode("|", $idTipoParihuela);
         $idTipoJaba = explode("|", $idTipoJaba);
         $idTamFruta = explode("|", $idTamFruta);
@@ -737,6 +738,9 @@ class Eventos extends CI_Controller
             $this->DetalleServicio_model->setJabas($jabas[$key]);
             $this->DetalleServicio_model->crearDetalle();
         endforeach;
+
+        $this->DetalleServicio_model->actualizarTicketServicio();
+        
 
         return $idServicio;
     }

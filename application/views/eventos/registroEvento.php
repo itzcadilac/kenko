@@ -159,7 +159,7 @@
 																					<label for="idTipoServicio" class="col-sm-4 col-form-label tag-name">Servicio</label>
 																						<div class="row col-sm-8 radio-group pr-0">
 																							<?php foreach ($tiposervicio as $row) : ?>
-																								<div class="radio-item col pr-0">
+																								<div class="radio-item col pr-0 <?php if($row->idtipservicio == $idtipservicio) { echo "active"; }?>">
 																									<input type="radio" name="idTipoServicio" <?php if($row->idtipservicio == $idtipservicio) { echo "checked"; }?> value="<?= $row->idtipservicio ?>" id="optserv<?= $row->idtipservicio ?>">
 																									<label class="btn btn-servicio" for="optserv<?=$row->idtipservicio?>">
 																										<?= $row->descservicio ?>
@@ -178,7 +178,7 @@
 																					<label for="idTipFruta" class="col-sm-4 col-form-label tag-name">Tipo de Fruta</label>
 																					<div class="row col-sm-8 radio-group pr-0">
 																						<?php foreach ($tipofruta as $row) : ?>
-																							<div class="radio-item col pr-0">
+																							<div class="radio-item col pr-0 <?php if($row->idtipfruta == $idtipfruta) { echo "active"; }?>">
 																								<input type="radio" name="idTipFruta" <?php if($row->idtipfruta == $idtipfruta) { echo "checked"; }?> value="<?=$row->idtipfruta?>" id="optfrut<?=$row->idtipfruta?>">
 																								<label class="btn btn-servicio" for="optfrut<?=$row->idtipfruta?>">
 																									<?= $row->descripcionfruta ?>
@@ -261,7 +261,7 @@
 																				<div class="form-group row">
 																					<label class="col-sm-3 col-form-label-sg">Peso</label>
 																					<div class="col-sm-8">
-																						<input id="peso" name="peso" class="form-control1" type="number" placeholder="<?=$peso?>" value="<?=$peso?>" />
+																						<input id="peso" name="peso" class="form-control1" type="number" placeholder="Ingrese Valor" />
 																					</div>
 																				</div>																
 																				<div class="form-group row">
@@ -271,9 +271,9 @@
 																					</div>
 																				</div>
 																				<div class="form-group row">
-																					<label class="col-sm-3 col-form-label-sg tag-name"></label>
+																					<label class="col-sm-3 col-form-label-sg tag-name">Costo Papel Blanco</label>
 																					<div class="col-sm-8">
-																						<input id="montopapelblanco" name="montopapelblanco" class="form-control1 input-direccion" type="number" placeholder=" Monto de Papel Blanco" />
+																						<input id="montopapelblanco" name="montopapelblanco" class="form-control1 input-direccion" type="number" placeholder="Ingrese Valor" />
 																					</div>
 																				</div>		
 																				<div class="form-group row">
@@ -295,7 +295,6 @@
 																						</table>
 																					</div>
 																				</div>														
-
 																			</div>
 																		</div>
 

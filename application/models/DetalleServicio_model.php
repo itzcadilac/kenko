@@ -9,6 +9,7 @@ class DEtalleServicio_model extends CI_Model
     private $jabas;
     private $peso;
     private $idServicio;
+    private $idTicket;
   
     public function setIdTamFruta($data)
     {
@@ -43,7 +44,10 @@ class DEtalleServicio_model extends CI_Model
     {
         $this->idServicio = $this->db->escape_str($data);
     }
-    
+    public function setIdTicket($data)
+    {
+        $this->idTicket = $this->db->escape_str($data);
+    }
     public function __construct()
     {
         parent::__construct();
@@ -76,5 +80,18 @@ class DEtalleServicio_model extends CI_Model
         $this->db->where_in("sd.idservicio", $this->idServicio);
         // $this->db->where_in("sd.estado", $estados);
         return $this->db->get();
+    }
+
+    public function actualizarTicketServicio()
+    {
+        $this->db->set("estado", 0, TRUE);
+        $this->db->where("idticket", $this->idTicket);
+        $error = array();
+        if ($this->db->update('ticket'))
+            return 1;
+        else {
+            $error = $this->db->error();
+            return $error["code"];
+        }
     }
 }

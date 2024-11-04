@@ -92,7 +92,7 @@ class TicketRegistrar_model extends CI_Model
         if ($this->mes != 0) {
             $this->db->where("MONTH(tck.fecregistro)",$this->mes);
         }        
-        $this->db->where_in("tck.estado", $estados);
+        //$this->db->where_in("tck.estado", $estados);
         $this->db->order_by("tck.idticket", "DESC");
         return $this->db->get();
     }
