@@ -66,6 +66,7 @@ $route['eventos/imprimirticket'] = 'ticket/ticket';
 $route['eventos/cliente'] = 'eventos/eventos/buscarCliente';
 $route['eventos/dashboard'] = 'eventos/eventos/dashboard';
 $route['eventos/danios'] = 'eventos/eventos/danios';
+$route['eventos/anularservicio'] = 'eventos/eventos/anularservicio';
 $route['eventos/registraravisos'] = 'eventos/eventos/alertasPronosticosRegistrar';
 $route['eventos/listaalertas'] = 'eventos/eventos/alertasPronosticos';
 $route['eventos/listaalert'] = 'eventos/eventos/listaalert';

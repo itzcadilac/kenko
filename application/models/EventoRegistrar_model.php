@@ -42,9 +42,14 @@ class EventoRegistrar_model extends CI_Model
     private $ocurrencia;
     private $eventoConsolidado;
     private $eventoAsociado;
+    private $idticket;
     public function setId($data)
     {
         $this->id = $this->db->escape_str($data);
+    }
+    public function setIdTicket($data)
+    {
+        $this->idticket = $this->db->escape_str($data);
     }
     public function setSecuencia($data)
     {
@@ -1248,4 +1253,27 @@ public function mapaIpressFiltro() {
     }
     return $this->db->get();
 }
+
+public function anularservicio(){
+    $this->db->db_debug = FALSE;
+    $this->db->set("estado", 0, TRUE);
+    $this->db->where("idservicio", $this->id);
+    if($this->db->update('servicios'))
+        return true;
+        else {
+            return false;
+        }
+}
+
+public function activarticket(){
+    $this->db->db_debug = FALSE;
+    $this->db->set("estado", 1, TRUE);
+    $this->db->where("idticket", $this->idticket);
+    if($this->db->update('ticket'))
+        return true;
+        else {
+            return false;
+        }
+}
+
 }

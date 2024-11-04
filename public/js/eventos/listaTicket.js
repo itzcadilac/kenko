@@ -99,14 +99,14 @@ $(document).ready(function () {
 			{
 				data: "estado",
 				render: function (data, type, row, meta) {
-					return `<span class="badge ${data === '1' ? 'badge-info' : 'badge-danger'}">${data === '1' ? 'Activo' : 'Inactivo'}</span>`
+					return `<span class="badge ${data === '1' ? 'badge-info' : 'badge-danger'}">${data === '1' ? 'Sin Usar' : 'Usado'}</span>`
 				}
 			},
 			{
 				data: "idticket",
 				render: function (data, type, row) {
 					return `<div style="display: flex; justify-content: center; align-items: center;">
-					  			<button class="btn btn-warning btn-circle imprimticket" title="TICKET" type="button" style="display: flex; justify-content: center; align-items: center;">
+					  			<button class="btn btn-warning btn-circle imprimticket" title="Imprimir Ticket" type="button" style="display: flex; justify-content: center; align-items: center;">
 								<i style="display: flex; justify-content: center; align-items: center; margin: 0 !important;padding: 0 !important;" class="fa fa-file-pdf-o"></i>
 					  			</button>							
 							</div>`;

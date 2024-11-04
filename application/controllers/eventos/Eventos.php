@@ -794,6 +794,7 @@ class Eventos extends CI_Controller
                     "ape_materno" => $row->ape_materno,
                     "idtipservicio" => $row->idtipservicio,
                     "estado" => $row->estado,
+                    "idticket" => $row->idticket,
                 );
                 $orden ++;
             endforeach
@@ -1386,6 +1387,31 @@ class Eventos extends CI_Controller
         );
         
         $this->load->view("eventos/acciones", $data);
+    }
+
+    public function anularservicio()
+    {
+        $this->load->model("EventoRegistrar_model");
+
+        $idservicio = $this->input->post("idservicio");
+        $idticket = $this->input->post("idticket");
+        
+        $this->EventoRegistrar_model->setId($idservicio);
+        $this->EventoRegistrar_model->setIdTicket($idticket);
+        $aserv = $this->EventoRegistrar_model->anularservicio();
+        $acticket = $this->EventoRegistrar_model->activarticket();
+
+            $status = 200;
+            $message = "Servicio Anulado exitosamente";
+        
+        
+        $data = array(
+            "status" => $status,
+            "message" => $message
+        );
+        
+        redirect('eventos/eventos/lista');
+
     }
 
     public function listarAccionEntidad()

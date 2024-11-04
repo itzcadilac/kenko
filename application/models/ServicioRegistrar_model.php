@@ -100,7 +100,7 @@ class ServicioRegistrar_model extends CI_Model
         if ($this->mes != 0) {
             $this->db->where("MONTH(serv.fecregistro)",$this->mes);
         }        
-        $this->db->where_in("serv.estado", $estados);
+       // $this->db->where_in("serv.estado", $estados);
         return $this->db->get();
     }
 

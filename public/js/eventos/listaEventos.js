@@ -80,6 +80,7 @@ $(document).ready(function () {
 		autoWidth: true,
 		columns: [
 			{ "data": "idservicio" },
+			{ "data": "idticket" },
 			{ "data": "descservicio" },
 			{ "data": "direccion" },
 			{ "data": "fecregistro" },
@@ -89,20 +90,24 @@ $(document).ready(function () {
 			{ "data": "ape_paterno" },
 			{ "data": "estado", 
 				render: function (data, type, row, meta) {
-					return `<span class="badge ${data === '1' ? 'badge-info' : 'badge-default'}">${data === '1' ? 'Activo' : data}</span>`			 } 
+					return `<span class="badge ${data === '1' ? 'badge-info' : 'badge-danger'}">${data === '1' ? 'Activo' : 'Anulado'}</span>`			 } 
 			},
-			{	data: "idservicio",
+			{	data: "estado",
 				render: function (data, type, row) {
 					return `<div style="display: flex; justify-content: center; align-items: center;">
-					  			<button class="btn btn-warning btn-circle imprimservicio" title="Servicio" type="button" style="display: flex; justify-content: center; align-items: center;">
+					  			<button class="btn btn-warning btn-circle imprimservicio" title="Imprimir Servicio" type="button" style="display: flex; justify-content: center; align-items: center;">
 								<i style="display: flex; justify-content: center; align-items: center; margin: 0 !important;padding: 0 !important;" class="fa fa-file-pdf-o"></i>
-					  			</button>							
+					  			</button>&nbsp; &nbsp; &nbsp; 
+					  			<button class="btn btn-warning btn-circle anulaservicio" title="Anular Servicio" type="button" style="display: flex; justify-content: center; align-items: center;" ${data == 0 ? 'disabled' : 'enabled'}>
+								<i style="display: flex; justify-content: center; align-items: center; margin: 0 !important;padding: 0 !important;" class="fa fa-ban"></i>
+					  			</button>															
 							</div>`;
+					
 				 }
 			  },
 		],
 		columnDefs: [{
-			"targets": [0, 4, 8],
+			"targets": [0, 1, 4, 8],
 			"visible": false,
 			"searchable": false
 		}],
@@ -203,6 +208,11 @@ $(document).ready(function () {
 		var data = table.row($(this).closest('tr')).data();
 		post(URI + "servicio/servicio.php?id=" + data.idservicio);
 	  });
+
+	  $('.tbLista').on('click', 'td .anulaservicio', function () {
+		var data = table.row($(this).closest('tr')).data();
+		post(URI + "eventos/eventos/anularservicio", { idservicio: data.idservicio, idticket: data.idticket });
+		});
 
 	$('body').on('click', 'td i.addDanios', function () {
 		var tr = $(this).parents('tr');
