@@ -135,6 +135,7 @@
 																			<input type="hidden" id="idTicket" name="idTicket" value="<?=$id?>">
 																			<input type="hidden" name="Evento_Registro_Numero" value="0" />
 																			<input id="idCliente" type="hidden" name="idCliente" value="<?=$idecliente?>" />
+																			<input id="pesoticket" type="hidden" name="pesoticket" value="<?=$peso?>" />
 																			<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 																				<div class="form-group row">
 																					<label for="idCliente" class="col-sm-4 col-form-label label">Cliente</label>

@@ -59,13 +59,19 @@ function registroEvento(URI, EVENTO_CODIGO_REGION) {
 
 		$('body').on('click', 'td button.actionDelete', function (e) {
 			e.preventDefault();
+
 			tableArticuloIngresos.row($(this).parents('tr')).remove().draw(false);
 			const data = tableArticuloIngresos.rows().data();
+
 			// }
 		});
 
+		var totpeso = 0;
+		var pesoticket = 0;
 		$(".btn-buscar").on('click', function (event) {
 			let items = {};
+			var parcialpeso = 0;
+			
 			var formData = ($("#formEvento").serializeArray());
 			console.log({formData})
 			formData.forEach(element => {
@@ -73,7 +79,17 @@ function registroEvento(URI, EVENTO_CODIGO_REGION) {
 				if(element.name === 'idTipoParihuela') items['descripcionParihuela'] = listaTipoparihuela.find(item => item.idtipoparihuela == [element.value]).descripcionparihuela
 				if(element.name === 'idTipoJaba') items['descripcionTipoJaba'] = listaTipojaba.find(item => item.idtipjaba == [element.value]).descripcionjaba
 				if(element.name === 'idTamFruta') items['desctamfruta'] = listaMedidafruta.find(item => item.idtamfruta == [element.value]).desctamfruta
+				if(element.name === 'peso') parcialpeso = parseFloat(element.value) 
+				if(element.name === 'pesoticket') pesoticket = parseFloat(element.value) 
+					
 			});
+			console.log(pesoticket);
+			if(totpeso > pesoticket ){
+				return false;
+			}
+			else {
+				totpeso += parcialpeso;
+				console.log(totpeso);				
 			tableArticuloIngresos.rows.add([items]).draw();
         	// $("#formEvento")[0].reset();
 			$("#idTipoParihuela").val("")
@@ -87,6 +103,7 @@ function registroEvento(URI, EVENTO_CODIGO_REGION) {
 					idTipoServicio: formData.idTipoServicio,
 					direccion: formData.direccion,
 				}
+			}
 		});
 
 		$(".btnclientSearch").on('click', function (event) {
@@ -195,7 +212,7 @@ function registroEvento(URI, EVENTO_CODIGO_REGION) {
 				};
 
 				console.log(data)
-
+				
 
 				$.ajax({
 					data: toQueryString(data),
