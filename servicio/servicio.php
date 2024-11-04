@@ -134,9 +134,9 @@ $sqldatosserv = "SELECT
     while($row=mysqli_fetch_array($result))
                             {
                                
-                            $pdf->Cell(10,5,iconv("UTF-8", "ISO-8859-1", $row[desctamfruta1]),0,0,'R');
-                            $pdf->Cell(19,5,iconv("UTF-8", "ISO-8859-1", $row[cantjbs1] . " " . $row[nombcorto1]),0,0,'R');
-                            $pdf->Cell(21,5,iconv("UTF-8", "ISO-8859-1", $row[peso1] ." Kgs."),0,0,'R');
+                            $pdf->Cell(10,5,iconv("UTF-8", "ISO-8859-1", $row['desctamfruta1']),0,0,'R');
+                            $pdf->Cell(19,5,iconv("UTF-8", "ISO-8859-1", $row['cantjbs1'] . " " . $row['nombcorto1']),0,0,'R');
+                            $pdf->Cell(21,5,iconv("UTF-8", "ISO-8859-1", $row['peso1'] ." Kgs."),0,0,'R');
                             //$pdf->MultiCell(0,4,iconv("UTF-8", "ISO-8859-1","Garantía de fábrica: 2 Meses"),0,'C',false);
                             $pdf->Ln(4);
 
