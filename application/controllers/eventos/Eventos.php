@@ -63,6 +63,10 @@ class Eventos extends CI_Controller
         $apepaternot = $this->input->post('apepaternot');
         $apematernot = $this->input->post('apematernot');
         $tipodocumento = $this->input->post('tipodocumento');
+        $idtipfruta = $this->input->post('idtipfruta');
+        $idtipservicio = $this->input->post('idtipservicio');
+        $peso = $this->input->post('peso');
+        $destino = $this->input->post('destino');
         
         $this->load->model("Cliente_model");
         $this->load->model("TipoServicio_model");
@@ -105,6 +109,10 @@ class Eventos extends CI_Controller
             "apepaternot" => $apepaternot,
             "apematernot" => $apematernot,
             "tipodocumento" => $tipodocumento,
+            "idtipfruta" => $idtipfruta,
+            "idtipservicio" => $idtipservicio,
+            "peso" => $peso,
+            "destino" => $destino,
             "cliente" => $cliente->result(),
             "tiposervicio" => $tiposervicio->result(),
             "tipoparihuela" => $tipoparihuela,
@@ -615,6 +623,7 @@ class Eventos extends CI_Controller
                     "idtipservicio" => $row->idtipservicio,
                     "peso" => $row->peso,
                     "estado" => $row->estado,
+                    "idtipfruta" => $row->idtipfruta,
                 );
                 $orden ++;
             endforeach

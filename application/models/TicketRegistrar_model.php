@@ -80,7 +80,7 @@ class TicketRegistrar_model extends CI_Model
         $estados = array("1");
         $idrol = $this->session->userdata("idrol");
         $codigoRegion = $this->session->userdata("Codigo_Region");
-        $this->db->select("tck.idticket, tck.direccion, tck.fecregistro, tck.estado, tck.peso, tck.apodo, c.idecliente, tdoc.Tipo_Documento_Nombre tipdocumento, c.documento, c.nombres, c.ape_paterno, c.ape_materno, tserv.idtipservicio, tserv.descservicio, tfrut.descripcionfruta, tjaba.descripcionjaba, tck.cantjabas ");
+        $this->db->select("tck.idticket, tck.direccion, tck.fecregistro, tck.estado, tck.peso, tck.apodo, c.idecliente, tdoc.Tipo_Documento_Nombre tipdocumento, c.documento, c.nombres, c.ape_paterno, c.ape_materno, tserv.idtipservicio, tserv.descservicio, tfrut.descripcionfruta, tjaba.descripcionjaba, tck.cantjabas, tck.idtipfruta ");
         $this->db->select("DATE_FORMAT(tck.fecregistro,'%Y') anio");
         $this->db->from("ticket tck");
         $this->db->join("cliente c", "c.idecliente=tck.idcliente");

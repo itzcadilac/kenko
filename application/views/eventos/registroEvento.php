@@ -160,7 +160,7 @@
 																						<div class="row col-sm-8 radio-group pr-0">
 																							<?php foreach ($tiposervicio as $row) : ?>
 																								<div class="radio-item col pr-0">
-																									<input type="radio" name="idTipoServicio" value="<?= $row->idtipservicio ?>" id="optserv<?= $row->idtipservicio ?>">
+																									<input type="radio" name="idTipoServicio" <?php if($row->idtipservicio == $idtipservicio) { echo "checked"; }?> value="<?= $row->idtipservicio ?>" id="optserv<?= $row->idtipservicio ?>">
 																									<label class="btn btn-servicio" for="optserv<?=$row->idtipservicio?>">
 																										<?= $row->descservicio ?>
 																									</label>
@@ -171,7 +171,7 @@
 																				<div class="form-group row">
 																					<label class="col-sm-4 col-form-label">Destino</label>
 																					<div class="col-sm-8">
-																						<input id="direccion" name="direccion" class="form-control input-direccion" type="text" placeholder="Ingrese destino" />
+																						<input id="direccion" name="direccion" class="form-control input-direccion" type="text" placeholder="<?=$destino?>" value="<?=$destino?>" />
 																					</div>
 																				</div>
 																				<div class="form-group row">
@@ -179,7 +179,7 @@
 																					<div class="row col-sm-8 radio-group pr-0">
 																						<?php foreach ($tipofruta as $row) : ?>
 																							<div class="radio-item col pr-0">
-																								<input type="radio" name="idTipFruta" value="<?=$row->idtipfruta?>" id="optfrut<?=$row->idtipfruta?>">
+																								<input type="radio" name="idTipFruta" <?php if($row->idtipfruta == $idtipfruta) { echo "checked"; }?> value="<?=$row->idtipfruta?>" id="optfrut<?=$row->idtipfruta?>">
 																								<label class="btn btn-servicio" for="optfrut<?=$row->idtipfruta?>">
 																									<?= $row->descripcionfruta ?>
 																								</label>
@@ -261,7 +261,7 @@
 																				<div class="form-group row">
 																					<label class="col-sm-3 col-form-label-sg">Peso</label>
 																					<div class="col-sm-8">
-																						<input id="peso" name="peso" class="form-control1" type="number" placeholder="  Ingrese valor..." />
+																						<input id="peso" name="peso" class="form-control1" type="number" placeholder="<?=$peso?>" value="<?=$peso?>" />
 																					</div>
 																				</div>																
 																				<div class="form-group row">

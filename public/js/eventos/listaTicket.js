@@ -123,9 +123,11 @@ $(document).ready(function () {
 				}
 			},
 			{ data: "idecliente" },
+			{ data: "idtipfruta" }, 
+			{ data: "idtipservicio" }, 
 		],
 		columnDefs: [{
-			"targets": [0, 4, 8, 10, 11, 12, 13, 14, 17],
+			"targets": [0, 4, 8, 10, 11, 12, 13, 14, 17, 18, 19],
 			"visible": false,
 			"searchable": false
 		}],
@@ -234,7 +236,7 @@ $(document).ready(function () {
 	});
 	$('.tbLista').on('click', 'td .serviceAction', function () {
 		var data = table.row($(this).closest('tr')).data();
-		post(URI + "eventos/nuevo", { id: data.idticket, document: data.documento, nombrest: data.nombres, apepaternot: data.ape_paterno, apematernot: data.ape_materno, idecliente: data.idecliente, tipodocumento: data.tipodocumento });
+		post(URI + "eventos/nuevo", { id: data.idticket, document: data.documento, nombrest: data.nombres, apepaternot: data.ape_paterno, apematernot: data.ape_materno, idecliente: data.idecliente, tipodocumento: data.tipodocumento, idtipfruta: data.idtipfruta, idtipservicio: data.idtipservicio, peso: data.peso, destino: data.direccion });
 	});
 
 	$('.tbLista').on('click', 'td .imprimticket', function () {

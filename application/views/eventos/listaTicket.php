@@ -125,7 +125,9 @@
 																		<th></th>
 																		<th>Estado</th>
 																		<th>Ticket</th>
-																		<th>Acciones</th>
+																		<th>Agregar Sercivio</th>
+																		<th></th>
+																		<th></th>
 																		<th></th>
 																	</tr>
 																</thead>
